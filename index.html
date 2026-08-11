@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ticket Resale Platform — Devansh Singh</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<canvas id="web-canvas"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
+  <div class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="index.html#work" class="active">PROJECTS</a>
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#contact">CONTACT</a>
+  </div>
+  <a href="mailto:imdevansh.08@gmail.com" class="nav-cta">HIRE ME</a>
+  <button class="menu-toggle">MENU</button>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">HOME</a>
+  <a href="index.html#work">PROJECTS</a>
+  <a href="index.html#about">ABOUT</a>
+  <a href="index.html#contact">CONTACT</a>
+</div>
+
+<div class="breadcrumb"><a href="index.html">HOME</a> / <a href="index.html#work">PROJECTS</a> / 01</div>
+
+<main>
+  <section class="p-hero">
+    <span class="tag reveal"><span class="dot"></span> FIG. 01</span>
+    <h1 class="reveal">Ticket Resale Platform</h1>
+    <p class="lede reveal">A full-stack marketplace where fans resell event tickets safely — ML fraud scoring, real-time inventory sync, and QR-based verification, split across three independently deployed services.</p>
+    <div class="p-meta reveal">
+      <div class="m"><div class="m-label">ROLE</div><div class="m-val">Solo Developer</div></div>
+      <div class="m"><div class="m-label">TIMELINE</div><div class="m-val">8 weeks</div></div>
+      <div class="m"><div class="m-label">TYPE</div><div class="m-val">Full-Stack Web App</div></div>
+      <div class="m"><div class="m-label">STATUS</div><div class="m-val">Live</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="p-block reveal">
+      <h2>The Problem</h2>
+      <p>Ticket resale is rife with duplicate listings and fraud, and buyers have no way to verify a ticket is genuine before paying.</p>
+    </div>
+    <div class="p-block reveal">
+      <h2>The Approach</h2>
+      <ul>
+        <li>Built a React + Tailwind frontend with a custom cinematic dark theme and Socket.io live updates</li>
+        <li>Designed a Node.js/Express API with JWT auth and a dual-database architecture — MongoDB Atlas for listings, PostgreSQL for analytics</li>
+        <li>Trained a fraud-detection model served through a separate Python Flask microservice</li>
+        <li>Added QR code generation per ticket so sellers and buyers can verify authenticity at handoff</li>
+        <li>Built an admin panel with Recharts dashboards for platform-wide analytics</li>
+      </ul>
+    </div>
+    <div class="p-block reveal">
+      <h2>The Outcome</h2>
+      <p>Shipped as three independently deployed services — frontend on Vercel, backend and ML service on Render — with real-time listing updates and automated fraud flags reducing manual review.</p>
+    </div>
+    <div class="p-block reveal">
+      <h2>Stack</h2>
+      <div class="p-stack"><span>React</span><span>Tailwind</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>PostgreSQL</span><span>Flask</span><span>Socket.io</span><span>JWT</span></div>
+    </div>
+    <div class="btn-row reveal">
+      <a href="https://ticket-resale-phi.vercel.app/" class="btn primary">LIVE DEMO →</a>
+      <a href="#" class="btn ghost">VIEW CODE</a>
+    </div>
+  </section>
+
+  <div class="p-nav">
+    <a href="project-bnb.html">← Project on B&B</a>
+    <a href="project-risk-dashboard.html">Student Risk Dashboard →</a>
+  </div>
+
+  <footer class="foot" id="contact">
+    <p>DEVANSH SINGH — PRAYAGRAJ, INDIA</p>
+    <div class="social">
+      <a href="mailto:imdevansh.08@gmail.com">EMAIL</a>
+      <a href="#">LINKEDIN</a>
+      <a href="#">GITHUB</a>
+    </div>
+  </footer>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
