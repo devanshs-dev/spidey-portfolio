@@ -305,4 +305,5 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .rec-grid { grid-template-columns: 1fr; }
   .p-meta { grid-template-columns: repeat(2, 1fr); }
   .p-meta .m:nth-child(2n+1) { border-left: none; }
+  .menu-toggle { display: none !important; }
 }
