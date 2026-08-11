@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flight Price Predictor — Devansh Singh</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<canvas id="web-canvas"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
+  <div class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="index.html#work" class="active">PROJECTS</a>
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#contact">CONTACT</a>
+  </div>
+  <a href="mailto:imdevansh.08@gmail.com" class="nav-cta">HIRE ME</a>
+  <button class="menu-toggle">MENU</button>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">HOME</a>
+  <a href="index.html#work">PROJECTS</a>
+  <a href="index.html#about">ABOUT</a>
+  <a href="index.html#contact">CONTACT</a>
+</div>
+
+<div class="breadcrumb"><a href="index.html">HOME</a> / <a href="index.html#work">PROJECTS</a> / 03</div>
+
+<main>
+  <section class="p-hero">
+    <span class="tag reveal"><span class="dot"></span> FIG. 03</span>
+    <h1 class="reveal">Flight Price Predictor</h1>
+    <p class="lede reveal">A Random Forest regression model forecasting flight prices, built to explore dynamic pricing signals in a noisy, seasonal dataset.</p>
+    <div class="p-meta reveal">
+      <div class="m"><div class="m-label">ROLE</div><div class="m-val">Solo Project</div></div>
+      <div class="m"><div class="m-label">TIMELINE</div><div class="m-val">3 weeks</div></div>
+      <div class="m"><div class="m-label">TYPE</div><div class="m-val">ML Regression</div></div>
+      <div class="m"><div class="m-label">STATUS</div><div class="m-val">Completed</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="p-block reveal">
+      <h2>The Problem</h2>
+      <p>Flight prices swing on route, airline, booking window, and season — a naive average-based estimate misses most of that signal.</p>
+    </div>
+    <div class="p-block reveal">
+      <h2>The Approach</h2>
+      <ul>
+        <li>Cleaned and feature-engineered a public flight fare dataset — route, duration, stops, days-to-departure</li>
+        <li>Compared linear regression, decision tree, and Random Forest models</li>
+        <li>Tuned hyperparameters with grid search to reduce overfitting on high-cardinality route features</li>
+        <li>Evaluated with R² and MAE to keep errors interpretable in real currency terms</li>
+      </ul>
+    </div>
+    <div class="p-block reveal">
+      <h2>The Outcome</h2>
+      <p>Landed on a Random Forest model reaching an R² of 0.87, a meaningful jump over the linear baseline.</p>
+    </div>
+    <div class="p-block reveal">
+      <h2>Stack</h2>
+      <div class="p-stack"><span>Python</span><span>Scikit-learn</span><span>Random Forest</span><span>Pandas</span><span>NumPy</span></div>
+    </div>
+    <div class="btn-row reveal">
+      <a href="#" class="btn primary">LIVE DEMO →</a>
+      <a href="#" class="btn ghost">VIEW CODE</a>
+    </div>
+  </section>
+
+  <div class="p-nav">
+    <a href="project-risk-dashboard.html">← Student Risk Dashboard</a>
+    <a href="project-music-app.html">Music Recognition App →</a>
+  </div>
+
+  <footer class="foot" id="contact">
+    <p>DEVANSH SINGH — PRAYAGRAJ, INDIA</p>
+    <div class="social">
+      <a href="mailto:imdevansh.08@gmail.com">EMAIL</a>
+      <a href="#">LINKEDIN</a>
+      <a href="#">GITHUB</a>
+    </div>
+  </footer>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>

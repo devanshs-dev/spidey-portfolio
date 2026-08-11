@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Risk Dashboard — Devansh Singh</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="cursor"></div>
+<canvas id="web-canvas"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
+  <div class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="index.html#work" class="active">PROJECTS</a>
+    <a href="index.html#about">ABOUT</a>
+    <a href="index.html#contact">CONTACT</a>
+  </div>
+  <a href="mailto:imdevansh.08@gmail.com" class="nav-cta">HIRE ME</a>
+  <button class="menu-toggle">MENU</button>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">HOME</a>
+  <a href="index.html#work">PROJECTS</a>
+  <a href="index.html#about">ABOUT</a>
+  <a href="index.html#contact">CONTACT</a>
+</div>
+
+<div class="breadcrumb"><a href="index.html">HOME</a> / <a href="index.html#work">PROJECTS</a> / 02</div>
+
+<main>
+  <section class="p-hero">
+    <span class="tag reveal"><span class="dot"></span> FIG. 02</span>
+    <h1 class="reveal">Student Risk Dashboard</h1>
+    <p class="lede reveal">An XGBoost classifier that flags at-risk students early, wired into a live dashboard built for faculty with no ML background.</p>
+    <div class="p-meta reveal">
+      <div class="m"><div class="m-label">ROLE</div><div class="m-val">ML Intern, IIT BHU</div></div>
+      <div class="m"><div class="m-label">TIMELINE</div><div class="m-val">10 weeks</div></div>
+      <div class="m"><div class="m-label">TYPE</div><div class="m-val">ML + Dashboard</div></div>
+      <div class="m"><div class="m-label">STATUS</div><div class="m-val">Completed</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="p-block reveal">
+      <h2>The Problem</h2>
+      <p>Faculty had academic and attendance data spread across spreadsheets with no early-warning signal for students likely to underperform or drop out.</p>
+    </div>
+    <div class="p-block reveal">
+      <h2>The Approach</h2>
+      <ul>
+        <li>Cleaned and merged multi-semester academic, attendance, and engagement records</li>
+        <li>Engineered features capturing trend, not just snapshot performance</li>
+        <li>Trained and tuned an XGBoost classifier, benchmarked against logistic regression and random forest baselines</li>
+        <li>Built a dashboard translating model output into plain-language risk tiers for non-technical staff</li>
+        <li>Validated predictions against historical outcomes to check for false positives</li>
+      </ul>
+    </div>
+    <div class="p-block reveal">
+      <h2>The Outcome</h2>
+      <p>Delivered a working risk-scoring pipeline faculty could act on directly, without needing to interpret raw model scores.</p>
+    </div>
+    <div class="p-block reveal">
+      <h2>Stack</h2>
+      <div class="p-stack"><span>Python</span><span>XGBoost</span><span>Pandas</span><span>Scikit-learn</span><span>Matplotlib</span></div>
+    </div>
+    <div class="btn-row reveal">
+      <a href="#" class="btn primary">LIVE DEMO →</a>
+      <a href="#" class="btn ghost">VIEW CODE</a>
+    </div>
+  </section>
+
+  <div class="p-nav">
+    <a href="project-ticket-resale.html">← Ticket Resale Platform</a>
+    <a href="project-flight-predictor.html">Flight Price Predictor →</a>
+  </div>
+
+  <footer class="foot" id="contact">
+    <p>DEVANSH SINGH — PRAYAGRAJ, INDIA</p>
+    <div class="social">
+      <a href="mailto:imdevansh.08@gmail.com">EMAIL</a>
+      <a href="#">LINKEDIN</a>
+      <a href="#">GITHUB</a>
+    </div>
+  </footer>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
