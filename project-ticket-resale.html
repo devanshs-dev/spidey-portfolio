@@ -36,9 +36,10 @@
 .qr-block p { font-size: 13.5px; color: var(--ink-soft); max-width: 40ch; margin: 0; }
 
 .preview-card { max-width: 460px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin-top: 8px; background: var(--bg-2); }
-.preview-thumb { position: relative; height: 200px; background: linear-gradient(135deg, #16161C 0%, #0A0A0D 100%); display: flex; align-items: center; justify-content: center; cursor: pointer; }
-.preview-thumb::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(rgba(232,56,61,0.06) 1px, transparent 1px); background-size: 16px 16px; }
-.preview-play { position: relative; width: 52px; height: 52px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; transition: transform .2s ease; }
+.preview-thumb { position: relative; height: 200px; background: #0A0A0D; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
+.preview-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; opacity: .55; }
+.preview-thumb::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,13,0.2) 0%, rgba(10,10,13,0.75) 100%); }
+.preview-play { position: relative; z-index: 1; width: 52px; height: 52px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; transition: transform .2s ease; }
 .preview-thumb:hover .preview-play { transform: scale(1.08); }
 .preview-play svg { width: 18px; height: 18px; fill: var(--bg); margin-left: 3px; }
 .preview-info { padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); }
@@ -55,10 +56,11 @@
 .browser-dots span:nth-child(2) { background: var(--blue); opacity: .5; }
 .browser-dots span:nth-child(3) { background: var(--ink-faint); opacity: .5; }
 .browser-url { flex: 1; background: var(--bg); border-radius: 3px; padding: 5px 10px; font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.embed-wrap { position: relative; height: 340px; background: var(--bg); }
-.embed-wrap iframe { width: 100%; height: 100%; border: none; display: block; opacity: 0; transition: opacity .4s ease; }
-.embed-wrap iframe.loaded { opacity: 1; }
-.embed-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.05em; text-align: center; padding: 0 20px; }
+.embed-viewport { position: relative; height: 340px; background: var(--bg); overflow: hidden; }
+.embed-scaler { position: absolute; top: 0; left: 0; width: 1280px; height: 970px; transform: scale(0.3594); transform-origin: top left; }
+.embed-scaler iframe { width: 1280px; height: 970px; border: none; display: block; opacity: 0; transition: opacity .4s ease; }
+.embed-scaler iframe.loaded { opacity: 1; }
+.embed-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.05em; text-align: center; padding: 0 20px; z-index: 2; }
 @media (max-width: 900px) { .preview-card, .browser-frame { max-width: 100%; } }
 </style>
 </head>
@@ -107,6 +109,7 @@
 
       <div class="preview-card" id="previewCard">
         <div class="preview-thumb" id="previewThumb">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fticket-resale-phi.vercel.app%2F?w=900&h=500" alt="Screenshot of Ticket Resale Platform" loading="lazy">
           <div class="preview-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
         </div>
         <div class="preview-info">
@@ -123,9 +126,11 @@
           <div class="browser-dots"><span id="closePreview" title="Close preview"></span><span></span><span></span></div>
           <div class="browser-url">ticket-resale-phi.vercel.app</div>
         </div>
-        <div class="embed-wrap">
+        <div class="embed-viewport">
           <div class="embed-loading" id="embedLoading">LOADING PREVIEW...</div>
-          <iframe id="liveEmbed" src="" loading="lazy" title="Live Ticket Resale Platform preview"></iframe>
+          <div class="embed-scaler">
+            <iframe id="liveEmbed" src="" loading="lazy" title="Live Ticket Resale Platform preview"></iframe>
+          </div>
         </div>
       </div>
     </div>
