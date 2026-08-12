@@ -392,6 +392,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   transition: opacity 0.3s ease;
 }
 .teaser-card:hover::before { opacity: 0.12; }
+.teaser-card, .rec-card { will-change: transform; }
 
 @media (max-width: 900px) {
   section, .hero, .foot, .breadcrumb, .p-hero, .p-nav { padding-left: 22px; padding-right: 22px; }

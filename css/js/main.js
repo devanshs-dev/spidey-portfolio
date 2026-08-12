@@ -84,50 +84,138 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// spider-sense pulse on hover
-document.querySelectorAll('a, button, .teaser-card, .rec-card').forEach(el => {
-  el.addEventListener('mouseenter', (e) => {
-    const ring = document.createElement('div');
-    ring.className = 'pulse-ring active';
-    document.body.appendChild(ring);
+// magnetic pull on buttons only (cards handled by tilt below)
+document.querySelectorAll('.btn, .nav-cta').forEach(el => {
+  el.addEventListener('mousemove', (e) => {
     const rect = el.getBoundingClientRect();
-    ring.style.left = (rect.left + rect.width / 2) + 'px';
-    ring.style.top = (rect.top + rect.height / 2) + 'px';
-    setTimeout(() => ring.remove(), 600);
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    el.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
   });
+  el.addEventListener('mouseleave', () => { el.style.transform = 'translate(0,0)'; });
 });
 
-// web-shooter click trail
-document.querySelectorAll('a[href]').forEach(link => {
-  link.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (!href || href.startsWith('#') || href.startsWith('mailto') || this.target === '_blank') return;
-    e.preventDefault();
-    const rect = this.getBoundingClientRect();
-    const startX = window.innerWidth / 2, startY = window.innerHeight - 20;
-    const endX = rect.left + rect.width / 2, endY = rect.top + rect.height / 2;
-    const line = document.createElement('div');
-    line.className = 'web-line';
-    const dx = endX - startX, dy = endY - startY;
-    const len = Math.sqrt(dx * dx + dy * dy);
-    line.style.width = len + 'px';
-    line.style.left = startX + 'px';
-    line.style.top = startY + 'px';
-    line.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
-    document.body.appendChild(line);
-    setTimeout(() => { window.location.href = href; }, 180);
-  });
-});
-
-// wall-crawl nav dots active state
-const dots = document.querySelectorAll('.nav-dots a');
-if (dots.length) {
-  const dotSections = Array.from(dots).map(d => document.querySelector(d.getAttribute('href')));
-  window.addEventListener('scroll', () => {
-    let current = 0;
-    dotSections.forEach((sec, i) => {
-      if (sec && window.scrollY >= sec.offsetTop - window.innerHeight / 2) current = i;
-    });
-    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+// hero headline split-and-settle on load
+const heroH1 = document.querySelector('.hero h1');
+if (heroH1) {
+  const words = heroH1.innerHTML.split(/(<br>)/).filter(Boolean);
+  heroH1.innerHTML = words.map(w =>
+    w === '<br>' ? '<br>' : `<span class="word-in">${w}</span>`
+  ).join('');
+  document.querySelectorAll('.word-in').forEach((w, i) => {
+    setTimeout(() => w.classList.add('settled'), 80 * i);
   });
 }
+
+// ---- 1. Elastic web-thread trailing the cursor ----
+if (window.matchMedia('(min-width: 901px)').matches) {
+  const threadCanvas = document.createElement('canvas');
+  threadCanvas.style.cssText = 'position:fixed;inset:0;z-index:9996;pointer-events:none;';
+  document.body.appendChild(threadCanvas);
+  const tctx = threadCanvas.getContext('2d');
+  function resizeThread() { threadCanvas.width = window.innerWidth; threadCanvas.height = window.innerHeight; }
+  window.addEventListener('resize', resizeThread);
+  resizeThread();
+
+  const SEGMENTS = 14;
+  const points = Array.from({ length: SEGMENTS }, () => ({ x: window.innerWidth / 2, y: window.innerHeight / 2 }));
+  let target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+  window.addEventListener('mousemove', (e) => { target.x = e.clientX; target.y = e.clientY; });
+
+  function drawThread() {
+    points[0].x += (target.x - points[0].x) * 0.5;
+    points[0].y += (target.y - points[0].y) * 0.5;
+    for (let i = 1; i < points.length; i++) {
+      points[i].x += (points[i - 1].x - points[i].x) * 0.35;
+      points[i].y += (points[i - 1].y - points[i].y) * 0.35;
+    }
+    tctx.clearRect(0, 0, threadCanvas.width, threadCanvas.height);
+    tctx.beginPath();
+    tctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length - 2; i++) {
+      const xc = (points[i].x + points[i + 1].x) / 2;
+      const yc = (points[i].y + points[i + 1].y) / 2;
+      tctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    tctx.strokeStyle = 'rgba(232,56,61,0.35)';
+    tctx.lineWidth = 1;
+    tctx.stroke();
+    requestAnimationFrame(drawThread);
+  }
+  drawThread();
+}
+
+// ---- 2. 3D tilt on cards ----
+document.querySelectorAll('.teaser-card, .rec-card').forEach(el => {
+  el.style.transformStyle = 'preserve-3d';
+  el.style.willChange = 'transform';
+  el.addEventListener('mousemove', (e) => {
+    const rect = el.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width;
+    const py = (e.clientY - rect.top) / rect.height;
+    const rotX = (py - 0.5) * -10;
+    const rotY = (px - 0.5) * 10;
+    el.style.transform = `perspective(700px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.02)`;
+  });
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = 'perspective(700px) rotateX(0) rotateY(0) scale(1)';
+  });
+});
+
+// ---- 3. Animated stat counters ----
+document.querySelectorAll('.stat-num').forEach(el => {
+  const raw = el.textContent.trim();
+  const isDecimal = raw.includes('.');
+  const target = parseFloat(raw);
+  if (isNaN(target)) return;
+  let started = false;
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !started) {
+        started = true;
+        const duration = 1200;
+        const start = performance.now();
+        function step(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const val = target * eased;
+          el.textContent = isDecimal ? val.toFixed(2) : Math.round(val);
+          if (progress < 1) requestAnimationFrame(step);
+          else el.textContent = raw;
+        }
+        requestAnimationFrame(step);
+      }
+    });
+  }, { threshold: 0.5 });
+  counterObserver.observe(el);
+});
+
+// ---- 4. Text-scramble decrypt on section labels ----
+const scrambleChars = '!<>-_\\/[]{}—=+*^?#________';
+function scrambleInto(el, finalText) {
+  let frame = 0;
+  function update() {
+    let out = '';
+    for (let i = 0; i < finalText.length; i++) {
+      if (i < frame / 2) out += finalText[i];
+      else out += finalText[i] === ' ' ? ' ' : scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+    }
+    el.textContent = out;
+    frame++;
+    if (frame / 2 < finalText.length) requestAnimationFrame(update);
+    else el.textContent = finalText;
+  }
+  update();
+}
+document.querySelectorAll('.section-label').forEach(el => {
+  const final = el.childNodes[0] ? el.childNodes[0].textContent : el.textContent;
+  const scrambleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        scrambleInto(el.firstChild || el, final);
+        scrambleObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.5 });
+  scrambleObserver.observe(el);
+});
