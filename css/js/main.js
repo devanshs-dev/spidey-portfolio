@@ -83,3 +83,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// spider-sense pulse on hover
+document.querySelectorAll('a, button, .teaser-card, .rec-card').forEach(el => {
+  el.addEventListener('mouseenter', (e) => {
+    const ring = document.createElement('div');
+    ring.className = 'pulse-ring active';
+    document.body.appendChild(ring);
+    const rect = el.getBoundingClientRect();
+    ring.style.left = (rect.left + rect.width / 2) + 'px';
+    ring.style.top = (rect.top + rect.height / 2) + 'px';
+    setTimeout(() => ring.remove(), 600);
+  });
+});
+
+// web-shooter click trail
+document.querySelectorAll('a[href]').forEach(link => {
+  link.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto') || this.target === '_blank') return;
+    e.preventDefault();
+    const rect = this.getBoundingClientRect();
+    const startX = window.innerWidth / 2, startY = window.innerHeight - 20;
+    const endX = rect.left + rect.width / 2, endY = rect.top + rect.height / 2;
+    const line = document.createElement('div');
+    line.className = 'web-line';
+    const dx = endX - startX, dy = endY - startY;
+    const len = Math.sqrt(dx * dx + dy * dy);
+    line.style.width = len + 'px';
+    line.style.left = startX + 'px';
+    line.style.top = startY + 'px';
+    line.style.transform = `rotate(${Math.atan2(dy, dx)}rad)`;
+    document.body.appendChild(line);
+    setTimeout(() => { window.location.href = href; }, 180);
+  });
+});
+
+// wall-crawl nav dots active state
+const dots = document.querySelectorAll('.nav-dots a');
+if (dots.length) {
+  const dotSections = Array.from(dots).map(d => document.querySelector(d.getAttribute('href')));
+  window.addEventListener('scroll', () => {
+    let current = 0;
+    dotSections.forEach((sec, i) => {
+      if (sec && window.scrollY >= sec.offsetTop - window.innerHeight / 2) current = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  });
+}
