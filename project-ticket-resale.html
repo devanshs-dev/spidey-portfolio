@@ -39,6 +39,66 @@
 
   <section>
     <div class="p-block reveal">
+      <h2>Architecture</h2>
+      <p>Three independently deployed services, each doing one job well.</p>
+      <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:900px; margin-top:24px;">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#E8383D" />
+          </marker>
+        </defs>
+
+        <!-- Client -->
+        <rect x="40" y="30" width="200" height="90" rx="3" fill="#111116" stroke="#3B7CF6" stroke-width="1.5"/>
+        <text x="140" y="60" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">BROWSER</text>
+        <text x="140" y="85" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15">User / Buyer</text>
+
+        <!-- React Frontend -->
+        <rect x="40" y="180" width="200" height="110" rx="3" fill="#111116" stroke="#E8383D" stroke-width="1.5"/>
+        <text x="140" y="208" text-anchor="middle" fill="#E8383D" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">FRONTEND</text>
+        <text x="140" y="233" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">React</text>
+        <text x="140" y="253" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Vercel</text>
+        <text x="140" y="272" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Socket.io client</text>
+
+        <!-- Node API -->
+        <rect x="350" y="30" width="200" height="130" rx="3" fill="#111116" stroke="#E8383D" stroke-width="1.5"/>
+        <text x="450" y="58" text-anchor="middle" fill="#E8383D" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">API</text>
+        <text x="450" y="83" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">Node.js / Express</text>
+        <text x="450" y="103" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Render</text>
+        <text x="450" y="126" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">JWT auth · Socket.io server</text>
+        <text x="450" y="144" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">QR generation</text>
+
+        <!-- Flask ML -->
+        <rect x="350" y="200" width="200" height="130" rx="3" fill="#111116" stroke="#3B7CF6" stroke-width="1.5"/>
+        <text x="450" y="228" text-anchor="middle" fill="#3B7CF6" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">ML SERVICE</text>
+        <text x="450" y="253" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">Flask</text>
+        <text x="450" y="273" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Render</text>
+        <text x="450" y="296" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Scikit-learn fraud model</text>
+        <text x="450" y="314" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Listing trust scoring</text>
+
+        <!-- MongoDB -->
+        <rect x="660" y="30" width="200" height="90" rx="3" fill="#111116" stroke="rgba(243,243,245,0.2)" stroke-width="1.5"/>
+        <text x="760" y="58" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">DATABASE</text>
+        <text x="760" y="83" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15" font-weight="600">MongoDB Atlas</text>
+        <text x="760" y="103" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">users · tickets · orders</text>
+
+        <!-- PostgreSQL -->
+        <rect x="660" y="200" width="200" height="90" rx="3" fill="#111116" stroke="rgba(243,243,245,0.2)" stroke-width="1.5"/>
+        <text x="760" y="228" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">DATABASE</text>
+        <text x="760" y="253" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15" font-weight="600">PostgreSQL</text>
+        <text x="760" y="273" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Supabase · analytics</text>
+
+        <!-- Arrows -->
+        <line x1="140" y1="120" x2="140" y2="178" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="240" y1="225" x2="348" y2="120" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="550" y1="95" x2="658" y2="75" stroke="#6B6B76" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="550" y1="120" x2="348" y2="240" stroke="#3B7CF6" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="550" y1="265" x2="658" y2="245" stroke="#6B6B76" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+        <text x="700" y="345" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">3 independently deployed services</text>
+      </svg>
+    </div>
+    <div class="p-block reveal">
       <h2>The Problem</h2>
       <p>Ticket resale is rife with duplicate listings and fraud, and buyers have no way to verify a ticket is genuine before paying.</p>
     </div>
