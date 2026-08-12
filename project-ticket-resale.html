@@ -5,6 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ticket Resale Platform — Devansh Singh</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+.fraud-demo { border: 1px solid var(--line); border-radius: 3px; padding: 28px; margin-top: 8px; background: var(--bg-2); }
+.fraud-demo .row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 22px; }
+.fraud-demo label { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); letter-spacing: 0.05em; display: block; margin-bottom: 10px; }
+.fraud-demo input[type=range] { width: 100%; accent-color: var(--red); }
+.fraud-demo select { width: 100%; background: var(--bg); border: 1px solid var(--line); color: var(--ink); font-family: var(--font-mono); font-size: 12.5px; padding: 8px; border-radius: 2px; }
+.fraud-demo .out { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: block; }
+.fraud-result { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 20px; }
+.fraud-result .score-label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.05em; margin-bottom: 6px; }
+.fraud-result .score-val { font-family: var(--font-display); font-size: 28px; color: var(--ink); }
+.fraud-badge { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; padding: 8px 16px; border-radius: 2px; }
+
+.term { background: #08080A; border: 1px solid var(--line); border-radius: 3px; padding: 20px 24px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.9; margin-top: 8px; overflow-x: auto; }
+.term .p { color: var(--ink-faint); }
+.term .g { color: #4ADE80; }
+.term .c { color: var(--ink-soft); }
+
+.fraud-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+.fc-card { border-radius: 3px; padding: 20px; border: 1px solid var(--line); }
+.fc-card.flag { border-color: rgba(232,56,61,0.4); background: var(--red-soft); }
+.fc-card.clean { border-color: rgba(74,222,128,0.35); background: rgba(74,222,128,0.06); }
+.fc-tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; margin-bottom: 10px; }
+.fc-card.flag .fc-tag { color: var(--red); }
+.fc-card.clean .fc-tag { color: #4ADE80; }
+.fc-card h4 { font-family: var(--font-body); font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+.fc-card p { font-size: 13px; color: var(--ink-soft); margin: 0; }
+
+.qr-block { display: flex; align-items: center; gap: 24px; margin-top: 8px; flex-wrap: wrap; }
+.qr-block img { border-radius: 3px; border: 1px solid var(--line); }
+.qr-block p { font-size: 13.5px; color: var(--ink-soft); max-width: 40ch; margin: 0; }
+
+@media (max-width: 900px) {
+  .fraud-demo .row, .fraud-compare { grid-template-columns: 1fr; }
+  .fraud-result { flex-direction: column; align-items: flex-start; gap: 12px; }
+}
+</style>
 </head>
 <body>
 
@@ -35,73 +71,21 @@
       <div class="m"><div class="m-label">TYPE</div><div class="m-val">Full-Stack Web App</div></div>
       <div class="m"><div class="m-label">STATUS</div><div class="m-val">Live</div></div>
     </div>
+
+    <div class="stat-strip reveal">
+      <div class="stat"><div class="stat-num red">3</div><div class="stat-label">SERVICES DEPLOYED</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">DATABASES</div></div>
+      <div class="stat"><div class="stat-num">8</div><div class="stat-label">WEEK BUILD</div></div>
+      <div class="stat"><div class="stat-num red">0→1</div><div class="stat-label">SOLO, START TO PROD</div></div>
+    </div>
   </section>
 
   <section>
     <div class="p-block reveal">
-      <h2>Architecture</h2>
-      <p>Three independently deployed services, each doing one job well.</p>
-      <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:900px; margin-top:24px;">
-        <defs>
-          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
-            <path d="M0,0 L0,6 L9,3 z" fill="#E8383D" />
-          </marker>
-        </defs>
-
-        <!-- Client -->
-        <rect x="40" y="30" width="200" height="90" rx="3" fill="#111116" stroke="#3B7CF6" stroke-width="1.5"/>
-        <text x="140" y="60" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">BROWSER</text>
-        <text x="140" y="85" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15">User / Buyer</text>
-
-        <!-- React Frontend -->
-        <rect x="40" y="180" width="200" height="110" rx="3" fill="#111116" stroke="#E8383D" stroke-width="1.5"/>
-        <text x="140" y="208" text-anchor="middle" fill="#E8383D" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">FRONTEND</text>
-        <text x="140" y="233" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">React</text>
-        <text x="140" y="253" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Vercel</text>
-        <text x="140" y="272" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Socket.io client</text>
-
-        <!-- Node API -->
-        <rect x="350" y="30" width="200" height="130" rx="3" fill="#111116" stroke="#E8383D" stroke-width="1.5"/>
-        <text x="450" y="58" text-anchor="middle" fill="#E8383D" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">API</text>
-        <text x="450" y="83" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">Node.js / Express</text>
-        <text x="450" y="103" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Render</text>
-        <text x="450" y="126" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">JWT auth · Socket.io server</text>
-        <text x="450" y="144" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">QR generation</text>
-
-        <!-- Flask ML -->
-        <rect x="350" y="200" width="200" height="130" rx="3" fill="#111116" stroke="#3B7CF6" stroke-width="1.5"/>
-        <text x="450" y="228" text-anchor="middle" fill="#3B7CF6" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">ML SERVICE</text>
-        <text x="450" y="253" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">Flask</text>
-        <text x="450" y="273" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Render</text>
-        <text x="450" y="296" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Scikit-learn fraud model</text>
-        <text x="450" y="314" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Listing trust scoring</text>
-
-        <!-- MongoDB -->
-        <rect x="660" y="30" width="200" height="90" rx="3" fill="#111116" stroke="rgba(243,243,245,0.2)" stroke-width="1.5"/>
-        <text x="760" y="58" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">DATABASE</text>
-        <text x="760" y="83" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15" font-weight="600">MongoDB Atlas</text>
-        <text x="760" y="103" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">users · tickets · orders</text>
-
-        <!-- PostgreSQL -->
-        <rect x="660" y="200" width="200" height="90" rx="3" fill="#111116" stroke="rgba(243,243,245,0.2)" stroke-width="1.5"/>
-        <text x="760" y="228" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">DATABASE</text>
-        <text x="760" y="253" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15" font-weight="600">PostgreSQL</text>
-        <text x="760" y="273" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Supabase · analytics</text>
-
-        <!-- Arrows -->
-        <line x1="140" y1="120" x2="140" y2="178" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <line x1="240" y1="225" x2="348" y2="120" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <line x1="550" y1="95" x2="658" y2="75" stroke="#6B6B76" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <line x1="550" y1="120" x2="348" y2="240" stroke="#3B7CF6" stroke-width="1.5" marker-end="url(#arrow)"/>
-        <line x1="550" y1="265" x2="658" y2="245" stroke="#6B6B76" stroke-width="1.5" marker-end="url(#arrow)"/>
-
-        <text x="700" y="345" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">3 independently deployed services</text>
-      </svg>
-    </div>
-    <div class="p-block reveal">
       <h2>The Problem</h2>
       <p>Ticket resale is rife with duplicate listings and fraud, and buyers have no way to verify a ticket is genuine before paying.</p>
     </div>
+
     <div class="p-block reveal">
       <h2>The Build</h2>
       <p>Built completely solo — every line of code, every deployment, every bug fixed at 2am. This project taught me more about how real systems are built than anything else I've worked on.</p>
@@ -113,14 +97,144 @@
         <li><strong>3 Services Deployed in Production</strong> — React on Vercel (auto-deploys on every git push), Node.js API on Render, Flask ML service on Render.</li>
       </ul>
     </div>
+
+    <div class="p-block reveal">
+      <h2>Architecture</h2>
+      <p>Three independently deployed services, each doing one job well.</p>
+      <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:900px; margin-top:16px;">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#E8383D" />
+          </marker>
+        </defs>
+        <rect x="40" y="30" width="200" height="90" rx="3" fill="#111116" stroke="#3B7CF6" stroke-width="1.5"/>
+        <text x="140" y="60" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">BROWSER</text>
+        <text x="140" y="85" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15">User / Buyer</text>
+
+        <rect x="40" y="180" width="200" height="110" rx="3" fill="#111116" stroke="#E8383D" stroke-width="1.5"/>
+        <text x="140" y="208" text-anchor="middle" fill="#E8383D" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">FRONTEND</text>
+        <text x="140" y="233" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">React</text>
+        <text x="140" y="253" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Vercel</text>
+        <text x="140" y="272" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Socket.io client</text>
+
+        <rect x="350" y="30" width="200" height="130" rx="3" fill="#111116" stroke="#E8383D" stroke-width="1.5"/>
+        <text x="450" y="58" text-anchor="middle" fill="#E8383D" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">API</text>
+        <text x="450" y="83" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">Node.js / Express</text>
+        <text x="450" y="103" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Render</text>
+        <text x="450" y="126" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">JWT auth · Socket.io server</text>
+        <text x="450" y="144" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">QR generation</text>
+
+        <rect x="350" y="200" width="200" height="130" rx="3" fill="#111116" stroke="#3B7CF6" stroke-width="1.5"/>
+        <text x="450" y="228" text-anchor="middle" fill="#3B7CF6" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">ML SERVICE</text>
+        <text x="450" y="253" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="16" font-weight="600">Flask</text>
+        <text x="450" y="273" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="11">Render</text>
+        <text x="450" y="296" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Scikit-learn fraud model</text>
+        <text x="450" y="314" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Listing trust scoring</text>
+
+        <rect x="660" y="30" width="200" height="90" rx="3" fill="#111116" stroke="rgba(243,243,245,0.2)" stroke-width="1.5"/>
+        <text x="760" y="58" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">DATABASE</text>
+        <text x="760" y="83" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15" font-weight="600">MongoDB Atlas</text>
+        <text x="760" y="103" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">users · tickets · orders</text>
+
+        <rect x="660" y="200" width="200" height="90" rx="3" fill="#111116" stroke="rgba(243,243,245,0.2)" stroke-width="1.5"/>
+        <text x="760" y="228" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10.5" letter-spacing="0.05em">DATABASE</text>
+        <text x="760" y="253" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="15" font-weight="600">PostgreSQL</text>
+        <text x="760" y="273" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9.5">Supabase · analytics</text>
+
+        <line x1="140" y1="120" x2="140" y2="178" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="240" y1="225" x2="348" y2="120" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="550" y1="95" x2="658" y2="75" stroke="#6B6B76" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="550" y1="120" x2="348" y2="240" stroke="#3B7CF6" stroke-width="1.5" marker-end="url(#arrow)"/>
+        <line x1="550" y1="265" x2="658" y2="245" stroke="#6B6B76" stroke-width="1.5" marker-end="url(#arrow)"/>
+      </svg>
+    </div>
+
+    <div class="p-block reveal">
+      <h2>Try the Fraud Scoring Model</h2>
+      <p>Adjust the sliders to see how the same signals used in production shift a listing's trust score.</p>
+      <div class="fraud-demo">
+        <div class="row">
+          <div>
+            <label>TICKET PRICE VS MARKET AVG</label>
+            <input type="range" min="-80" max="80" value="0" step="5" id="priceDelta">
+            <span class="out" id="priceDeltaOut">0%</span>
+          </div>
+          <div>
+            <label>SELLER ACCOUNT AGE</label>
+            <input type="range" min="0" max="365" value="180" step="5" id="acctAge">
+            <span class="out" id="acctAgeOut">180 days</span>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>LISTINGS POSTED TODAY</label>
+            <input type="range" min="1" max="30" value="1" step="1" id="listingsToday">
+            <span class="out" id="listingsTodayOut">1</span>
+          </div>
+          <div>
+            <label>VERIFIED EMAIL</label>
+            <select id="verifiedEmail">
+              <option value="1" selected>Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
+        </div>
+        <div class="fraud-result">
+          <div>
+            <div class="score-label">TRUST SCORE</div>
+            <div class="score-val" id="scoreVal">92</div>
+          </div>
+          <div class="fraud-badge" id="fraudBadge" style="background:rgba(74,222,128,0.12); color:#4ADE80;">LOW RISK</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-block reveal">
+      <h2>What the Model Catches</h2>
+      <div class="fraud-compare">
+        <div class="fc-card flag">
+          <div class="fc-tag">● 97% FRAUD RISK</div>
+          <h4>Front Row — Below Face Value</h4>
+          <p>New account, 14 listings posted today, price 60% under market average, unverified email.</p>
+        </div>
+        <div class="fc-card clean">
+          <div class="fc-tag">● VERIFIED</div>
+          <h4>Section 112, Row F</h4>
+          <p>Account active 240+ days, single listing, priced near market average, verified email.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-block reveal">
+      <h2>Deployed to Production</h2>
+      <div class="term">
+        <div><span class="p">$</span> <span class="c">git push origin main</span></div>
+        <div><span class="g">✓</span> <span class="c">Vercel — building frontend...</span></div>
+        <div><span class="g">✓</span> <span class="c">Deployed → ticket-resale-phi.vercel.app</span></div>
+        <div><span class="g">✓</span> <span class="c">Render — deploying api service...</span></div>
+        <div><span class="g">✓</span> <span class="c">Render — deploying ml-service...</span></div>
+        <div><span class="g">✓</span> <span class="c">3/3 services healthy</span></div>
+      </div>
+    </div>
+
+    <div class="p-block reveal">
+      <h2>Scan to Explore</h2>
+      <div class="qr-block">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=140x140&bgcolor=17-17-22&color=243-243-245&data=https://github.com/devanshs-dev/ticket-resale" width="140" height="140" alt="QR code linking to the Ticket Resale Platform GitHub repository">
+        <p>Same QR pattern used in the app itself for ticket handoff verification — scan this one to jump straight to the source code.</p>
+      </div>
+    </div>
+
     <div class="p-block reveal">
       <h2>The Outcome</h2>
       <p>Shipped as three independently deployed services with real-time listing updates and automated fraud flags reducing manual review. Open to feedback from the community — and open to SDE / full-stack roles.</p>
     </div>
+
     <div class="p-block reveal">
       <h2>Stack</h2>
       <div class="p-stack"><span>React</span><span>Tailwind</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>PostgreSQL</span><span>Flask</span><span>Scikit-learn</span><span>Socket.io</span><span>JWT</span></div>
     </div>
+
     <div class="btn-row reveal">
       <a href="https://ticket-resale-phi.vercel.app/" class="btn primary" target="_blank">LIVE DEMO →</a>
       <a href="https://github.com/devanshs-dev/ticket-resale" class="btn ghost" target="_blank">VIEW CODE</a>
@@ -143,5 +257,50 @@
 </main>
 
 <script src="js/main.js"></script>
+<script>
+(function(){
+  const priceDelta = document.getElementById('priceDelta');
+  const acctAge = document.getElementById('acctAge');
+  const listingsToday = document.getElementById('listingsToday');
+  const verifiedEmail = document.getElementById('verifiedEmail');
+  const priceDeltaOut = document.getElementById('priceDeltaOut');
+  const acctAgeOut = document.getElementById('acctAgeOut');
+  const listingsTodayOut = document.getElementById('listingsTodayOut');
+  const scoreVal = document.getElementById('scoreVal');
+  const badge = document.getElementById('fraudBadge');
+
+  function compute() {
+    const pd = parseInt(priceDelta.value);
+    const age = parseInt(acctAge.value);
+    const listings = parseInt(listingsToday.value);
+    const verified = parseInt(verifiedEmail.value);
+
+    priceDeltaOut.textContent = (pd > 0 ? '+' : '') + pd + '%';
+    acctAgeOut.textContent = age + ' days';
+    listingsTodayOut.textContent = listings;
+
+    let score = 100;
+    score -= Math.max(0, pd - 20) * 0.6;
+    score -= Math.max(0, -pd - 20) * 0.4;
+    score -= Math.max(0, 60 - age) * 0.35;
+    score -= Math.max(0, listings - 3) * 3;
+    score -= verified === 0 ? 15 : 0;
+    score = Math.max(2, Math.min(99, Math.round(score)));
+
+    let tier, bg, fg;
+    if (score >= 75) { tier = 'LOW RISK'; bg = 'rgba(74,222,128,0.12)'; fg = '#4ADE80'; }
+    else if (score >= 45) { tier = 'MEDIUM RISK'; bg = 'rgba(232,175,56,0.12)'; fg = '#E8AF38'; }
+    else { tier = 'HIGH RISK'; bg = 'rgba(232,56,61,0.12)'; fg = '#E8383D'; }
+
+    scoreVal.textContent = score;
+    badge.textContent = tier;
+    badge.style.background = bg;
+    badge.style.color = fg;
+  }
+
+  [priceDelta, acctAge, listingsToday, verifiedEmail].forEach(el => el.addEventListener('input', compute));
+  compute();
+})();
+</script>
 </body>
 </html>
