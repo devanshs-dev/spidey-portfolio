@@ -5,6 +5,87 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Risk Dashboard — Devansh Singh</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+.case-file { margin-top: 8px; }
+.cf-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 24px; flex-wrap: wrap; }
+.cf-tab {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; padding: 12px 20px;
+  background: var(--bg-2); color: var(--ink-faint); border: 1px solid var(--line); border-bottom: none;
+  border-radius: 4px 4px 0 0; cursor: pointer; transition: color 0.15s ease, background 0.15s ease; position: relative; top: 1px;
+}
+.cf-tab:hover { color: var(--ink-soft); }
+.cf-tab.active { color: var(--ink); background: var(--bg); border-bottom: 1px solid var(--bg); }
+.cf-tab.active::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 2px; background: var(--red); }
+.cf-panel { display: none; }
+.cf-panel.active { display: block; animation: cfIn 0.35s ease; }
+@keyframes cfIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.cf-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--red); letter-spacing: 0.06em; margin-bottom: 14px; }
+.cf-panel p { margin-bottom: 14px; color: var(--ink-soft); font-size: 14.5px; }
+.cf-panel ul { margin: 0; padding: 0; list-style: none; }
+.cf-panel ul li { padding: 14px 0 14px 22px; border-top: 1px solid var(--line); position: relative; font-size: 14.5px; color: var(--ink-soft); }
+.cf-panel ul li:last-child { border-bottom: 1px solid var(--line); }
+.cf-panel ul li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-family: var(--font-mono); }
+.cf-panel ul li strong { color: var(--ink); font-weight: 600; }
+
+.p-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.p-stack .chip {
+  font-family: var(--font-mono); font-size: 12px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 2px;
+  color: var(--ink-soft); cursor: pointer; background: transparent; transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.p-stack .chip:hover { border-color: var(--ink-faint); color: var(--ink); }
+.p-stack .chip.active { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+.readout { margin-top: 18px; border: 1px solid var(--line); border-radius: 3px; padding: 20px 22px; background: var(--bg-2); min-height: 78px; }
+.readout .rh { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.readout .rh .rdot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red); }
+.readout .rh span { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.06em; }
+.readout p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+.readout .placeholder { color: var(--ink-faint); font-style: italic; }
+
+/* Dashboard mockup */
+.dash-mock { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin-top: 8px; background: var(--bg-2); }
+.dash-bar { display: flex; align-items: center; gap: 12px; padding: 12px 18px; background: #0D0D11; border-bottom: 1px solid var(--line); }
+.dash-dots { display: flex; gap: 6px; }
+.dash-dots span { width: 9px; height: 9px; border-radius: 50%; background: var(--ink-faint); opacity: .4; display: block; }
+.dash-title { font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft); letter-spacing: 0.04em; }
+.dash-body { padding: 20px; }
+.dash-head-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 12px; padding: 0 14px 12px; font-family: var(--font-mono); font-size: 10px; color: var(--ink-faint); letter-spacing: 0.05em; border-bottom: 1px solid var(--line); }
+.dash-row { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 12px; padding: 14px; align-items: center; border-bottom: 1px solid var(--line); font-size: 13.5px; }
+.dash-row:last-child { border-bottom: none; }
+.dash-name { color: var(--ink); font-weight: 500; }
+.dash-sub { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); margin-top: 2px; }
+.dash-bar-mini { height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.dash-bar-mini span { display: block; height: 100%; }
+.dash-pct { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-soft); margin-top: 4px; }
+.risk-pill { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.04em; padding: 5px 10px; border-radius: 2px; display: inline-block; }
+.risk-pill.high { background: rgba(232,56,61,0.12); color: var(--red); }
+.risk-pill.med { background: rgba(232,175,56,0.12); color: #E8AF38; }
+.risk-pill.low { background: rgba(74,222,128,0.12); color: #4ADE80; }
+
+.fraud-demo { border: 1px solid var(--line); border-radius: 3px; padding: 28px; margin-top: 8px; background: var(--bg-2); }
+.fraud-demo .row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 22px; }
+.fraud-demo label { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink-faint); letter-spacing: 0.05em; display: block; margin-bottom: 10px; }
+.fraud-demo input[type=range] { width: 100%; accent-color: var(--red); }
+.fraud-demo .out { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); margin-top: 6px; display: block; }
+.fraud-result { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding-top: 20px; }
+.fraud-result .score-label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.05em; margin-bottom: 6px; }
+.fraud-result .score-val { font-family: var(--font-display); font-size: 28px; color: var(--ink); }
+.fraud-badge { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em; padding: 8px 16px; border-radius: 2px; }
+
+.fraud-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+.fc-card { border-radius: 3px; padding: 20px; border: 1px solid var(--line); }
+.fc-card.flag { border-color: rgba(232,56,61,0.4); background: var(--red-soft); }
+.fc-card.clean { border-color: rgba(74,222,128,0.35); background: rgba(74,222,128,0.06); }
+.fc-tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; margin-bottom: 10px; }
+.fc-card.flag .fc-tag { color: var(--red); }
+.fc-card.clean .fc-tag { color: #4ADE80; }
+.fc-card h4 { font-family: var(--font-body); font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+.fc-card p { font-size: 13px; color: var(--ink-soft); margin: 0; }
+
+@media (max-width: 700px) {
+  .dash-head-row, .dash-row { grid-template-columns: 1.5fr 1fr 1fr; }
+  .dash-head-row span:nth-child(3), .dash-row > div:nth-child(3) { display: none; }
+}
+</style>
 </head>
 <body>
 
@@ -15,19 +96,12 @@
   <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
   <div class="nav-links">
     <a href="index.html">HOME</a>
-    <a href="projects.html">PROJECTS</a>
+    <a href="projects.html" class="active">PROJECTS</a>
     <a href="index.html#about">ABOUT</a>
     <a href="contact.html">CONTACT</a>
   </div>
   <a href="contact.html" class="nav-cta">HIRE ME</a>
-  <button class="menu-toggle">MENU</button>
 </nav>
-<div class="mobile-menu">
-  <a href="index.html">HOME</a>
-  <a href="projects.html">PROJECTS</a>
-  <a href="index.html#about">ABOUT</a>
-  <a href="contact.html">CONTACT</a>
-</div>
 
 <div class="breadcrumb"><a href="index.html">HOME</a> / <a href="projects.html">PROJECTS</a> / 02</div>
 
@@ -42,35 +116,196 @@
       <div class="m"><div class="m-label">TYPE</div><div class="m-val">ML + Dashboard</div></div>
       <div class="m"><div class="m-label">STATUS</div><div class="m-val">Completed</div></div>
     </div>
+
+    <div class="stat-strip reveal">
+      <div class="stat"><div class="stat-num red">3</div><div class="stat-label">SIGNAL CATEGORIES</div></div>
+      <div class="stat"><div class="stat-num">10</div><div class="stat-label">WEEK BUILD</div></div>
+      <div class="stat"><div class="stat-num red">3</div><div class="stat-label">RISK TIERS</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">ML BACKGROUND NEEDED TO READ IT</div></div>
+    </div>
   </section>
 
   <section>
     <div class="p-block reveal">
-      <h2>The Problem</h2>
-      <p>Faculty had academic and attendance data spread across spreadsheets with no early-warning signal for students likely to underperform or drop out.</p>
+      <h2>Faculty Dashboard</h2>
+      <p>What faculty actually see — plain-language risk tiers, not raw model output.</p>
+      <div class="dash-mock">
+        <div class="dash-bar">
+          <div class="dash-dots"><span></span><span></span><span></span></div>
+          <div class="dash-title">STUDENT RISK OVERVIEW — SEM 5</div>
+        </div>
+        <div class="dash-body">
+          <div class="dash-head-row"><span>STUDENT</span><span>ATTENDANCE</span><span>ASSIGNMENTS</span><span>RISK</span></div>
+          <div class="dash-row">
+            <div><div class="dash-name">R. Sharma</div><div class="dash-sub">ID 20214512</div></div>
+            <div><div class="dash-bar-mini"><span style="width:52%; background:var(--red);"></span></div><div class="dash-pct">52%</div></div>
+            <div><div class="dash-bar-mini"><span style="width:38%; background:var(--red);"></span></div><div class="dash-pct">38%</div></div>
+            <div><span class="risk-pill high">HIGH RISK</span></div>
+          </div>
+          <div class="dash-row">
+            <div><div class="dash-name">A. Mehta</div><div class="dash-sub">ID 20214588</div></div>
+            <div><div class="dash-bar-mini"><span style="width:74%; background:#E8AF38;"></span></div><div class="dash-pct">74%</div></div>
+            <div><div class="dash-bar-mini"><span style="width:68%; background:#E8AF38;"></span></div><div class="dash-pct">68%</div></div>
+            <div><span class="risk-pill med">MEDIUM RISK</span></div>
+          </div>
+          <div class="dash-row">
+            <div><div class="dash-name">K. Iyer</div><div class="dash-sub">ID 20214601</div></div>
+            <div><div class="dash-bar-mini"><span style="width:93%; background:#4ADE80;"></span></div><div class="dash-pct">93%</div></div>
+            <div><div class="dash-bar-mini"><span style="width:89%; background:#4ADE80;"></span></div><div class="dash-pct">89%</div></div>
+            <div><span class="risk-pill low">LOW RISK</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Approach</h2>
-      <ul>
-        <li>Cleaned and merged multi-semester academic, attendance, and engagement records</li>
-        <li>Engineered features capturing trend, not just snapshot performance</li>
-        <li>Trained and tuned an XGBoost classifier, benchmarked against logistic regression and random forest baselines</li>
-        <li>Built a dashboard translating model output into plain-language risk tiers for non-technical staff</li>
-        <li>Validated predictions against historical outcomes to check for false positives</li>
-      </ul>
+      <h2>Case File</h2>
+      <p>Three angles on the same build — click through.</p>
+      <div class="case-file">
+        <div class="cf-tabs">
+          <button class="cf-tab active" data-tab="problem">01 — PROBLEM</button>
+          <button class="cf-tab" data-tab="build">02 — APPROACH</button>
+          <button class="cf-tab" data-tab="outcome">03 — OUTCOME</button>
+        </div>
+
+        <div class="cf-panel active" id="panel-problem">
+          <div class="cf-tag">// WHY THIS NEEDED BUILDING</div>
+          <p>Faculty had academic and attendance data spread across spreadsheets, updated inconsistently across departments, with no early-warning signal for students likely to underperform or drop out.</p>
+          <p>By the time a student's struggle showed up in a mid-term or final grade, it was often too late to intervene meaningfully. The gap wasn't a lack of data — it was that nobody could turn scattered records into a signal fast enough to act on.</p>
+        </div>
+
+        <div class="cf-panel" id="panel-build">
+          <div class="cf-tag">// HOW IT WAS PUT TOGETHER</div>
+          <ul>
+            <li><strong>Data Cleaning &amp; Merging</strong> — pulled multi-semester academic, attendance, and engagement records from separate spreadsheets into one consistent structure faculty had never had before.</li>
+            <li><strong>Feature Engineering</strong> — built features that captured trend over time (is attendance dropping, not just what it is today), not just a single snapshot score.</li>
+            <li><strong>Model Training</strong> — trained and tuned an XGBoost classifier, benchmarked against logistic regression and random forest baselines to confirm it was actually the better fit, not just the fashionable one.</li>
+            <li><strong>Dashboard Layer</strong> — built a dashboard that translates raw model output into plain-language risk tiers (Low / Medium / High), so a non-technical faculty member never has to interpret a probability score.</li>
+            <li><strong>Validation</strong> — checked predictions against historical outcomes to catch false positives before faculty started acting on them.</li>
+          </ul>
+        </div>
+
+        <div class="cf-panel" id="panel-outcome">
+          <div class="cf-tag">// WHAT SHIPPED</div>
+          <p>A working risk-scoring pipeline faculty could act on directly, without needing to interpret raw model scores themselves. Attendance, assignment, and engagement data that used to sit in disconnected spreadsheets now feeds a single risk view, updated as new data comes in.</p>
+          <p>The bigger lesson: a model is only useful if the people meant to act on it can actually read it. Most of the real design work here wasn't the XGBoost tuning — it was translating a probability into something a professor with zero ML background could glance at and understand in seconds.</p>
+        </div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Outcome</h2>
-      <p>Delivered a working risk-scoring pipeline faculty could act on directly, without needing to interpret raw model scores.</p>
+      <h2>Pipeline</h2>
+      <p>From scattered spreadsheets to a single risk score, in four stages.</p>
+      <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:900px; margin-top:16px;">
+        <defs>
+          <marker id="arrowR" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+            <path d="M0,0 L0,6 L9,3 z" fill="#E8383D" />
+          </marker>
+        </defs>
+        <rect x="20" y="80" width="180" height="120" rx="3" fill="#111116" stroke="rgba(243,243,245,0.2)" stroke-width="1.5"/>
+        <text x="110" y="108" text-anchor="middle" fill="#A8A8B3" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.05em">RAW DATA</text>
+        <text x="110" y="132" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="14" font-weight="600">Spreadsheets</text>
+        <text x="110" y="155" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">Attendance · scores</text>
+        <text x="110" y="171" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">Engagement logs</text>
+
+        <rect x="260" y="80" width="180" height="120" rx="3" fill="#111116" stroke="#E8383D" stroke-width="1.5"/>
+        <text x="350" y="108" text-anchor="middle" fill="#E8383D" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.05em">FEATURES</text>
+        <text x="350" y="132" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="14" font-weight="600">Pandas / NumPy</text>
+        <text x="350" y="155" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">Trend features</text>
+        <text x="350" y="171" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">not just snapshots</text>
+
+        <rect x="500" y="80" width="180" height="120" rx="3" fill="#111116" stroke="#3B7CF6" stroke-width="1.5"/>
+        <text x="590" y="108" text-anchor="middle" fill="#3B7CF6" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.05em">MODEL</text>
+        <text x="590" y="132" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="14" font-weight="600">XGBoost</text>
+        <text x="590" y="155" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">Tuned vs. LR + RF</text>
+        <text x="590" y="171" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">baselines</text>
+
+        <rect x="740" y="80" width="160" height="120" rx="3" fill="#111116" stroke="#E8383D" stroke-width="1.5"/>
+        <text x="820" y="108" text-anchor="middle" fill="#E8383D" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="0.05em">DASHBOARD</text>
+        <text x="820" y="132" text-anchor="middle" fill="#F3F3F5" font-family="Inter, sans-serif" font-size="14" font-weight="600">Risk Tiers</text>
+        <text x="820" y="155" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">Low / Med / High</text>
+        <text x="820" y="171" text-anchor="middle" fill="#6B6B76" font-family="JetBrains Mono, monospace" font-size="9">for faculty view</text>
+
+        <path d="M200,140 L258,140" fill="none" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrowR)"/>
+        <path d="M440,140 L498,140" fill="none" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrowR)"/>
+        <path d="M680,140 L738,140" fill="none" stroke="#E8383D" stroke-width="1.5" marker-end="url(#arrowR)"/>
+      </svg>
     </div>
+
+    <div class="p-block reveal">
+      <h2>Try the Risk Model</h2>
+      <p>Adjust the sliders to see how attendance and performance signals shift a student's risk tier.</p>
+      <div class="fraud-demo">
+        <div class="row">
+          <div>
+            <label>ATTENDANCE</label>
+            <input type="range" min="0" max="100" value="85" step="1" id="attendance">
+            <span class="out" id="attendanceOut">85%</span>
+          </div>
+          <div>
+            <label>ASSIGNMENT AVERAGE</label>
+            <input type="range" min="0" max="100" value="80" step="1" id="assignAvg">
+            <span class="out" id="assignAvgOut">80%</span>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+            <label>MID-TERM SCORE</label>
+            <input type="range" min="0" max="100" value="75" step="1" id="midterm">
+            <span class="out" id="midtermOut">75%</span>
+          </div>
+          <div>
+            <label>ATTENDANCE TREND (LAST 4 WEEKS)</label>
+            <select id="trend">
+              <option value="0">Stable</option>
+              <option value="1" selected>Slightly declining</option>
+              <option value="2">Sharply declining</option>
+            </select>
+          </div>
+        </div>
+        <div class="fraud-result">
+          <div>
+            <div class="score-label">RISK SCORE</div>
+            <div class="score-val" id="scoreVal">18</div>
+          </div>
+          <div class="fraud-badge" id="fraudBadge" style="background:rgba(74,222,128,0.12); color:#4ADE80;">LOW RISK</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-block reveal">
+      <h2>What the Model Catches</h2>
+      <div class="fraud-compare">
+        <div class="fc-card flag">
+          <div class="fc-tag">● HIGH RISK</div>
+          <h4>Attendance 52%, Sharply Declining</h4>
+          <p>Assignment average dropped from 71% to 38% over the semester — the trend, not the snapshot, is what triggers the flag.</p>
+        </div>
+        <div class="fc-card clean">
+          <div class="fc-tag">● LOW RISK</div>
+          <h4>Attendance 93%, Stable</h4>
+          <p>Consistent scores across assignments and mid-terms, no negative trend in engagement or attendance.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="p-block reveal">
       <h2>Stack</h2>
-      <div class="p-stack"><span>Python</span><span>XGBoost</span><span>Pandas</span><span>Scikit-learn</span><span>Matplotlib</span></div>
+      <p>Click any tag to see how it's actually used in this project.</p>
+      <div class="p-stack" id="stackTags">
+        <button class="chip" data-desc="Core language for the entire pipeline — data cleaning, feature engineering, model training, and dashboard logic.">Python</button>
+        <button class="chip" data-desc="The classifier itself — trained and tuned to flag at-risk students, benchmarked against logistic regression and random forest.">XGBoost</button>
+        <button class="chip" data-desc="Cleaned and merged multi-semester academic, attendance, and engagement records into one consistent dataset.">Pandas</button>
+        <button class="chip" data-desc="Provided the logistic regression and random forest baselines XGBoost was benchmarked against.">Scikit-learn</button>
+        <button class="chip" data-desc="Built the risk-tier visualizations faculty see on the dashboard, translating scores into simple visual signals.">Matplotlib</button>
+        <button class="chip" data-desc="Designed the plain-language dashboard layer so non-technical faculty never have to interpret a raw probability score.">UI/UX</button>
+      </div>
+      <div class="readout" id="stackReadout">
+        <div class="rh"><span class="rdot"></span><span id="readoutLabel">SELECT A TAG</span></div>
+        <p class="placeholder" id="readoutText">Click any technology above to see exactly how it's used in this build.</p>
+      </div>
     </div>
-    <div class="btn-row reveal">
-      <a href="#" class="btn primary">LIVE DEMO →</a>
-      <a href="#" class="btn ghost">VIEW CODE</a>
-    </div>
+
   </section>
 
   <div class="p-nav">
@@ -89,5 +324,66 @@
 </main>
 
 <script src="js/main.js"></script>
+<script>
+(function(){
+  const attendance = document.getElementById('attendance');
+  const assignAvg = document.getElementById('assignAvg');
+  const midterm = document.getElementById('midterm');
+  const trend = document.getElementById('trend');
+  const attendanceOut = document.getElementById('attendanceOut');
+  const assignAvgOut = document.getElementById('assignAvgOut');
+  const midtermOut = document.getElementById('midtermOut');
+  const scoreVal = document.getElementById('scoreVal');
+  const badge = document.getElementById('fraudBadge');
+
+  function compute() {
+    const att = parseInt(attendance.value);
+    const assign = parseInt(assignAvg.value);
+    const mid = parseInt(midterm.value);
+    const tr = parseInt(trend.value);
+
+    attendanceOut.textContent = att + '%';
+    assignAvgOut.textContent = assign + '%';
+    midtermOut.textContent = mid + '%';
+
+    let risk = 100 - Math.round((att * 0.35) + (assign * 0.35) + (mid * 0.3));
+    risk += tr * 10;
+    risk = Math.max(1, Math.min(99, risk));
+
+    let tier, bg, fg;
+    if (risk <= 30) { tier = 'LOW RISK'; bg = 'rgba(74,222,128,0.12)'; fg = '#4ADE80'; }
+    else if (risk <= 60) { tier = 'MEDIUM RISK'; bg = 'rgba(232,175,56,0.12)'; fg = '#E8AF38'; }
+    else { tier = 'HIGH RISK'; bg = 'rgba(232,56,61,0.12)'; fg = '#E8383D'; }
+
+    scoreVal.textContent = risk;
+    badge.textContent = tier;
+    badge.style.background = bg;
+    badge.style.color = fg;
+  }
+
+  [attendance, assignAvg, midterm, trend].forEach(el => el.addEventListener('input', compute));
+  compute();
+
+  document.querySelectorAll('.cf-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cf-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cf-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('#stackTags .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#stackTags .chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      document.getElementById('readoutLabel').textContent = chip.textContent.toUpperCase();
+      const textEl = document.getElementById('readoutText');
+      textEl.textContent = chip.dataset.desc;
+      textEl.classList.remove('placeholder');
+    });
+  });
+})();
+</script>
 </body>
 </html>
