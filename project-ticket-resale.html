@@ -15,19 +15,12 @@
   <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
   <div class="nav-links">
     <a href="index.html">HOME</a>
-    <a href="index.html#work" class="active">PROJECTS</a>
+    <a href="projects.html" class="active">PROJECTS</a>
     <a href="index.html#about">ABOUT</a>
-    <a href="index.html#contact">CONTACT</a>
+    <a href="contact.html">CONTACT</a>
   </div>
-  <a href="mailto:imdevansh.08@gmail.com" class="nav-cta">HIRE ME</a>
-  <button class="menu-toggle">MENU</button>
+  <a href="contact.html" class="nav-cta">HIRE ME</a>
 </nav>
-<div class="mobile-menu">
-  <a href="index.html">HOME</a>
-  <a href="index.html#work">PROJECTS</a>
-  <a href="index.html#about">ABOUT</a>
-  <a href="index.html#contact">CONTACT</a>
-</div>
 
 <div class="breadcrumb"><a href="index.html">HOME</a> / <a href="projects.html">PROJECTS</a> / 01</div>
 
@@ -50,22 +43,23 @@
       <p>Ticket resale is rife with duplicate listings and fraud, and buyers have no way to verify a ticket is genuine before paying.</p>
     </div>
     <div class="p-block reveal">
-      <h2>The Approach</h2>
+      <h2>The Build</h2>
+      <p>Built completely solo — every line of code, every deployment, every bug fixed at 2am. This project taught me more about how real systems are built than anything else I've worked on.</p>
       <ul>
-        <li>Built a React + Tailwind frontend with a custom cinematic dark theme and Socket.io live updates</li>
-        <li>Designed a Node.js/Express API with JWT auth and a dual-database architecture — MongoDB Atlas for listings, PostgreSQL for analytics</li>
-        <li>Trained a fraud-detection model served through a separate Python Flask microservice</li>
-        <li>Added QR code generation per ticket so sellers and buyers can verify authenticity at handoff</li>
-        <li>Built an admin panel with Recharts dashboards for platform-wide analytics</li>
+        <li><strong>ML Fraud Detection</strong> — every listing is scored by a Scikit-learn model deployed as a Flask microservice. Fake listings get flagged before buyers ever see them.</li>
+        <li><strong>Real-Time with Socket.io</strong> — when a ticket is bought, it disappears from every connected user's screen instantly. No refresh, no polling, pure WebSockets.</li>
+        <li><strong>Two Databases</strong> — MongoDB Atlas for main app data, PostgreSQL on Supabase for analytics. Right tool for the right job.</li>
+        <li><strong>JWT Auth + QR Verification</strong> — every purchase generates a unique QR code tied to the buyer, blocking screenshot fraud at handoff.</li>
+        <li><strong>3 Services Deployed in Production</strong> — React on Vercel (auto-deploys on every git push), Node.js API on Render, Flask ML service on Render.</li>
       </ul>
     </div>
     <div class="p-block reveal">
       <h2>The Outcome</h2>
-      <p>Shipped as three independently deployed services — frontend on Vercel, backend and ML service on Render — with real-time listing updates and automated fraud flags reducing manual review.</p>
+      <p>Shipped as three independently deployed services with real-time listing updates and automated fraud flags reducing manual review. Open to feedback from the community — and open to SDE / full-stack roles.</p>
     </div>
     <div class="p-block reveal">
       <h2>Stack</h2>
-      <div class="p-stack"><span>React</span><span>Tailwind</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>PostgreSQL</span><span>Flask</span><span>Socket.io</span><span>JWT</span></div>
+      <div class="p-stack"><span>React</span><span>Tailwind</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>PostgreSQL</span><span>Flask</span><span>Scikit-learn</span><span>Socket.io</span><span>JWT</span></div>
     </div>
     <div class="btn-row reveal">
       <a href="https://ticket-resale-phi.vercel.app/" class="btn primary" target="_blank">LIVE DEMO →</a>
