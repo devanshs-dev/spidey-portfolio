@@ -3,8 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Project on B&B — Devansh Singh</title>
+<title>Project on B&amp;B — Devansh Singh</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+.case-file { margin-top: 8px; }
+.cf-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 24px; flex-wrap: wrap; }
+.cf-tab {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; padding: 12px 20px;
+  background: var(--bg-2); color: var(--ink-faint); border: 1px solid var(--line); border-bottom: none;
+  border-radius: 4px 4px 0 0; cursor: pointer; transition: color 0.15s ease, background 0.15s ease; position: relative; top: 1px;
+}
+.cf-tab:hover { color: var(--ink-soft); }
+.cf-tab.active { color: var(--ink); background: var(--bg); border-bottom: 1px solid var(--bg); }
+.cf-tab.active::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 2px; background: var(--red); }
+.cf-panel { display: none; }
+.cf-panel.active { display: block; animation: cfIn 0.35s ease; }
+@keyframes cfIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.cf-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--red); letter-spacing: 0.06em; margin-bottom: 14px; }
+.cf-panel p { margin-bottom: 14px; color: var(--ink-soft); font-size: 14.5px; }
+.cf-panel ul { margin: 0; padding: 0; list-style: none; }
+.cf-panel ul li { padding: 14px 0 14px 22px; border-top: 1px solid var(--line); position: relative; font-size: 14.5px; color: var(--ink-soft); }
+.cf-panel ul li:last-child { border-bottom: 1px solid var(--line); }
+.cf-panel ul li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-family: var(--font-mono); }
+.cf-panel ul li strong { color: var(--ink); font-weight: 600; }
+
+.p-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.p-stack .chip {
+  font-family: var(--font-mono); font-size: 12px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 2px;
+  color: var(--ink-soft); cursor: pointer; background: transparent; transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.p-stack .chip:hover { border-color: var(--ink-faint); color: var(--ink); }
+.p-stack .chip.active { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+.readout { margin-top: 18px; border: 1px solid var(--line); border-radius: 3px; padding: 20px 22px; background: var(--bg-2); min-height: 78px; }
+.readout .rh { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.readout .rh .rdot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red); }
+.readout .rh span { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.06em; }
+.readout p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+.readout .placeholder { color: var(--ink-faint); font-style: italic; }
+
+.season-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+.season-card { border: 1px solid var(--line); border-radius: 3px; padding: 22px; background: var(--bg-2); }
+.season-card .stag { font-family: var(--font-mono); font-size: 10.5px; color: var(--blue); letter-spacing: 0.06em; margin-bottom: 12px; }
+.season-card h4 { font-family: var(--font-body); font-weight: 600; font-size: 16px; margin-bottom: 16px; }
+.season-row { display: flex; justify-content: space-between; padding: 9px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.season-row:first-of-type { border-top: none; }
+.season-row .k { color: var(--ink-faint); font-family: var(--font-mono); font-size: 11px; }
+.season-row .v { color: var(--ink); font-weight: 600; }
+.season-total { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line-red, rgba(232,56,61,0.35)); }
+.season-total .k { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.05em; }
+.season-total .v { font-family: var(--font-display); font-size: 22px; color: var(--red); }
+
+.s7-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 8px; }
+.s7-card { background: var(--bg-2); padding: 22px; }
+.s7-card .n { font-family: var(--font-mono); font-size: 10.5px; color: var(--red); margin-bottom: 10px; }
+.s7-card h4 { font-family: var(--font-body); font-weight: 600; font-size: 15px; margin-bottom: 8px; }
+.s7-card p { font-size: 13px; color: var(--ink-soft); margin: 0; }
+
+.terms-list { margin-top: 8px; }
+.term-row { display: grid; grid-template-columns: 40px 1fr; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+.term-row:last-child { border-bottom: 1px solid var(--line); }
+.term-row .tn { font-family: var(--font-display); font-size: 22px; color: var(--red); }
+.term-row h4 { font-family: var(--font-body); font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+.term-row p { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+</style>
 </head>
 <body>
 
@@ -15,60 +76,142 @@
   <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
   <div class="nav-links">
     <a href="index.html">HOME</a>
-    <a href="projects.html">PROJECTS</a>
+    <a href="projects.html" class="active">PROJECTS</a>
     <a href="index.html#about">ABOUT</a>
     <a href="contact.html">CONTACT</a>
   </div>
   <a href="contact.html" class="nav-cta">HIRE ME</a>
-  <button class="menu-toggle">MENU</button>
 </nav>
-<div class="mobile-menu">
-  <a href="index.html">HOME</a>
-  <a href="projects.html">PROJECTS</a>
-  <a href="index.html#about">ABOUT</a>
-  <a href="contact.html">CONTACT</a>
-</div>
 
 <div class="breadcrumb"><a href="index.html">HOME</a> / <a href="projects.html">PROJECTS</a> / 06</div>
 
 <main>
   <section class="p-hero">
     <span class="tag reveal"><span class="dot"></span> FIG. 06</span>
-    <h1 class="reveal">Project on B&B</h1>
-    <p class="lede reveal">Market research and partnership strategy for independent bed-and-breakfast operators looking to compete with larger listing platforms.</p>
+    <h1 class="reveal">Project on B&amp;B</h1>
+    <p class="lede reveal">A consulting-style strategy report evaluating a hotel chain's proposed partnership with independent bed &amp; breakfasts across India — market fit, revenue-sharing model, and a full financial guesstimate.</p>
     <div class="p-meta reveal">
-      <div class="m"><div class="m-label">ROLE</div><div class="m-val">Consultant, 180 Degrees Consulting</div></div>
-      <div class="m"><div class="m-label">TIMELINE</div><div class="m-val">6 weeks</div></div>
-      <div class="m"><div class="m-label">TYPE</div><div class="m-val">Strategy / Research</div></div>
+      <div class="m"><div class="m-label">ROLE</div><div class="m-val">Strategy &amp; Research</div></div>
+      <div class="m"><div class="m-label">FRAMEWORK</div><div class="m-val">McKinsey 7S</div></div>
+      <div class="m"><div class="m-label">TYPE</div><div class="m-val">Consulting Report</div></div>
       <div class="m"><div class="m-label">STATUS</div><div class="m-val">Completed</div></div>
+    </div>
+
+    <div class="stat-strip reveal">
+      <div class="stat"><div class="stat-num red">459</div><div class="stat-label">B&amp;Bs IN INDIA (2022)</div></div>
+      <div class="stat"><div class="stat-num">8.29%</div><div class="stat-label">PROJECTED INDUSTRY GROWTH</div></div>
+      <div class="stat"><div class="stat-num red">40/15</div><div class="stat-label">% HOTEL PROFIT SHARE MODEL</div></div>
+      <div class="stat"><div class="stat-num">₹2.1L+</div><div class="stat-label">PROJECTED PEAK-SEASON PROFIT / B&amp;B</div></div>
     </div>
   </section>
 
   <section>
     <div class="p-block reveal">
-      <h2>The Problem</h2>
-      <p>Independent B&B operators were losing bookings to aggregator platforms that captured most of the customer relationship and margin.</p>
+      <h2>Case File</h2>
+      <p>Three angles on the same report — click through.</p>
+      <div class="case-file">
+        <div class="cf-tabs">
+          <button class="cf-tab active" data-tab="problem">01 — PROBLEM</button>
+          <button class="cf-tab" data-tab="approach">02 — APPROACH</button>
+          <button class="cf-tab" data-tab="outcome">03 — RECOMMENDATION</button>
+        </div>
+
+        <div class="cf-panel active" id="panel-problem">
+          <div class="cf-tag">// WHY THIS NEEDED RESEARCHING</div>
+          <p>A hotel chain wanted to diversify beyond standard rooms and tap into travellers who actively choose small, independent B&amp;Bs over big hotels — for the personal attention, local authenticity, and charm hotels structurally can't offer.</p>
+          <p>But "partner with some B&amp;Bs" isn't a strategy. Which B&amp;Bs are worth partnering with? What does the hotel actually bring to the table? And critically — <strong style="color:var(--ink)">what's the actual revenue split that makes this worth it for both sides?</strong></p>
+          <p>The brief: build a full consulting-grade case for the partnership — market data, a real financial model, a partnership framework, and a concrete recommendation.</p>
+        </div>
+
+        <div class="cf-panel" id="panel-approach">
+          <div class="cf-tag">// HOW THE CASE WAS BUILT</div>
+          <ul>
+            <li><strong>Market Sizing</strong> — pulled India Tourism Statistics (459 B&Bs, 2,304 rooms, up from 308 B&Bs the prior year) to size the opportunity and confirm the market is actually growing, not stagnant.</li>
+            <li><strong>Accessibility Framework</strong> — built a 10-point evaluation checklist (strategic alignment, target market overlap, quality standards, financial viability, legal exposure) to screen which B&amp;Bs are actually worth partnering with, not just any B&amp;B.</li>
+            <li><strong>Financial Guesstimate</strong> — modeled projected hotel profit share separately for coastal vs. mountain B&amp;Bs, across peak and non-peak seasons, factoring in booking channel mix (offline, third-party platforms, hotel's own platform) and loyalty-program discounting.</li>
+            <li><strong>McKinsey 7S Application</strong> — mapped the partnership across all 7 dimensions (Strategy, Structure, Systems, Skills, Staff, Style, Shared Values) to stress-test whether it holds together operationally, not just financially.</li>
+            <li><strong>Terms Design</strong> — defined the actual revenue-sharing mechanics: what the hotel provides (brand, capital, reward-program access, training) versus what it earns back.</li>
+          </ul>
+        </div>
+
+        <div class="cf-panel" id="panel-outcome">
+          <div class="cf-tag">// THE RECOMMENDATION</div>
+          <p>Recommended a limited-liability partnership structure: the hotel contributes brand equity, initial capital, reward-program integration, and operational training — the B&amp;B keeps full operational autonomy and its existing charm.</p>
+          <p>Revenue split: <strong style="color:var(--ink)">40% of profit from bookings through the hotel's own platform</strong> (where the hotel did the acquisition work), and <strong style="color:var(--ink)">15% of profit from offline and third-party platform bookings</strong> (where the hotel's role is brand lending, not acquisition).</p>
+          <p>Modeled outcome: a single coastal B&amp;B in peak season alone projects to roughly <strong style="color:var(--ink)">₹2.1 lakh</strong> in hotel profit share — before accounting for the reward-program value uplift or brand-visibility gains that don't show up in a pure revenue model.</p>
+        </div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Approach</h2>
-      <ul>
-        <li>Ran competitor and market analysis across regional B&B and aggregator platforms</li>
-        <li>Analyzed booking and pricing data to identify under-served customer segments</li>
-        <li>Proposed a direct-booking and local partnership strategy to reduce platform dependency</li>
-        <li>Presented findings and recommendations to stakeholders as a formal deliverable</li>
-      </ul>
+      <h2>The Guesstimate</h2>
+      <p>Modeled hotel profit share per B&amp;B, peak season, split by region — accounting for booking channel and loyalty-program mix.</p>
+      <div class="season-compare">
+        <div class="season-card">
+          <div class="stag">COASTAL REGION · PEAK SEASON</div>
+          <h4>Nov, Dec, May–Jul · 153 days</h4>
+          <div class="season-row"><span class="k">AVG ROOM RATE</span><span class="v">₹3,000/night</span></div>
+          <div class="season-row"><span class="k">OFFLINE + 3RD-PARTY (15% SHARE)</span><span class="v">₹1,08,337</span></div>
+          <div class="season-row"><span class="k">HOTEL PLATFORM, NON-LOYALTY (40%)</span><span class="v">₹74,520</span></div>
+          <div class="season-row"><span class="k">HOTEL PLATFORM, LOYALTY (25%)</span><span class="v">₹31,050</span></div>
+          <div class="season-total"><span class="k">TOTAL HOTEL PROFIT</span><span class="v">₹2,13,907</span></div>
+        </div>
+        <div class="season-card">
+          <div class="stag">MOUNTAIN REGION · PEAK SEASON</div>
+          <h4>Nov, Dec, Apr–Jun · 152 days</h4>
+          <div class="season-row"><span class="k">AVG ROOM RATE</span><span class="v">₹2,800/night</span></div>
+          <div class="season-row"><span class="k">OFFLINE + 3RD-PARTY (15% SHARE)</span><span class="v">₹1,00,548</span></div>
+          <div class="season-row"><span class="k">HOTEL PLATFORM, NON-LOYALTY (40%)</span><span class="v">₹69,048</span></div>
+          <div class="season-row"><span class="k">HOTEL PLATFORM, LOYALTY (25%)</span><span class="v">₹28,665</span></div>
+          <div class="season-total"><span class="k">TOTAL HOTEL PROFIT</span><span class="v">₹1,98,261</span></div>
+        </div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Outcome</h2>
-      <p>Delivered a strategy report with concrete partnership and pricing recommendations adopted for the operator's next planning cycle.</p>
+      <h2>McKinsey 7S, Applied</h2>
+      <p>Stress-testing the partnership across every operational dimension, not just the financial one.</p>
+      <div class="s7-grid">
+        <div class="s7-card"><div class="n">01</div><h4>Strategy</h4><p>Diversifies accommodation offerings, giving the hotel a competitive edge with travellers seeking personalised stays.</p></div>
+        <div class="s7-card"><div class="n">02</div><h4>Structure</h4><p>Defined roles and decision rights — hotel provides capital and support, B&amp;B keeps operational autonomy.</p></div>
+        <div class="s7-card"><div class="n">03</div><h4>Systems</h4><p>Shared booking, payment, and CRM infrastructure integrated with the hotel's existing reward program.</p></div>
+        <div class="s7-card"><div class="n">04</div><h4>Skills</h4><p>Cross-training in service quality, cross-selling, and QA between hotel staff and B&amp;B hosts.</p></div>
+        <div class="s7-card"><div class="n">05</div><h4>Staff</h4><p>Right-fit recruiting on both sides to close any operational gaps before the partnership scales.</p></div>
+        <div class="s7-card"><div class="n">06</div><h4>Style</h4><p>Aligned brand aesthetics and communication style so the partnership feels coherent to guests, not bolted-on.</p></div>
+        <div class="s7-card"><div class="n">07</div><h4>Shared Values</h4><p>Hotel professionalism combined with B&amp;B warmth — a single service philosophy across both.</p></div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>Stack</h2>
-      <div class="p-stack"><span>Market Research</span><span>Data Analysis</span><span>Strategy</span></div>
+      <h2>Terms of Partnership</h2>
+      <p>The core mechanics of the recommended deal structure.</p>
+      <div class="terms-list">
+        <div class="term-row"><div class="tn">01</div><div><h4>Duration &amp; Renewal</h4><p>Fixed initial term with mutual-agreement renewal or termination clauses.</p></div></div>
+        <div class="term-row"><div class="tn">02</div><div><h4>Roles &amp; Responsibilities</h4><p>Hotel: brand, capital, reward-program access, training. B&amp;B: service standards, active promotion, marketing collaboration.</p></div></div>
+        <div class="term-row"><div class="tn">03</div><div><h4>Revenue Split</h4><p>40% of profit on hotel-platform bookings, 15% on offline/third-party bookings — reflecting who did the acquisition work.</p></div></div>
+        <div class="term-row"><div class="tn">04</div><div><h4>Dispute Resolution</h4><p>Negotiation → mediation → arbitration, in that order, before anything escalates further.</p></div></div>
+      </div>
     </div>
+
+    <div class="p-block reveal">
+      <h2>Research Methods</h2>
+      <p>Click any method to see how it was used in this report.</p>
+      <div class="p-stack" id="stackTags">
+        <button class="chip" data-desc="Pulled India Tourism Statistics (459 B&Bs, 2,304 rooms) plus global occupancy benchmarks to size the market and confirm real growth.">Market Sizing</button>
+        <button class="chip" data-desc="Modeled hotel profit share by region and season, factoring in booking-channel mix and loyalty-program discounting.">Financial Modeling</button>
+        <button class="chip" data-desc="Built room-by-room, season-by-season revenue projections from occupancy rates and average nightly rates.">Guesstimation</button>
+        <button class="chip" data-desc="Applied the McKinsey 7S model to test partnership viability across strategy, structure, systems, skills, staff, style, and shared values.">7S Framework</button>
+        <button class="chip" data-desc="Built a 10-point checklist (strategic fit, target market overlap, quality standards, legal exposure) to screen viable B&B partners.">Partner Screening</button>
+        <button class="chip" data-desc="Analyzed how co-branding, local-experience packaging, and brand-image lift affect guest acquisition and retention.">Marketing Analysis</button>
+      </div>
+      <div class="readout" id="stackReadout">
+        <div class="rh"><span class="rdot"></span><span id="readoutLabel">SELECT A METHOD</span></div>
+        <p class="placeholder" id="readoutText">Click any method above to see exactly how it was applied in this report.</p>
+      </div>
+    </div>
+
     <div class="btn-row reveal">
-      <a href="#" class="btn primary">LIVE DEMO →</a>
-      <a href="#" class="btn ghost">VIEW CODE</a>
+      <a href="#" class="btn ghost">FULL REPORT (PDF) →</a>
     </div>
   </section>
 
@@ -88,5 +231,28 @@
 </main>
 
 <script src="js/main.js"></script>
+<script>
+(function(){
+  document.querySelectorAll('.cf-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cf-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cf-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('#stackTags .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#stackTags .chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      document.getElementById('readoutLabel').textContent = chip.textContent.toUpperCase();
+      const textEl = document.getElementById('readoutText');
+      textEl.textContent = chip.dataset.desc;
+      textEl.classList.remove('placeholder');
+    });
+  });
+})();
+</script>
 </body>
 </html>
