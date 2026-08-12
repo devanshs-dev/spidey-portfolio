@@ -61,7 +61,11 @@
 .embed-scaler iframe { width: 1280px; height: 970px; border: none; display: block; opacity: 0; transition: opacity .4s ease; }
 .embed-scaler iframe.loaded { opacity: 1; }
 .embed-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.05em; text-align: center; padding: 0 20px; z-index: 2; }
-@media (max-width: 900px) { .preview-card, .browser-frame { max-width: 100%; } }
+.p-stack span { position: relative; cursor: help; }
+.p-stack span .tip { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: 220px; background: #08080A; border: 1px solid var(--line); border-radius: 3px; padding: 10px 12px; font-family: var(--font-body); font-size: 12px; font-weight: 400; line-height: 1.5; color: var(--ink-soft); text-transform: none; letter-spacing: normal; opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 5; }
+.p-stack span .tip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--line); }
+.p-stack span:hover .tip { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+@media (max-width: 900px) { .p-stack span .tip { display: none; } }
 </style>
 </head>
 <body>
@@ -137,18 +141,19 @@
 
     <div class="p-block reveal">
       <h2>The Problem</h2>
-      <p>Ticket resale is rife with duplicate listings and fraud, and buyers have no way to verify a ticket is genuine before paying.</p>
+      <p>Ticket resale today runs almost entirely on trust with no verification behind it. A buyer sees a listing, pays, and hopes the ticket is real — there's no way to check a seller's history, no way to know if the same ticket has already been sold twice, and no way to prove a ticket is genuine at the door. Scalpers post duplicate listings for tickets they don't have, take the money, and disappear before anyone notices. On the seller side, legitimate fans trying to resell a ticket they genuinely can't use get lumped in with fraudsters, because platforms have no fast way to tell the two apart at scale.</p>
+      <p>The goal wasn't just "build a marketplace" — it was to build one where trust is computed, not assumed, and where a ticket's authenticity can be verified in seconds, not disputed after the fact.</p>
     </div>
 
     <div class="p-block reveal">
       <h2>The Build</h2>
-      <p>Built completely solo — every line of code, every deployment, every bug fixed at 2am. This project taught me more about how real systems are built than anything else I've worked on.</p>
+      <p>Built completely solo — every line of code, every deployment, every bug fixed at 2am. This project taught me more about how real systems are built than anything else I've worked on. Here's what each piece actually does and why it exists:</p>
       <ul>
-        <li><strong>ML Fraud Detection</strong> — every listing is scored by a Scikit-learn model deployed as a Flask microservice. Fake listings get flagged before buyers ever see them.</li>
-        <li><strong>Real-Time with Socket.io</strong> — when a ticket is bought, it disappears from every connected user's screen instantly. No refresh, no polling, pure WebSockets.</li>
-        <li><strong>Two Databases</strong> — MongoDB Atlas for main app data, PostgreSQL on Supabase for analytics. Right tool for the right job.</li>
-        <li><strong>JWT Auth + QR Verification</strong> — every purchase generates a unique QR code tied to the buyer, blocking screenshot fraud at handoff.</li>
-        <li><strong>3 Services Deployed in Production</strong> — React on Vercel (auto-deploys on every git push), Node.js API on Render, Flask ML service on Render.</li>
+        <li><strong>ML Fraud Detection</strong> — every new listing is passed through a Scikit-learn model running as its own Flask microservice. It looks at signals like price deviation from market average, how old the seller's account is, and how many listings they've posted that day, and returns a trust score before the listing ever goes public. High-risk listings get flagged for review instead of shown to buyers straight away — this is the "before buyers see them" part that actually prevents the fraud, rather than just detecting it afterward.</li>
+        <li><strong>Real-Time with Socket.io</strong> — the moment a ticket is purchased, a WebSocket event fires from the Node API to every connected client, and that listing disappears from everyone's screen instantly. This solves the classic double-booking problem where two buyers both try to purchase the last ticket at the same time — without WebSockets, you'd need constant polling or risk selling the same ticket twice.</li>
+        <li><strong>Two Databases, Split by Purpose</strong> — MongoDB Atlas holds the transactional data (users, tickets, orders) because it's fast for the read/write patterns a live marketplace needs. PostgreSQL on Supabase holds analytics data separately, because running heavy reporting queries against the same database serving live traffic would slow down the actual app. Splitting them means the marketplace stays fast even while analytics queries run in the background.</li>
+        <li><strong>JWT Auth + QR Verification</strong> — every purchase generates a unique, single-use QR code cryptographically tied to that specific buyer and ticket. At the event, the QR is scanned once — after that, it's invalid, which blocks the common scam where a seller screenshots and resells the same ticket to multiple buyers.</li>
+        <li><strong>3 Services Deployed Independently</strong> — the React frontend, Node.js API, and Flask ML service are each their own deployment (Vercel, Render, Render). This means the fraud-detection model can be retrained and redeployed without touching the live frontend or API, and if the ML service ever goes down, the core marketplace keeps working — it just skips the fraud check gracefully instead of crashing.</li>
       </ul>
     </div>
 
@@ -281,12 +286,25 @@
 
     <div class="p-block reveal">
       <h2>The Outcome</h2>
-      <p>Shipped as three independently deployed services with real-time listing updates and automated fraud flags reducing manual review. Open to feedback from the community — and open to SDE / full-stack roles.</p>
+      <p>The platform shipped as three independently deployed, independently scalable services, with real-time listing updates that eliminate double-booking and an automated fraud layer that catches high-risk listings before a human ever has to review them. Because the fraud check runs as its own microservice, the marketplace stays responsive even under load — the ML scoring happens asynchronously and doesn't block a listing from loading.</p>
+      <p>Beyond the app itself, this was the project where I learned to actually operate a multi-service production system solo: coordinating deploys across three separate platforms, handling a service going down without taking the whole app with it, and debugging real-time bugs that only show up with multiple concurrent users. It's live, it's public, and I'm actively open to feedback from the community — and to SDE / full-stack roles.</p>
     </div>
 
     <div class="p-block reveal">
       <h2>Stack</h2>
-      <div class="p-stack"><span>React</span><span>Tailwind</span><span>Node.js</span><span>Express</span><span>MongoDB</span><span>PostgreSQL</span><span>Flask</span><span>Scikit-learn</span><span>Socket.io</span><span>JWT</span></div>
+      <p>Hover over any tag to see how it's actually used in this project.</p>
+      <div class="p-stack">
+        <span>React<span class="tip">Frontend UI — listing feed, checkout flow, live updates via Socket.io client.</span></span>
+        <span>Tailwind<span class="tip">Utility-first styling for the entire frontend, including the responsive listing grid.</span></span>
+        <span>Node.js<span class="tip">Runtime for the API service — handles auth, listings, orders, and QR generation.</span></span>
+        <span>Express<span class="tip">Routing and middleware layer for the Node.js API — JWT verification runs here.</span></span>
+        <span>MongoDB<span class="tip">Primary transactional database — stores users, ticket listings, and order records.</span></span>
+        <span>PostgreSQL<span class="tip">Separate analytics database on Supabase — keeps reporting queries off the live app's database.</span></span>
+        <span>Flask<span class="tip">Serves the fraud-detection ML model as its own independent microservice.</span></span>
+        <span>Scikit-learn<span class="tip">Trains and runs the fraud-scoring model — flags high-risk listings before they go public.</span></span>
+        <span>Socket.io<span class="tip">Real-time WebSocket layer — instantly removes a listing from every screen the moment it's sold.</span></span>
+        <span>JWT<span class="tip">Signs and verifies auth tokens so only logged-in users can list or purchase tickets.</span></span>
+      </div>
     </div>
 
     <div class="btn-row reveal">
