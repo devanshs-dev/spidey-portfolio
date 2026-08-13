@@ -5,6 +5,63 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Music Recognition App — Devansh Singh</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+.case-file { margin-top: 8px; }
+.cf-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 24px; flex-wrap: wrap; }
+.cf-tab {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; padding: 12px 20px;
+  background: var(--bg-2); color: var(--ink-faint); border: 1px solid var(--line); border-bottom: none;
+  border-radius: 4px 4px 0 0; cursor: pointer; transition: color 0.15s ease, background 0.15s ease; position: relative; top: 1px;
+}
+.cf-tab:hover { color: var(--ink-soft); }
+.cf-tab.active { color: var(--ink); background: var(--bg); border-bottom: 1px solid var(--bg); }
+.cf-tab.active::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 2px; background: var(--red); }
+.cf-panel { display: none; }
+.cf-panel.active { display: block; animation: cfIn 0.35s ease; }
+@keyframes cfIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.cf-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--red); letter-spacing: 0.06em; margin-bottom: 14px; }
+.cf-panel p { margin-bottom: 14px; color: var(--ink-soft); font-size: 14.5px; }
+.cf-panel ul { margin: 0; padding: 0; list-style: none; }
+.cf-panel ul li { padding: 14px 0 14px 22px; border-top: 1px solid var(--line); position: relative; font-size: 14.5px; color: var(--ink-soft); }
+.cf-panel ul li:last-child { border-bottom: 1px solid var(--line); }
+.cf-panel ul li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-family: var(--font-mono); }
+.cf-panel ul li strong { color: var(--ink); font-weight: 600; }
+
+.p-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.p-stack .chip {
+  font-family: var(--font-mono); font-size: 12px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 2px;
+  color: var(--ink-soft); cursor: pointer; background: transparent; transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.p-stack .chip:hover { border-color: var(--ink-faint); color: var(--ink); }
+.p-stack .chip.active { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+.readout { margin-top: 18px; border: 1px solid var(--line); border-radius: 3px; padding: 20px 22px; background: var(--bg-2); min-height: 78px; }
+.readout .rh { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.readout .rh .rdot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red); }
+.readout .rh span { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.06em; }
+.readout p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+.readout .placeholder { color: var(--ink-faint); font-style: italic; }
+
+/* Quiz mock */
+.quiz-mock { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; margin-top: 8px; background: var(--bg-2); max-width: 460px; }
+.quiz-bar { display: flex; align-items: center; justify-content: space-between; padding: 12px 18px; background: #0D0D11; border-bottom: 1px solid var(--line); }
+.quiz-round { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: 0.05em; }
+.quiz-score { font-family: var(--font-mono); font-size: 10.5px; color: var(--red); letter-spacing: 0.05em; }
+.quiz-body { padding: 28px 24px; text-align: center; }
+.quiz-wave { display: flex; align-items: center; justify-content: center; gap: 3px; height: 48px; margin-bottom: 20px; }
+.quiz-wave span { width: 3px; background: var(--red); border-radius: 2px; animation: wv 1.2s ease-in-out infinite; }
+.quiz-wave span:nth-child(2n) { animation-delay: 0.15s; }
+.quiz-wave span:nth-child(3n) { animation-delay: 0.3s; }
+@keyframes wv { 0%,100% { height: 8px; } 50% { height: 42px; } }
+.quiz-timer { font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); margin-bottom: 24px; }
+.quiz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.quiz-opt { border: 1px solid var(--line); border-radius: 3px; padding: 12px; font-size: 13px; color: var(--ink-soft); background: var(--bg); }
+.quiz-opt.correct { border-color: rgba(74,222,128,0.5); color: #4ADE80; background: rgba(74,222,128,0.08); }
+
+.diff-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 8px; }
+.diff-card { background: var(--bg-2); padding: 20px; text-align: center; }
+.diff-card .dl { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.05em; margin-bottom: 8px; }
+.diff-card .dv { font-family: var(--font-body); font-size: 14px; color: var(--ink-soft); }
+</style>
 </head>
 <body>
 
@@ -15,19 +72,12 @@
   <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
   <div class="nav-links">
     <a href="index.html">HOME</a>
-    <a href="projects.html">PROJECTS</a>
+    <a href="projects.html" class="active">PROJECTS</a>
     <a href="index.html#about">ABOUT</a>
     <a href="contact.html">CONTACT</a>
   </div>
   <a href="contact.html" class="nav-cta">HIRE ME</a>
-  <button class="menu-toggle">MENU</button>
 </nav>
-<div class="mobile-menu">
-  <a href="index.html">HOME</a>
-  <a href="projects.html">PROJECTS</a>
-  <a href="index.html#about">ABOUT</a>
-  <a href="contact.html">CONTACT</a>
-</div>
 
 <div class="breadcrumb"><a href="index.html">HOME</a> / <a href="projects.html">PROJECTS</a> / 04</div>
 
@@ -35,40 +85,109 @@
   <section class="p-hero">
     <span class="tag reveal"><span class="dot"></span> FIG. 04</span>
     <h1 class="reveal">Music Recognition App</h1>
-    <p class="lede reveal">An interactive quiz where players race to guess songs from short, self-hosted audio clips.</p>
+    <p class="lede reveal">An interactive quiz where players guess songs from short, self-hosted audio clips — genre and difficulty selection, score tracking, and zero third-party API dependency.</p>
     <div class="p-meta reveal">
-      <div class="m"><div class="m-label">ROLE</div><div class="m-val">Solo Project</div></div>
-      <div class="m"><div class="m-label">TIMELINE</div><div class="m-val">2 weeks</div></div>
-      <div class="m"><div class="m-label">TYPE</div><div class="m-val">Web App</div></div>
-      <div class="m"><div class="m-label">STATUS</div><div class="m-val">Completed</div></div>
+      <div class="m"><div class="m-label">ROLE</div><div class="m-val">Solo Developer</div></div>
+      <div class="m"><div class="m-label">TIMELINE</div><div class="m-val">Aug 2025 – Present</div></div>
+      <div class="m"><div class="m-label">TYPE</div><div class="m-val">Front-End + Back-End</div></div>
+      <div class="m"><div class="m-label">STATUS</div><div class="m-val">Live</div></div>
+    </div>
+
+    <div class="stat-strip reveal">
+      <div class="stat"><div class="stat-num red">0</div><div class="stat-label">THIRD-PARTY API DEPENDENCIES</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">DIFFICULTY LEVELS</div></div>
+      <div class="stat"><div class="stat-num red">100%</div><div class="stat-label">SELF-HOSTED AUDIO</div></div>
+      <div class="stat"><div class="stat-num">✓</div><div class="stat-label">FULLSCREEN MODE</div></div>
     </div>
   </section>
 
   <section>
     <div class="p-block reveal">
-      <h2>The Problem</h2>
-      <p>Wanted a lightweight, self-hosted alternative to song-guessing games that didn't depend on a third-party music API.</p>
+      <h2>How It Plays</h2>
+      <p>A short clip drops, the clock starts, four options appear.</p>
+      <div class="quiz-mock">
+        <div class="quiz-bar">
+          <span class="quiz-round">ROUND 6 / 10</span>
+          <span class="quiz-score">SCORE: 480</span>
+        </div>
+        <div class="quiz-body">
+          <div class="quiz-wave">
+            <span style="height:20px;"></span><span style="height:36px;"></span><span style="height:14px;"></span>
+            <span style="height:42px;"></span><span style="height:24px;"></span><span style="height:38px;"></span>
+            <span style="height:16px;"></span><span style="height:30px;"></span><span style="height:12px;"></span>
+            <span style="height:40px;"></span>
+          </div>
+          <div class="quiz-timer">00:07 REMAINING</div>
+          <div class="quiz-opts">
+            <div class="quiz-opt">Track A</div>
+            <div class="quiz-opt correct">Track B ✓</div>
+            <div class="quiz-opt">Track C</div>
+            <div class="quiz-opt">Track D</div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Approach</h2>
-      <ul>
-        <li>Built a Node.js backend serving short, pre-clipped audio snippets on a timer</li>
-        <li>Implemented a scoring system rewarding faster correct guesses</li>
-        <li>Designed a minimal, distraction-free UI so the audio stays the focus</li>
-      </ul>
+      <h2>Case File</h2>
+      <p>Three angles on the same build — click through.</p>
+      <div class="case-file">
+        <div class="cf-tabs">
+          <button class="cf-tab active" data-tab="problem">01 — PROBLEM</button>
+          <button class="cf-tab" data-tab="build">02 — APPROACH</button>
+          <button class="cf-tab" data-tab="outcome">03 — OUTCOME</button>
+        </div>
+
+        <div class="cf-panel active" id="panel-problem">
+          <div class="cf-tag">// WHY THIS NEEDED BUILDING</div>
+          <p>Most "guess the song" web quizzes lean on a third-party music API for clips — which means rate limits, API keys, licensing friction, and the whole app breaking the moment that API changes its terms or goes down.</p>
+          <p>The goal was a quiz that owns its content end-to-end: self-hosted audio, no external dependency, no risk of the core feature silently breaking because a free-tier API key got throttled.</p>
+        </div>
+
+        <div class="cf-panel" id="panel-build">
+          <div class="cf-tag">// HOW IT WAS PUT TOGETHER</div>
+          <ul>
+            <li><strong>Self-Hosted Audio</strong> — clips are served directly from the app's own storage, not fetched from a third-party service — removing the single biggest point of failure in most music-quiz projects.</li>
+            <li><strong>Genre &amp; Difficulty Selection</strong> — players choose their own genre pool and difficulty before starting, which meant structuring the track library so filtering doesn't require re-fetching anything.</li>
+            <li><strong>Score Tracking</strong> — round-by-round scoring logic with timing built in, so faster correct answers are worth more, rewarding actual recognition speed over lucky guessing.</li>
+            <li><strong>Fullscreen Mode</strong> — a distraction-free play mode for the actual quiz experience, separate from the setup/menu screens.</li>
+          </ul>
+        </div>
+
+        <div class="cf-panel" id="panel-outcome">
+          <div class="cf-tag">// WHAT SHIPPED</div>
+          <p>A fully self-contained music quiz with zero external API risk, genre/difficulty personalization, and a polished play experience — built entirely with vanilla front-end tools and a lightweight Node.js back-end.</p>
+          <p>The main lesson here was about ownership: removing the third-party dependency meant more upfront work curating and hosting audio, but it also meant the app can't be broken by someone else's API changes — a trade worth making for something meant to actually stay live.</p>
+        </div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Outcome</h2>
-      <p>A playable, self-contained quiz game with no external API dependency or rate limits.</p>
+      <h2>Difficulty Levels</h2>
+      <p>Difficulty isn't just clip length — it's how much of the track's identity is exposed.</p>
+      <div class="diff-row">
+        <div class="diff-card"><div class="dl">EASY</div><div class="dv">Longer clip, includes chorus/hook</div></div>
+        <div class="diff-card"><div class="dl">MEDIUM</div><div class="dv">Shorter clip, verse or bridge only</div></div>
+        <div class="diff-card"><div class="dl">HARD</div><div class="dv">Sub-3-second clip, no hook exposure</div></div>
+      </div>
     </div>
+
     <div class="p-block reveal">
       <h2>Stack</h2>
-      <div class="p-stack"><span>JavaScript</span><span>Node.js</span><span>HTML5 Audio</span></div>
+      <p>Click any tag to see how it's actually used in this project.</p>
+      <div class="p-stack" id="stackTags">
+        <button class="chip" data-desc="Structures the quiz UI — menu, fullscreen play mode, and results screens.">HTML/CSS</button>
+        <button class="chip" data-desc="Handles round logic, timing, scoring, and answer validation on the client.">JavaScript</button>
+        <button class="chip" data-desc="Serves the self-hosted audio clips and track metadata — no third-party music API involved.">Node.js</button>
+        <button class="chip" data-desc="Round-based scoring where faster correct answers score higher, tracked entirely client-side.">Score Tracking</button>
+        <button class="chip" data-desc="A distraction-free play mode separate from menu/setup screens, toggled via the Fullscreen API.">Fullscreen Mode</button>
+      </div>
+      <div class="readout" id="stackReadout">
+        <div class="rh"><span class="rdot"></span><span id="readoutLabel">SELECT A TAG</span></div>
+        <p class="placeholder" id="readoutText">Click any technology above to see exactly how it's used in this build.</p>
+      </div>
     </div>
-    <div class="btn-row reveal">
-      <a href="#" class="btn primary">LIVE DEMO →</a>
-      <a href="#" class="btn ghost">VIEW CODE</a>
-    </div>
+
   </section>
 
   <div class="p-nav">
@@ -87,5 +206,28 @@
 </main>
 
 <script src="js/main.js"></script>
+<script>
+(function(){
+  document.querySelectorAll('.cf-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cf-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cf-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('#stackTags .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#stackTags .chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      document.getElementById('readoutLabel').textContent = chip.textContent.toUpperCase();
+      const textEl = document.getElementById('readoutText');
+      textEl.textContent = chip.dataset.desc;
+      textEl.classList.remove('placeholder');
+    });
+  });
+})();
+</script>
 </body>
 </html>
