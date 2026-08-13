@@ -5,6 +5,70 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tic Tac Toe, Reconsidered — Devansh Singh</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+.case-file { margin-top: 8px; }
+.cf-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 24px; flex-wrap: wrap; }
+.cf-tab {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; padding: 12px 20px;
+  background: var(--bg-2); color: var(--ink-faint); border: 1px solid var(--line); border-bottom: none;
+  border-radius: 4px 4px 0 0; cursor: pointer; transition: color 0.15s ease, background 0.15s ease; position: relative; top: 1px;
+}
+.cf-tab:hover { color: var(--ink-soft); }
+.cf-tab.active { color: var(--ink); background: var(--bg); border-bottom: 1px solid var(--bg); }
+.cf-tab.active::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 2px; background: var(--red); }
+.cf-panel { display: none; }
+.cf-panel.active { display: block; animation: cfIn 0.35s ease; }
+@keyframes cfIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.cf-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--red); letter-spacing: 0.06em; margin-bottom: 14px; }
+.cf-panel p { margin-bottom: 14px; color: var(--ink-soft); font-size: 14.5px; }
+.cf-panel ul { margin: 0; padding: 0; list-style: none; }
+.cf-panel ul li { padding: 14px 0 14px 22px; border-top: 1px solid var(--line); position: relative; font-size: 14.5px; color: var(--ink-soft); }
+.cf-panel ul li:last-child { border-bottom: 1px solid var(--line); }
+.cf-panel ul li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-family: var(--font-mono); }
+.cf-panel ul li strong { color: var(--ink); font-weight: 600; }
+
+.p-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.p-stack .chip {
+  font-family: var(--font-mono); font-size: 12px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 2px;
+  color: var(--ink-soft); cursor: pointer; background: transparent; transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.p-stack .chip:hover { border-color: var(--ink-faint); color: var(--ink); }
+.p-stack .chip.active { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+.readout { margin-top: 18px; border: 1px solid var(--line); border-radius: 3px; padding: 20px 22px; background: var(--bg-2); min-height: 78px; }
+.readout .rh { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.readout .rh .rdot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red); }
+.readout .rh span { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.06em; }
+.readout p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+.readout .placeholder { color: var(--ink-faint); font-style: italic; }
+
+/* Playable game */
+.game-wrap { border: 1px solid var(--line); border-radius: 6px; padding: 28px; margin-top: 8px; background: var(--bg-2); max-width: 480px; }
+.game-controls { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
+.size-btn {
+  font-family: var(--font-mono); font-size: 12px; padding: 9px 16px; border: 1px solid var(--line); border-radius: 2px;
+  color: var(--ink-soft); background: transparent; cursor: pointer; transition: border-color .15s, color .15s;
+}
+.size-btn:hover { border-color: var(--ink-faint); color: var(--ink); }
+.size-btn.active { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+.game-status { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-soft); margin-bottom: 18px; min-height: 18px; }
+.game-status.win { color: var(--red); }
+.board { display: grid; gap: 6px; margin-bottom: 20px; }
+.cell {
+  aspect-ratio: 1; background: var(--bg); border: 1px solid var(--line); border-radius: 3px;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  font-family: var(--font-display); color: var(--ink); transition: border-color .15s, background .15s;
+}
+.cell:hover:not(.filled) { border-color: var(--red); }
+.cell.filled { cursor: default; }
+.cell.x { color: var(--red); }
+.cell.o { color: var(--blue); }
+.cell.win-cell { background: var(--red-soft); border-color: var(--red); }
+.reset-btn {
+  font-family: var(--font-mono); font-size: 12px; padding: 10px 20px; border: 1px solid var(--line); border-radius: 2px;
+  color: var(--ink-soft); background: transparent; cursor: pointer;
+}
+.reset-btn:hover { border-color: var(--ink-faint); color: var(--ink); }
+</style>
 </head>
 <body>
 
@@ -15,19 +79,12 @@
   <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
   <div class="nav-links">
     <a href="index.html">HOME</a>
-    <a href="projects.html">PROJECTS</a>
+    <a href="projects.html" class="active">PROJECTS</a>
     <a href="index.html#about">ABOUT</a>
     <a href="contact.html">CONTACT</a>
   </div>
   <a href="contact.html" class="nav-cta">HIRE ME</a>
-  <button class="menu-toggle">MENU</button>
 </nav>
-<div class="mobile-menu">
-  <a href="index.html">HOME</a>
-  <a href="projects.html">PROJECTS</a>
-  <a href="index.html#about">ABOUT</a>
-  <a href="contact.html">CONTACT</a>
-</div>
 
 <div class="breadcrumb"><a href="index.html">HOME</a> / <a href="projects.html">PROJECTS</a> / 05</div>
 
@@ -35,45 +92,93 @@
   <section class="p-hero">
     <span class="tag reveal"><span class="dot"></span> FIG. 05</span>
     <h1 class="reveal">Tic Tac Toe, Reconsidered</h1>
-    <p class="lede reveal">Tic-tac-toe scaled from 3×3 up to 5×5, with an unbeatable minimax opponent and a dark-mode interface.</p>
+    <p class="lede reveal">3×3 to 5×5 boards, an unbeatable minimax opponent on the classic grid, dark mode, and motion polish — the game everyone's built once, done properly.</p>
     <div class="p-meta reveal">
-      <div class="m"><div class="m-label">ROLE</div><div class="m-val">Solo Project</div></div>
-      <div class="m"><div class="m-label">TIMELINE</div><div class="m-val">1 week</div></div>
-      <div class="m"><div class="m-label">TYPE</div><div class="m-val">Web App / DSA</div></div>
-      <div class="m"><div class="m-label">STATUS</div><div class="m-val">Completed</div></div>
+      <div class="m"><div class="m-label">ROLE</div><div class="m-val">Solo Developer</div></div>
+      <div class="m"><div class="m-label">TIMELINE</div><div class="m-val">Sept – Nov 2024</div></div>
+      <div class="m"><div class="m-label">TYPE</div><div class="m-val">Front-End + Algorithms</div></div>
+      <div class="m"><div class="m-label">STATUS</div><div class="m-val">Live below</div></div>
+    </div>
+
+    <div class="stat-strip reveal">
+      <div class="stat"><div class="stat-num red">3</div><div class="stat-label">BOARD SIZES</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">GAMES WON AGAINST 3×3 AI</div></div>
+      <div class="stat"><div class="stat-num red">9</div><div class="stat-label">MAX MINIMAX DEPTH (3×3)</div></div>
+      <div class="stat"><div class="stat-num">✓</div><div class="stat-label">DARK MODE</div></div>
     </div>
   </section>
 
   <section>
     <div class="p-block reveal">
-      <h2>The Problem</h2>
-      <p>Wanted to implement minimax properly rather than just knowing it in theory — and make a version worth actually playing.</p>
+      <h2>Play It</h2>
+      <p>You're X. The AI is unbeatable on 3×3 (true minimax) — 4×4 and 5×5 use a faster heuristic AI since full minimax isn't computable in real time at that size.</p>
+      <div class="game-wrap">
+        <div class="game-controls">
+          <button class="size-btn active" data-size="3">3 × 3</button>
+          <button class="size-btn" data-size="4">4 × 4</button>
+          <button class="size-btn" data-size="5">5 × 5</button>
+        </div>
+        <div class="game-status" id="gameStatus">Your move — click any cell.</div>
+        <div class="board" id="board"></div>
+        <button class="reset-btn" id="resetBtn">RESET BOARD</button>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Approach</h2>
-      <ul>
-        <li>Implemented minimax with alpha-beta pruning to keep 5×5 boards responsive</li>
-        <li>Generalized the win-condition logic across variable board sizes</li>
-        <li>Designed a dark UI with clear move animations and difficulty toggle</li>
-      </ul>
+      <h2>Case File</h2>
+      <p>Three angles on the same build — click through.</p>
+      <div class="case-file">
+        <div class="cf-tabs">
+          <button class="cf-tab active" data-tab="problem">01 — PROBLEM</button>
+          <button class="cf-tab" data-tab="build">02 — APPROACH</button>
+          <button class="cf-tab" data-tab="outcome">03 — OUTCOME</button>
+        </div>
+
+        <div class="cf-panel active" id="panel-problem">
+          <div class="cf-tag">// WHY BUILD SOMETHING THIS "SOLVED"</div>
+          <p>Tic Tac Toe is the canonical first project — which is exactly why it's worth doing properly. Most versions stop at a single 3×3 board with a coin-flip AI. The interesting part isn't the game, it's the algorithm underneath it.</p>
+          <p>The goal was to actually implement game-tree search correctly (minimax, not "AI" that's just weighted randomness), and then find where that approach breaks down — because it does, once the board grows.</p>
+        </div>
+
+        <div class="cf-panel" id="panel-build">
+          <div class="cf-tag">// HOW IT WAS PUT TOGETHER</div>
+          <ul>
+            <li><strong>Minimax on 3×3</strong> — full recursive game-tree search exploring every possible outcome from the current state, scoring terminal states, and picking the move that minimizes the opponent's best-case outcome. This is what makes the 3×3 AI genuinely unbeatable, not just "hard."</li>
+            <li><strong>Why Minimax Doesn't Scale</strong> — a 3×3 board has at most 9 moves, so the full game tree is small enough to search exhaustively. A 5×5 board's game tree is astronomically larger — full minimax would freeze the browser. That's a real algorithmic constraint, not a shortcut.</li>
+            <li><strong>Heuristic AI for 4×4 / 5×5</strong> — instead of full search, the larger boards use a rule-based approach: block an immediate opponent win, take a winning move if available, otherwise favor central and high-connectivity cells. Beatable, but not dumb.</li>
+            <li><strong>Multi-Size Board Engine</strong> — the win-checking and rendering logic had to be written generically for any N×N size, not hardcoded to 3×3 — the harder part of "just add board size options."</li>
+          </ul>
+        </div>
+
+        <div class="cf-panel" id="panel-outcome">
+          <div class="cf-tag">// WHAT SHIPPED</div>
+          <p>A genuinely unbeatable 3×3 opponent (not just a good one), plus a generic board engine that scales to 4×4 and 5×5 with a different, deliberately-scoped AI strategy for each.</p>
+          <p>The real lesson was recognizing where an exact algorithm stops being practical and knowing what to substitute instead — the same trade-off that shows up constantly in real systems, just visible here on a board you can actually see and click.</p>
+        </div>
+      </div>
     </div>
-    <div class="p-block reveal">
-      <h2>The Outcome</h2>
-      <p>A genuinely unbeatable opponent at every board size, with pruning keeping response times instant even at 5×5.</p>
-    </div>
+
     <div class="p-block reveal">
       <h2>Stack</h2>
-      <div class="p-stack"><span>JavaScript</span><span>Minimax</span><span>Alpha-Beta Pruning</span></div>
+      <p>Click any tag to see how it's actually used in this project.</p>
+      <div class="p-stack" id="stackTags">
+        <button class="chip" data-desc="Renders the board, controls, and status messages for all three board sizes.">JavaScript</button>
+        <button class="chip" data-desc="Full recursive game-tree search — powers the unbeatable 3×3 opponent by exploring every possible outcome.">Minimax</button>
+        <button class="chip" data-desc="Rule-based blocking/winning-move logic used for 4×4 and 5×5, where full minimax isn't computationally practical.">Heuristics</button>
+        <button class="chip" data-desc="Win-checking, move validation, and board state generalized to work at any N×N size, not hardcoded to 3×3.">Data Structures</button>
+        <button class="chip" data-desc="Board layout and hover/win-state styling that adapts cleanly across 3×3, 4×4, and 5×5 grids.">Responsive Design</button>
+      </div>
+      <div class="readout" id="stackReadout">
+        <div class="rh"><span class="rdot"></span><span id="readoutLabel">SELECT A TAG</span></div>
+        <p class="placeholder" id="readoutText">Click any technology above to see exactly how it's used in this build.</p>
+      </div>
     </div>
-    <div class="btn-row reveal">
-      <a href="#" class="btn primary">LIVE DEMO →</a>
-      <a href="#" class="btn ghost">VIEW CODE</a>
-    </div>
+
   </section>
 
   <div class="p-nav">
     <a href="project-music-app.html">← Music Recognition App</a>
-    <a href="project-bnb.html">Project on B&B →</a>
+    <a href="project-bnb.html">Project on B&amp;B →</a>
   </div>
 
   <footer class="foot">
@@ -87,5 +192,200 @@
 </main>
 
 <script src="js/main.js"></script>
+<script>
+(function(){
+  let size = 3;
+  let board = [];
+  let gameOver = false;
+  const boardEl = document.getElementById('board');
+  const statusEl = document.getElementById('gameStatus');
+
+  function initBoard() {
+    board = Array(size * size).fill('');
+    gameOver = false;
+    boardEl.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
+    boardEl.innerHTML = '';
+    const fontSize = size === 3 ? '32px' : size === 4 ? '24px' : '18px';
+    for (let i = 0; i < size * size; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+      cell.style.fontSize = fontSize;
+      cell.dataset.idx = i;
+      cell.addEventListener('click', () => handleMove(i));
+      boardEl.appendChild(cell);
+    }
+    statusEl.textContent = 'Your move — click any cell.';
+    statusEl.classList.remove('win');
+  }
+
+  function winLines(n, winLen) {
+    const lines = [];
+    for (let r = 0; r < n; r++) {
+      for (let c = 0; c <= n - winLen; c++) {
+        lines.push(Array.from({length: winLen}, (_, k) => r * n + c + k));
+      }
+    }
+    for (let c = 0; c < n; c++) {
+      for (let r = 0; r <= n - winLen; r++) {
+        lines.push(Array.from({length: winLen}, (_, k) => (r + k) * n + c));
+      }
+    }
+    for (let r = 0; r <= n - winLen; r++) {
+      for (let c = 0; c <= n - winLen; c++) {
+        lines.push(Array.from({length: winLen}, (_, k) => (r + k) * n + c + k));
+      }
+    }
+    for (let r = 0; r <= n - winLen; r++) {
+      for (let c = winLen - 1; c < n; c++) {
+        lines.push(Array.from({length: winLen}, (_, k) => (r + k) * n + c - k));
+      }
+    }
+    return lines;
+  }
+
+  function checkWin(b, player) {
+    const winLen = size === 3 ? 3 : (size === 4 ? 4 : 4);
+    const lines = winLines(size, winLen);
+    for (const line of lines) {
+      if (line.every(idx => b[idx] === player)) return line;
+    }
+    return null;
+  }
+
+  function isDraw(b) { return b.every(c => c !== ''); }
+
+  function minimax(b, depth, isMax) {
+    const winX = checkWin(b, 'X');
+    const winO = checkWin(b, 'O');
+    if (winO) return 10 - depth;
+    if (winX) return depth - 10;
+    if (isDraw(b)) return 0;
+
+    if (isMax) {
+      let best = -Infinity;
+      for (let i = 0; i < b.length; i++) {
+        if (b[i] === '') {
+          b[i] = 'O';
+          best = Math.max(best, minimax(b, depth + 1, false));
+          b[i] = '';
+        }
+      }
+      return best;
+    } else {
+      let best = Infinity;
+      for (let i = 0; i < b.length; i++) {
+        if (b[i] === '') {
+          b[i] = 'X';
+          best = Math.min(best, minimax(b, depth + 1, true));
+          b[i] = '';
+        }
+      }
+      return best;
+    }
+  }
+
+  function bestMoveMinimax() {
+    let bestScore = -Infinity;
+    let move = -1;
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === '') {
+        board[i] = 'O';
+        const score = minimax(board, 0, false);
+        board[i] = '';
+        if (score > bestScore) { bestScore = score; move = i; }
+      }
+    }
+    return move;
+  }
+
+  function bestMoveHeuristic() {
+    const empty = board.map((v, i) => v === '' ? i : -1).filter(i => i !== -1);
+    for (const i of empty) {
+      board[i] = 'O';
+      if (checkWin(board, 'O')) { board[i] = ''; return i; }
+      board[i] = '';
+    }
+    for (const i of empty) {
+      board[i] = 'X';
+      if (checkWin(board, 'X')) { board[i] = ''; return i; }
+      board[i] = '';
+    }
+    const center = Math.floor(board.length / 2);
+    if (board[center] === '') return center;
+    return empty[Math.floor(Math.random() * empty.length)];
+  }
+
+  function handleMove(i) {
+    if (gameOver || board[i] !== '') return;
+    board[i] = 'X';
+    render();
+    const winLine = checkWin(board, 'X');
+    if (winLine) { endGame('You win. The heuristic AI missed one.', winLine); return; }
+    if (isDraw(board)) { endGame("It's a draw."); return; }
+
+    statusEl.textContent = 'AI is thinking...';
+    setTimeout(() => {
+      const move = size === 3 ? bestMoveMinimax() : bestMoveHeuristic();
+      if (move !== -1) board[move] = 'O';
+      render();
+      const oWin = checkWin(board, 'O');
+      if (oWin) { endGame('AI wins.', oWin); return; }
+      if (isDraw(board)) { endGame("It's a draw."); return; }
+      statusEl.textContent = 'Your move.';
+    }, 350);
+  }
+
+  function endGame(msg, winLine) {
+    gameOver = true;
+    statusEl.textContent = msg;
+    statusEl.classList.add('win');
+    if (winLine) {
+      winLine.forEach(idx => {
+        boardEl.children[idx].classList.add('win-cell');
+      });
+    }
+  }
+
+  function render() {
+    board.forEach((val, i) => {
+      const cell = boardEl.children[i];
+      cell.textContent = val;
+      cell.className = 'cell' + (val ? ' filled ' + val.toLowerCase() : '');
+    });
+  }
+
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      size = parseInt(btn.dataset.size);
+      initBoard();
+    });
+  });
+
+  document.getElementById('resetBtn').addEventListener('click', initBoard);
+  initBoard();
+
+  document.querySelectorAll('.cf-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cf-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cf-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('#stackTags .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#stackTags .chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      document.getElementById('readoutLabel').textContent = chip.textContent.toUpperCase();
+      const textEl = document.getElementById('readoutText');
+      textEl.textContent = chip.dataset.desc;
+      textEl.classList.remove('placeholder');
+    });
+  });
+})();
+</script>
 </body>
 </html>
