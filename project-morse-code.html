@@ -5,6 +5,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Morse Code Translator — Devansh Singh</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+.case-file { margin-top: 8px; }
+.cf-tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--line); margin-bottom: 24px; flex-wrap: wrap; }
+.cf-tab {
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; padding: 12px 20px;
+  background: var(--bg-2); color: var(--ink-faint); border: 1px solid var(--line); border-bottom: none;
+  border-radius: 4px 4px 0 0; cursor: pointer; transition: color 0.15s ease, background 0.15s ease; position: relative; top: 1px;
+}
+.cf-tab:hover { color: var(--ink-soft); }
+.cf-tab.active { color: var(--ink); background: var(--bg); border-bottom: 1px solid var(--bg); }
+.cf-tab.active::before { content: ''; position: absolute; top: -1px; left: -1px; right: -1px; height: 2px; background: var(--red); }
+.cf-panel { display: none; }
+.cf-panel.active { display: block; animation: cfIn 0.35s ease; }
+@keyframes cfIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.cf-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--red); letter-spacing: 0.06em; margin-bottom: 14px; }
+.cf-panel p { margin-bottom: 14px; color: var(--ink-soft); font-size: 14.5px; }
+.cf-panel ul { margin: 0; padding: 0; list-style: none; }
+.cf-panel ul li { padding: 14px 0 14px 22px; border-top: 1px solid var(--line); position: relative; font-size: 14.5px; color: var(--ink-soft); }
+.cf-panel ul li:last-child { border-bottom: 1px solid var(--line); }
+.cf-panel ul li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-family: var(--font-mono); }
+.cf-panel ul li strong { color: var(--ink); font-weight: 600; }
+
+.p-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+.p-stack .chip {
+  font-family: var(--font-mono); font-size: 12px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 2px;
+  color: var(--ink-soft); cursor: pointer; background: transparent; transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.p-stack .chip:hover { border-color: var(--ink-faint); color: var(--ink); }
+.p-stack .chip.active { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+.readout { margin-top: 18px; border: 1px solid var(--line); border-radius: 3px; padding: 20px 22px; background: var(--bg-2); min-height: 78px; }
+.readout .rh { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.readout .rh .rdot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); box-shadow: 0 0 8px var(--red); }
+.readout .rh span { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.06em; }
+.readout p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+.readout .placeholder { color: var(--ink-faint); font-style: italic; }
+
+/* Translator widget */
+.morse-wrap { border: 1px solid var(--line); border-radius: 6px; padding: 28px; margin-top: 8px; background: var(--bg-2); }
+.morse-toggle { display: flex; gap: 2px; margin-bottom: 20px; }
+.morse-mode-btn {
+  font-family: var(--font-mono); font-size: 12px; padding: 10px 18px; border: 1px solid var(--line);
+  background: transparent; color: var(--ink-faint); cursor: pointer; transition: color .15s, border-color .15s;
+}
+.morse-mode-btn:first-child { border-radius: 3px 0 0 3px; }
+.morse-mode-btn:last-child { border-radius: 0 3px 3px 0; border-left: none; }
+.morse-mode-btn.active { color: var(--red); border-color: var(--red); background: var(--red-soft); }
+.morse-io { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.morse-field label { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); letter-spacing: 0.05em; display: block; margin-bottom: 8px; }
+.morse-field textarea {
+  width: 100%; min-height: 90px; background: var(--bg); border: 1px solid var(--line); border-radius: 3px;
+  color: var(--ink); font-family: var(--font-mono); font-size: 15px; padding: 14px; resize: vertical;
+  line-height: 1.6;
+}
+.morse-field textarea:focus { outline: none; border-color: var(--red); }
+.morse-field.output textarea { color: var(--red); background: #0D0D11; }
+.morse-hint { font-family: var(--font-mono); font-size: 10.5px; color: var(--ink-faint); margin-top: 8px; }
+
+.grammar-block { background: #08080A; border: 1px solid var(--line); border-radius: 3px; padding: 20px 24px; font-family: var(--font-mono); font-size: 12.5px; line-height: 1.9; margin-top: 8px; color: var(--ink-soft); overflow-x: auto; }
+.grammar-block .kw { color: var(--red); }
+.grammar-block .cm { color: var(--ink-faint); }
+</style>
 </head>
 <body>
 
@@ -15,7 +76,7 @@
   <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
   <div class="nav-links">
     <a href="index.html">HOME</a>
-    <a href="projects.html">PROJECTS</a>
+    <a href="projects.html" class="active">PROJECTS</a>
     <a href="index.html#about">ABOUT</a>
     <a href="contact.html">CONTACT</a>
   </div>
@@ -35,42 +96,111 @@
       <div class="m"><div class="m-label">TYPE</div><div class="m-val">Systems / Web Tool</div></div>
       <div class="m"><div class="m-label">STATUS</div><div class="m-val">Complete</div></div>
     </div>
+
+    <div class="stat-strip reveal">
+      <div class="stat"><div class="stat-num red">2</div><div class="stat-label">DIRECTIONS: ENCODE + DECODE</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">SERVER ROUND-TRIPS</div></div>
+      <div class="stat"><div class="stat-num red">C</div><div class="stat-label">CORE LOGIC LANGUAGE</div></div>
+      <div class="stat"><div class="stat-num">WASM</div><div class="stat-label">RUNS DIRECTLY IN BROWSER</div></div>
+    </div>
   </section>
 
   <section>
     <div class="p-block reveal">
-      <h2>The Problem</h2>
-      <p>Most Morse code tools online are either a one-way encoder or a one-way decoder — few handle both directions cleanly, and even fewer expose the actual lexical parsing logic behind the translation instead of just doing a lookup-table swap.</p>
+      <h2>Try It Live</h2>
+      <p>Type in either direction — this runs the same encode/decode logic as the shipped tool, right here in the page.</p>
+      <div class="morse-wrap">
+        <div class="morse-toggle">
+          <button class="morse-mode-btn active" data-mode="encode">TEXT → MORSE</button>
+          <button class="morse-mode-btn" data-mode="decode">MORSE → TEXT</button>
+        </div>
+        <div class="morse-io">
+          <div class="morse-field">
+            <label id="inputLabel">INPUT TEXT</label>
+            <textarea id="morseInput" placeholder="Type something...">SOS SAVE OUR SHIP</textarea>
+          </div>
+          <div class="morse-field output">
+            <label id="outputLabel">MORSE OUTPUT</label>
+            <textarea id="morseOutput" readonly></textarea>
+          </div>
+        </div>
+        <div class="morse-hint" id="morseHint">Separate letters with a space, words with " / " when typing Morse to decode.</div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Approach</h2>
-      <ul>
-        <li>Used Flex (Lex) to perform lexical analysis on input text and Morse sequences, tokenizing characters and dot-dash patterns</li>
-        <li>Implemented the core encoding/decoding logic in C for fast, low-level processing of tokens</li>
-        <li>Compiled the C/Flex logic to WebAssembly so it runs directly in the browser without a backend server</li>
-        <li>Built a simple HTML/CSS/JavaScript frontend that calls into the WebAssembly module for real-time translation</li>
-      </ul>
+      <h2>Case File</h2>
+      <p>Three angles on the same build — click through.</p>
+      <div class="case-file">
+        <div class="cf-tabs">
+          <button class="cf-tab active" data-tab="problem">01 — PROBLEM</button>
+          <button class="cf-tab" data-tab="build">02 — APPROACH</button>
+          <button class="cf-tab" data-tab="outcome">03 — OUTCOME</button>
+        </div>
+
+        <div class="cf-panel active" id="panel-problem">
+          <div class="cf-tag">// WHY THIS NEEDED BUILDING</div>
+          <p>Most Morse code tools online are either a one-way encoder or a one-way decoder — few handle both directions cleanly, and even fewer expose the actual lexical parsing logic behind the translation instead of just doing a lookup-table swap.</p>
+          <p>The goal was to build it properly: real tokenization of input (whether text or dot-dash sequences), not a glorified find-and-replace — and to do the heavy logic in a systems language, not JavaScript, then bring it to the browser.</p>
+        </div>
+
+        <div class="cf-panel" id="panel-build">
+          <div class="cf-tag">// HOW IT WAS PUT TOGETHER</div>
+          <ul>
+            <li><strong>Flex (Lex) for Lexical Analysis</strong> — tokenizes input text and Morse sequences using proper lexer rules, recognizing character boundaries and dot-dash patterns the way a compiler front-end would, rather than manually splitting strings.</li>
+            <li><strong>Core Logic in C</strong> — the actual encoding/decoding runs in C for fast, low-level token processing — deliberately chosen over doing the logic in JavaScript to keep the translation layer language-agnostic and portable.</li>
+            <li><strong>Compiled to WebAssembly</strong> — the C/Flex logic compiles to WASM so it runs directly in the browser, at near-native speed, with no backend server needed for translation.</li>
+            <li><strong>Thin JS/HTML Frontend</strong> — a simple interface that calls into the WebAssembly module for real-time translation as you type, keeping the browser layer as thin as possible since all real logic lives in the compiled module.</li>
+          </ul>
+        </div>
+
+        <div class="cf-panel" id="panel-outcome">
+          <div class="cf-tag">// WHAT SHIPPED</div>
+          <p>A fully client-side Morse translator — no server round-trip needed, since the C logic runs directly in-browser via WebAssembly. Supports both encoding (text → Morse) and decoding (Morse → text) through the same interface.</p>
+          <p>The real value of this project wasn't the translation table — it was learning the actual compiler-adjacent toolchain: lexing with Flex, writing portable C, and shipping it to a browser via WASM instead of defaulting to JavaScript for everything.</p>
+        </div>
+      </div>
     </div>
+
     <div class="p-block reveal">
-      <h2>The Outcome</h2>
-      <p>A fully client-side Morse translator — no server round-trip needed for translation, since the C logic runs directly in-browser via WebAssembly. Supports both encoding (text → Morse) and decoding (Morse → text) through the same interface.</p>
+      <h2>Lexer Rules, Simplified</h2>
+      <p>A rough sketch of how Flex tokenizes input before the C logic ever sees it.</p>
+      <div class="grammar-block">
+        <div><span class="cm">// text mode: tokenize characters</span></div>
+        <div><span class="kw">[A-Za-z]</span>  { <span class="cm">return CHAR_TOKEN;</span> }</div>
+        <div><span class="kw">[ \t]</span>     { <span class="cm">return WORD_BREAK;</span> }</div>
+        <div>&nbsp;</div>
+        <div><span class="cm">// morse mode: tokenize dot-dash sequences</span></div>
+        <div><span class="kw">[.-]+</span>     { <span class="cm">return MORSE_TOKEN;</span> }</div>
+        <div><span class="kw">" / "</span>     { <span class="cm">return WORD_BREAK;</span> }</div>
+      </div>
     </div>
+
     <div class="p-block reveal">
       <h2>Stack</h2>
-      <div class="p-stack"><span>C</span><span>Flex (Lex)</span><span>WebAssembly</span><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+      <p>Click any tag to see how it's actually used in this project.</p>
+      <div class="p-stack" id="stackTags">
+        <button class="chip" data-desc="Implements the core encoding/decoding logic — fast, low-level token processing compiled ahead of time.">C</button>
+        <button class="chip" data-desc="Performs lexical analysis on input text and Morse sequences, tokenizing characters and dot-dash patterns before the C logic runs.">Flex (Lex)</button>
+        <button class="chip" data-desc="Compilation target for the C/Flex logic — lets it run directly in the browser at near-native speed with no backend.">WebAssembly</button>
+        <button class="chip" data-desc="Structures the translator's input/output interface.">HTML</button>
+        <button class="chip" data-desc="Styles the two-panel input/output layout and mode toggle.">CSS</button>
+        <button class="chip" data-desc="Thin glue layer that calls into the WebAssembly module for real-time translation as you type.">JavaScript</button>
+      </div>
+      <div class="readout" id="stackReadout">
+        <div class="rh"><span class="rdot"></span><span id="readoutLabel">SELECT A TAG</span></div>
+        <p class="placeholder" id="readoutText">Click any technology above to see exactly how it's used in this build.</p>
+      </div>
     </div>
-    <div class="btn-row reveal">
-      <a href="#" class="btn primary">LIVE DEMO →</a>
-      <a href="#" class="btn ghost">VIEW CODE</a>
-    </div>
+
   </section>
 
   <div class="p-nav">
-    <a href="project-bnb.html">← Project on B&B</a>
-    <a href="projects.html">Back to all projects →</a>
+    <a href="project-bnb.html">← Project on B&amp;B</a>
+    <a href="project-ticket-resale.html">Ticket Resale Platform →</a>
   </div>
 
-  <footer class="foot" id="contact">
+  <footer class="foot">
     <p>DEVANSH SINGH — NOIDA, INDIA</p>
     <div class="social">
       <a href="mailto:imdevansh.08@gmail.com">EMAIL</a>
@@ -81,5 +211,86 @@
 </main>
 
 <script src="js/main.js"></script>
+<script>
+(function(){
+  const MORSE = {
+    'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....',
+    'I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.',
+    'Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-',
+    'Y':'-.--','Z':'--..','0':'-----','1':'.----','2':'..---','3':'...--','4':'....-',
+    '5':'.....','6':'-....','7':'--...','8':'---..','9':'----.'
+  };
+  const REVERSE = {};
+  Object.keys(MORSE).forEach(k => REVERSE[MORSE[k]] = k);
+
+  let mode = 'encode';
+  const input = document.getElementById('morseInput');
+  const output = document.getElementById('morseOutput');
+  const inputLabel = document.getElementById('inputLabel');
+  const outputLabel = document.getElementById('outputLabel');
+  const hint = document.getElementById('morseHint');
+
+  function encode(text) {
+    return text.toUpperCase().split(' ').map(word =>
+      word.split('').map(ch => MORSE[ch] || '').filter(Boolean).join(' ')
+    ).join(' / ');
+  }
+
+  function decode(morse) {
+    return morse.split(' / ').map(word =>
+      word.trim().split(' ').map(code => REVERSE[code] || '').join('')
+    ).join(' ');
+  }
+
+  function translate() {
+    const val = input.value;
+    output.value = mode === 'encode' ? encode(val) : decode(val);
+  }
+
+  input.addEventListener('input', translate);
+
+  document.querySelectorAll('.morse-mode-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.morse-mode-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      mode = btn.dataset.mode;
+      if (mode === 'encode') {
+        inputLabel.textContent = 'INPUT TEXT';
+        outputLabel.textContent = 'MORSE OUTPUT';
+        hint.textContent = 'Type normal text — translation happens as you type.';
+        input.value = 'SOS SAVE OUR SHIP';
+      } else {
+        inputLabel.textContent = 'INPUT MORSE';
+        outputLabel.textContent = 'TEXT OUTPUT';
+        hint.textContent = 'Separate letters with a space, words with " / ".';
+        input.value = '... --- ... / ... .- ...- . / --- ..- .-. / ... .... .. .--.';
+      }
+      translate();
+    });
+  });
+
+  translate();
+
+  document.querySelectorAll('.cf-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.cf-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.cf-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  document.querySelectorAll('#stackTags .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#stackTags .chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      document.getElementById('readoutLabel').textContent = chip.textContent.toUpperCase();
+      const textEl = document.getElementById('readoutText');
+      textEl.textContent = chip.dataset.desc;
+      textEl.classList.remove('placeholder');
+    });
+  });
+})();
+</script>
 </body>
 </html>
