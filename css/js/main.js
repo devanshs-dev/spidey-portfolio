@@ -221,50 +221,54 @@ document.querySelectorAll('.section-label').forEach(el => {
 });
 
 // Case Files Carousel
+// Case Files Carousel
 (function(){
   const track = document.getElementById('cfTrack');
-  if (!track) return;
-  const slides = track.children;
-  const dotsWrap = document.getElementById('cfDots');
   const prevBtn = document.getElementById('cfPrev');
   const nextBtn = document.getElementById('cfNext');
+  const dotsWrap = document.getElementById('cfDots');
+  if (!track || !prevBtn || !nextBtn || !dotsWrap) return;
 
-  for (let i = 0; i < slides.length; i++) {
+  const slides = Array.from(track.children);
+  dotsWrap.innerHTML = '';
+  slides.forEach((_, i) => {
     const dot = document.createElement('div');
     dot.className = 'cf-dot' + (i === 0 ? ' active' : '');
     dot.addEventListener('click', () => scrollToSlide(i));
     dotsWrap.appendChild(dot);
-  }
-  const dots = dotsWrap.children;
+  });
+  const dots = Array.from(dotsWrap.children);
 
   function scrollToSlide(i) {
-    const slide = slides[i];
-    track.scrollTo({ left: slide.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
   }
 
-  function updateActive() {
+  function currentIndex() {
     let closest = 0, minDist = Infinity;
-    for (let i = 0; i < slides.length; i++) {
-      const dist = Math.abs(slides[i].offsetLeft - track.scrollLeft);
+    slides.forEach((s, i) => {
+      const dist = Math.abs(s.offsetLeft - track.scrollLeft);
       if (dist < minDist) { minDist = dist; closest = i; }
-    }
-    for (let i = 0; i < dots.length; i++) {
-      dots[i].classList.toggle('active', i === closest);
-    }
+    });
     return closest;
+  }
+
+  function updateDots() {
+    const idx = currentIndex();
+    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
   }
 
   track.addEventListener('scroll', () => {
     clearTimeout(track._t);
-    track._t = setTimeout(updateActive, 80);
+    track._t = setTimeout(updateDots, 80);
   });
 
-  prevBtn.addEventListener('click', () => {
-    const current = updateActive();
-    scrollToSlide(Math.max(0, current - 1));
+  prevBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToSlide(currentIndex() - 1);
   });
-  nextBtn.addEventListener('click', () => {
-    const current = updateActive();
-    scrollToSlide(Math.min(slides.length - 1, current + 1));
+  nextBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    scrollToSlide(currentIndex() + 1);
   });
 })();

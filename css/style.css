@@ -402,7 +402,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 }
 .cf-track::-webkit-scrollbar { display: none; }
 .cf-slide {
-  scroll-snap-align: start; flex: 0 0 min(560px, 88vw);
+  scroll-snap-align: start; flex: 0 0 min(480px, 80vw);
   background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px;
   padding: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden;
 }
