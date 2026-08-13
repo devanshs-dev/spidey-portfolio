@@ -83,8 +83,14 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-display);
   font-size: 20px;
   letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 .nav-logo span { color: var(--red); }
+.nav-logo .spider-mark { width: 18px; height: 18px; flex-shrink: 0; }
+.nav-logo .spider-mark ellipse { fill: var(--red); }
+.nav-logo .spider-mark path { stroke: var(--red); stroke-width: 1.3; fill: none; }
 
 .nav-links {
   display: flex;
@@ -189,9 +195,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .btn.ghost { border: 1px solid var(--line); color: var(--ink); }
 .btn.ghost:hover { border-color: var(--blue); color: var(--blue); }
 .btn-row { display: flex; gap: 14px; flex-wrap: wrap; }
-
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.in { opacity: 1; transform: translateY(0); }
 
 .hero { padding: 120px 56px 90px; text-align: left; }
 .hero h1 {
@@ -332,7 +335,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .cf-panel ul li strong { color: var(--ink); font-weight: 600; }
 
 /* Stack readout */
-.p-stack { display: flex; flex-wrap: wrap; gap: 8px; }
 .p-stack .chip {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -360,14 +362,9 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .readout p { font-size: 14px; color: var(--ink-soft); margin: 0; line-height: 1.6; }
 .readout .placeholder { color: var(--ink-faint); font-style: italic; }
 
-.p-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.p-stack span { font-family: var(--font-mono); font-size: 11.5px; color: var(--ink); border: 1px solid var(--line-red); background: var(--red-soft); padding: 6px 12px; border-radius: 2px; }
-
 .p-nav { display: flex; justify-content: space-between; padding: 40px 56px 80px; border-top: 1px solid var(--line); margin-top: 20px; }
 .p-nav a { font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
 .p-nav a:hover { color: var(--red); }
-
-
 
 .nav-social { display: flex; gap: 8px; align-items: center; }
 .nav-social a {
@@ -380,7 +377,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 }
 .nav-social a:hover { border-color: var(--red); color: var(--red); }
 @media (max-width: 900px) { .nav-social { display: none; } }
-
 
 /* Case Files Carousel */
 .cf-carousel-wrap { position: relative; margin-top: 8px; }
@@ -428,7 +424,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .cf-slide { padding: 24px; }
 }
 
-
 @media (max-width: 900px) {
   section, .hero, .foot, .breadcrumb, .p-hero, .p-nav { padding-left: 22px; padding-right: 22px; }
   .stat-strip { grid-template-columns: repeat(2, 1fr); }
@@ -440,15 +435,14 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .p-meta .m:nth-child(2n+1) { border-left: none; }
   .menu-toggle { display: none !important; }
 }
-.design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.design-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .design-card { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--bg-2); }
 .design-card .thumb { aspect-ratio: 16/10; background: linear-gradient(135deg, var(--red-soft), var(--blue-soft)); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
 .design-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
 .design-card .dc-body { padding: 20px; }
 .design-card .dc-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--blue); margin-bottom: 8px; }
 .design-card h4 { font-size: 16px; font-weight: 600; }
-.design-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-@media (max-width: 900px) { .design-grid { grid-template-columns: 1fr; } }
 @media (max-width: 900px) { .design-grid { grid-template-columns: 1fr; } }
 
 .df-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
@@ -486,20 +480,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .contact-form button:hover { background: var(--ink); }
 .form-status { font-family: var(--font-mono); font-size: 13px; margin-top: 4px; }
 
-
-/* ============================================
-   SPIDEY THEME — clean rewrite
-   Paste this at the END of style.css.
-   Then delete the old duplicate blocks listed
-   in the instructions below.
-============================================ */
-
-/* ---- logo mark ---- */
-.nav-logo { display: inline-flex; align-items: center; gap: 8px; }
-.nav-logo .spider-mark { width: 18px; height: 18px; flex-shrink: 0; }
-.nav-logo .spider-mark path { stroke: var(--red); stroke-width: 1.4; fill: none; }
-.nav-logo .spider-mark circle { fill: var(--red); }
-
 /* ---- hexagonal tag / badge ---- */
 .tag {
   clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%);
@@ -511,7 +491,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   padding: 6px 16px;
 }
 
-/* ---- reveal (single definition — delete the two old .reveal blocks) ---- */
+/* ---- reveal (single definition) ---- */
 .reveal {
   opacity: 0;
   transform: translateY(22px) rotate(-1deg);
