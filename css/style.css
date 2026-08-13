@@ -465,8 +465,8 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .df-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
 .df-feature.reverse .df-img { order: 2; }
 .df-feature.reverse .df-copy { order: 1; }
-.df-img { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--bg-2); }
-.df-img img { width: 100%; display: block; }
+.df-img { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #16161A; display: flex; align-items: center; justify-content: center; padding: 24px; max-height: 420px; }
+.df-img img { width: 100%; height: 100%; object-fit: contain; border-radius: 3px; }
 .df-num { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.08em; margin-bottom: 10px; }
 .df-copy h2 { font-size: 30px; margin: 8px 0 16px; }
 .df-copy p { color: var(--ink-soft); font-size: 15px; max-width: 55ch; margin-bottom: 18px; }
