@@ -382,6 +382,11 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .nav-dots a.active { background: var(--red); border-color: var(--red); transform: scale(1.4); box-shadow: 0 0 8px var(--red); }
 @media (max-width: 900px) { .nav-dots { display: none; } }
 
+.nav-social { display: flex; gap: 14px; align-items: center; }
+.nav-social a { color: var(--ink-soft); transition: color 0.2s ease; }
+.nav-social a:hover { color: var(--red); }
+@media (max-width: 900px) { .nav-social { display: none; } }
+
 .teaser-card { position: relative; }
 .teaser-card::before {
   content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
