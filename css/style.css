@@ -490,3 +490,4 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .df-feature { display: block; }
   .df-img { margin-bottom: 20px; }
 }
+.nav-right { display: flex; align-items: center; gap: 16px; }
