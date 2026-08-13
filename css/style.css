@@ -491,3 +491,20 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .df-img { margin-bottom: 20px; }
 }
 .nav-right { display: flex; align-items: center; gap: 16px; }
+
+.contact-form { max-width: 560px; margin-top: 40px; display: flex; flex-direction: column; gap: 18px; }
+.contact-form label { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.06em; margin-bottom: 8px; display: block; }
+.contact-form input, .contact-form textarea {
+  width: 100%; background: var(--bg-2); border: 1px solid var(--line); border-radius: 3px;
+  padding: 14px 16px; color: var(--ink); font-family: var(--font-body); font-size: 15px;
+  transition: border-color 0.2s ease;
+}
+.contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--red); }
+.contact-form textarea { min-height: 140px; resize: vertical; }
+.contact-form button {
+  font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; padding: 14px 26px;
+  background: var(--red); color: var(--bg); border: none; border-radius: 2px; cursor: pointer;
+  transition: background 0.15s ease; width: fit-content;
+}
+.contact-form button:hover { background: var(--ink); }
+.form-status { font-family: var(--font-mono); font-size: 13px; margin-top: 4px; }

@@ -24,15 +24,33 @@
 
 <main>
   <section class="hero">
-    <span class="tag"><span class="dot"></span> LET'S TALK</span>
-    <h1>Got a role, a project,<br>or just want to <span class="accent">connect?</span></h1>
-    <p class="lede">I'm actively looking for frontend, full-stack, and ML roles. Reach out directly — I reply fast.</p>
-    <div class="btn-row">
-      <a href="mailto:imdevansh.08@gmail.com" class="btn primary">EMAIL ME →</a>
-      <a href="#" class="btn ghost">LINKEDIN</a>
-      <a href="#" class="btn ghost">GITHUB</a>
+  <span class="tag"><span class="dot"></span> LET'S TALK</span>
+  <h1>Got a role, a project,<br>or just want to <span class="accent">connect?</span></h1>
+  <p class="lede">Open to frontend, full-stack, and ML roles — freelance or full-time. Send a message below or reach out directly, I reply fast.</p>
+
+  <form class="contact-form" id="contactForm" action="https://formspree.io/f/mjybrdyk" method="POST">
+    <div>
+      <label for="name">NAME</label>
+      <input type="text" id="name" name="name" required>
     </div>
-  </section>
+    <div>
+      <label for="email">EMAIL</label>
+      <input type="email" id="email" name="email" required>
+    </div>
+    <div>
+      <label for="message">MESSAGE</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+    <button type="submit">SEND MESSAGE →</button>
+    <p class="form-status" id="formStatus"></p>
+  </form>
+
+  <div class="btn-row" style="margin-top:32px;">
+    <a href="mailto:imdevansh.08@gmail.com" class="btn ghost">EMAIL ME →</a>
+    <a href="https://www.linkedin.com/in/connect-to-devansh-singh/" class="btn ghost" target="_blank">LINKEDIN</a>
+    <a href="https://github.com/devanshs-dev" class="btn ghost" target="_blank">GITHUB</a>
+  </div>
+</section>
 
   <footer class="foot">
     <p>DEVANSH SINGH — NOIDA, INDIA</p>
@@ -44,6 +62,26 @@
   </footer>
 </main>
 
+<script>
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const form = e.target;
+  const status = document.getElementById('formStatus');
+  status.textContent = 'Sending...';
+  status.style.color = 'var(--ink-faint)';
+  try {
+    const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+    if (res.ok) {
+      status.textContent = 'Message sent — I\'ll get back to you soon.';
+      status.style.color = 'var(--red)';
+      form.reset();
+    } else { throw new Error(); }
+  } catch {
+    status.textContent = 'Something went wrong — email me directly instead.';
+    status.style.color = 'var(--ink-faint)';
+  }
+});
+</script>
 <script src="js/main.js"></script>
 </body>
 </html>
