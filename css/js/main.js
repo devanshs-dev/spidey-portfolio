@@ -272,3 +272,91 @@ document.querySelectorAll('.section-label').forEach(el => {
     scrollToSlide(currentIndex() + 1);
   });
 })();
+
+/* ============================================
+   SPIDEY THEME — JS
+   Paste this into js/main.js (append to the file,
+   or replace an old version if one already handles
+   the web canvas / click effect).
+============================================ */
+
+/* ---- animated web background on #web-canvas ---- */
+(function initWebCanvas() {
+  const canvas = document.getElementById('web-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, nodes = [];
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    const count = Math.floor((w * h) / 45000);
+    nodes = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.15
+    }));
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, w, h);
+    for (const n of nodes) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > w) n.vx *= -1;
+      if (n.y < 0 || n.y > h) n.vy *= -1;
+    }
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 140) {
+          ctx.strokeStyle = `rgba(232,56,61,${0.09 * (1 - dist / 140)})`;
+          ctx.lineWidth = 0.6;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  tick();
+})();
+
+/* ---- web-shooter click effect ---- */
+document.addEventListener('click', function (e) {
+  const ring = document.createElement('div');
+  ring.className = 'pulse-ring active';
+  ring.style.left = e.clientX + 'px';
+  ring.style.top = e.clientY + 'px';
+  document.body.appendChild(ring);
+  ring.addEventListener('animationend', () => ring.remove());
+
+  const lineCount = 5;
+  for (let i = 0; i < lineCount; i++) {
+    const line = document.createElement('div');
+    line.className = 'web-line';
+    const angle = (360 / lineCount) * i + (Math.random() * 20 - 10);
+    const length = 24 + Math.random() * 20;
+    line.style.width = length + 'px';
+    line.style.left = e.clientX + 'px';
+    line.style.top = e.clientY + 'px';
+    line.style.transform = `rotate(${angle}deg)`;
+    document.body.appendChild(line);
+    line.addEventListener('animationend', () => line.remove());
+  }
+});
+
+/* ---- cursor hover state on interactive elements ---- */
+document.querySelectorAll('a, button, .teaser-card, .rec-card').forEach(el => {
+  const cursor = document.getElementById('cursor');
+  if (!cursor) return;
+  el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});

@@ -367,20 +367,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .p-nav a { font-family: var(--font-mono); font-size: 13px; color: var(--ink-soft); }
 .p-nav a:hover { color: var(--red); }
 
-/* ---- spidey interactions ---- */
-.reveal { transition: opacity 0.6s cubic-bezier(0.34,1.56,0.64,1), transform 0.6s cubic-bezier(0.34,1.56,0.64,1); transform: translateY(24px) rotate(-1.2deg); }
-.reveal.in { transform: translateY(0) rotate(0deg); }
 
-.pulse-ring { position: fixed; width: 10px; height: 10px; border: 1.5px solid var(--red); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: 0; }
-.pulse-ring.active { animation: pulseOut 0.6s ease-out; }
-@keyframes pulseOut { 0% { opacity: 0.8; width: 10px; height: 10px; } 100% { opacity: 0; width: 70px; height: 70px; } }
-
-.web-line { position: fixed; height: 1px; background: var(--red); transform-origin: left center; pointer-events: none; z-index: 9997; opacity: 0.7; }
-
-.nav-dots { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 90; }
-.nav-dots a { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink-faint); transition: all 0.25s ease; }
-.nav-dots a.active { background: var(--red); border-color: var(--red); transform: scale(1.4); box-shadow: 0 0 8px var(--red); }
-@media (max-width: 900px) { .nav-dots { display: none; } }
 
 .nav-social { display: flex; gap: 8px; align-items: center; }
 .nav-social a {
@@ -394,17 +381,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .nav-social a:hover { border-color: var(--red); color: var(--red); }
 @media (max-width: 900px) { .nav-social { display: none; } }
 
-.teaser-card { position: relative; }
-.teaser-card::before {
-  content: ''; position: absolute; inset: 0; opacity: 0; pointer-events: none;
-  background-image:
-    linear-gradient(115deg, transparent 48%, var(--red) 49%, transparent 50%),
-    linear-gradient(20deg, transparent 48%, var(--red) 49%, transparent 50%),
-    linear-gradient(160deg, transparent 48%, var(--blue) 49%, transparent 50%);
-  transition: opacity 0.3s ease;
-}
-.teaser-card:hover::before { opacity: 0.12; }
-.teaser-card, .rec-card { will-change: transform; }
 
 /* Case Files Carousel */
 .cf-carousel-wrap { position: relative; margin-top: 8px; }
@@ -451,6 +427,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 @media (max-width: 700px) {
   .cf-slide { padding: 24px; }
 }
+
 
 @media (max-width: 900px) {
   section, .hero, .foot, .breadcrumb, .p-hero, .p-nav { padding-left: 22px; padding-right: 22px; }
@@ -508,3 +485,87 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 }
 .contact-form button:hover { background: var(--ink); }
 .form-status { font-family: var(--font-mono); font-size: 13px; margin-top: 4px; }
+
+
+/* ============================================
+   SPIDEY THEME — clean rewrite
+   Paste this at the END of style.css.
+   Then delete the old duplicate blocks listed
+   in the instructions below.
+============================================ */
+
+/* ---- logo mark ---- */
+.nav-logo { display: inline-flex; align-items: center; gap: 8px; }
+.nav-logo .spider-mark { width: 18px; height: 18px; flex-shrink: 0; }
+.nav-logo .spider-mark path { stroke: var(--red); stroke-width: 1.4; fill: none; }
+.nav-logo .spider-mark circle { fill: var(--red); }
+
+/* ---- hexagonal tag / badge ---- */
+.tag {
+  clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%);
+  padding: 9px 22px;
+}
+
+.p-stack span, .teaser-card .stack span, .design-card .dc-tag {
+  clip-path: polygon(6% 0, 94% 0, 100% 50%, 94% 100%, 6% 100%, 0 50%);
+  padding: 6px 16px;
+}
+
+/* ---- reveal (single definition — delete the two old .reveal blocks) ---- */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px) rotate(-1deg);
+  transition: opacity 0.6s cubic-bezier(0.34,1.56,0.64,1), transform 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.reveal.in { opacity: 1; transform: translateY(0) rotate(0deg); }
+
+/* ---- web-crack section divider ---- */
+.web-divider { width: 100%; height: 40px; opacity: 0.35; margin: 0 auto; display: block; }
+.web-divider path { stroke: var(--line-red); stroke-width: 1; fill: none; }
+
+/* ---- spidey-sense hover tingle ---- */
+.teaser-card, .rec-card, .design-card, .btn.ghost {
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+.teaser-card:hover, .rec-card:hover, .design-card:hover { transform: translateY(-3px); }
+
+/* subtle web-crack shimmer on card hover, replacing old crosshatch */
+.teaser-card { position: relative; overflow: hidden; }
+.teaser-card::after {
+  content: '';
+  position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(232,56,61,0.06) 8deg, transparent 16deg, transparent 180deg, rgba(59,124,246,0.06) 188deg, transparent 196deg, transparent 360deg);
+  opacity: 0; transition: opacity 0.35s ease; pointer-events: none;
+}
+.teaser-card:hover::after { opacity: 1; }
+
+/* ---- web-shooter click effect ---- */
+.pulse-ring {
+  position: fixed; width: 8px; height: 8px;
+  border: 1.5px solid var(--red); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  opacity: 0;
+}
+.pulse-ring.active { animation: pulseOut 0.55s ease-out forwards; }
+@keyframes pulseOut {
+  0% { opacity: 0.9; width: 8px; height: 8px; }
+  100% { opacity: 0; width: 64px; height: 64px; }
+}
+.web-line {
+  position: fixed; height: 1.5px;
+  background: linear-gradient(90deg, var(--red), transparent);
+  transform-origin: left center;
+  pointer-events: none; z-index: 9997;
+  opacity: 0.9;
+  animation: webFade 0.5s ease-out forwards;
+}
+@keyframes webFade { to { opacity: 0; } }
+
+@media (max-width: 900px) { .pulse-ring, .web-line { display: none; } }
+
+/* ---- scroll progress dots ---- */
+.nav-dots { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 90; }
+.nav-dots a { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink-faint); display: block; transition: all 0.25s ease; }
+.nav-dots a.active { background: var(--red); border-color: var(--red); transform: scale(1.4); box-shadow: 0 0 8px var(--red); }
+@media (max-width: 900px) { .nav-dots { display: none; } }
