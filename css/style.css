@@ -451,3 +451,13 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   .p-meta .m:nth-child(2n+1) { border-left: none; }
   .menu-toggle { display: none !important; }
 }
+.design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.design-card { border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--bg-2); }
+.design-card .thumb { aspect-ratio: 16/10; background: linear-gradient(135deg, var(--red-soft), var(--blue-soft)); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; color: var(--ink-faint); }
+.design-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.design-card .dc-body { padding: 20px; }
+.design-card .dc-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--blue); margin-bottom: 8px; }
+.design-card h4 { font-size: 16px; font-weight: 600; }
+.design-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .design-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .design-grid { grid-template-columns: 1fr; } }
