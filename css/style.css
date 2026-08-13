@@ -461,3 +461,20 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .design-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 @media (max-width: 900px) { .design-grid { grid-template-columns: 1fr; } }
 @media (max-width: 900px) { .design-grid { grid-template-columns: 1fr; } }
+
+.df-feature { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-bottom: 80px; }
+.df-feature.reverse .df-img { order: 2; }
+.df-feature.reverse .df-copy { order: 1; }
+.df-img { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--bg-2); }
+.df-img img { width: 100%; display: block; }
+.df-num { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.08em; margin-bottom: 10px; }
+.df-copy h2 { font-size: 30px; margin: 8px 0 16px; }
+.df-copy p { color: var(--ink-soft); font-size: 15px; max-width: 55ch; margin-bottom: 18px; }
+.df-note { display: flex; align-items: center; gap: 12px; padding: 20px 0; border-top: 1px solid var(--line); }
+.df-note-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-faint); }
+.df-note p { font-family: var(--font-mono); font-size: 13px; color: var(--ink-faint); }
+@media (max-width: 900px) {
+  .df-feature, .df-feature.reverse .df-img, .df-feature.reverse .df-copy { grid-template-columns: 1fr; order: unset; }
+  .df-feature { display: block; }
+  .df-img { margin-bottom: 20px; }
+}
