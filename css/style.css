@@ -394,6 +394,52 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .teaser-card:hover::before { opacity: 0.12; }
 .teaser-card, .rec-card { will-change: transform; }
 
+/* Case Files Carousel */
+.cf-carousel-wrap { position: relative; margin-top: 8px; }
+.cf-track {
+  display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory;
+  padding-bottom: 8px; scrollbar-width: none;
+}
+.cf-track::-webkit-scrollbar { display: none; }
+.cf-slide {
+  scroll-snap-align: start; flex: 0 0 min(560px, 88vw);
+  background: var(--bg-2); border: 1px solid var(--line); border-radius: 6px;
+  padding: 32px; display: flex; flex-direction: column; position: relative; overflow: hidden;
+}
+.cf-slide::before {
+  content: ''; position: absolute; top: 0; right: 0; width: 140px; height: 140px;
+  background: radial-gradient(circle at top right, var(--red-soft), transparent 70%);
+  pointer-events: none;
+}
+.cf-slide-num { font-family: var(--font-mono); font-size: 11px; color: var(--red); letter-spacing: 0.08em; margin-bottom: 16px; position: relative; }
+.cf-slide h3 { font-size: 26px; margin-bottom: 10px; position: relative; }
+.cf-slide .cf-meta { font-family: var(--font-mono); font-size: 11px; color: var(--ink-faint); letter-spacing: 0.04em; margin-bottom: 16px; position: relative; }
+.cf-slide p { color: var(--ink-soft); font-size: 14.5px; margin-bottom: 20px; position: relative; flex: 1; }
+.cf-slide .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; position: relative; }
+.cf-slide .stack span { font-family: var(--font-mono); font-size: 10px; color: var(--ink-faint); border: 1px solid var(--line); padding: 4px 8px; border-radius: 2px; }
+.cf-dual { display: flex; gap: 14px; margin-bottom: 16px; position: relative; }
+.cf-dual a { flex: 1; border: 1px solid var(--line); border-radius: 3px; padding: 14px; transition: border-color .15s; }
+.cf-dual a:hover { border-color: var(--blue); }
+.cf-dual .dtag { font-family: var(--font-mono); font-size: 9.5px; color: var(--blue); letter-spacing: 0.05em; margin-bottom: 6px; }
+.cf-dual .dname { font-size: 14px; color: var(--ink); font-weight: 600; }
+.cf-slide-cta { font-family: var(--font-mono); font-size: 12px; color: var(--blue); display: inline-flex; align-items: center; gap: 6px; position: relative; }
+
+.cf-nav { display: flex; align-items: center; justify-content: space-between; margin-top: 24px; }
+.cf-dots { display: flex; gap: 8px; }
+.cf-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); cursor: pointer; transition: background .2s, width .2s; }
+.cf-dot.active { background: var(--red); width: 22px; border-radius: 4px; }
+.cf-arrows { display: flex; gap: 8px; }
+.cf-arrow {
+  width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  color: var(--ink-soft); background: transparent; transition: border-color .15s, color .15s;
+}
+.cf-arrow:hover { border-color: var(--red); color: var(--red); }
+
+@media (max-width: 700px) {
+  .cf-slide { padding: 24px; }
+}
+
 @media (max-width: 900px) {
   section, .hero, .foot, .breadcrumb, .p-hero, .p-nav { padding-left: 22px; padding-right: 22px; }
   .stat-strip { grid-template-columns: repeat(2, 1fr); }
