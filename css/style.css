@@ -956,12 +956,41 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 }
 
 /* ============================================================
+   COMIC BOOK PANEL HOVER EFFECT (PROJECTS PAGE)
+   ============================================================ */
+.cf-slide, .project-card, .rec-card, .teaser-card {
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  position: relative;
+}
+
+.cf-slide:hover, .project-card:hover, .rec-card:hover, .teaser-card:hover {
+  border-color: var(--red) !important;
+  box-shadow: 10px 10px 0px var(--red) !important; 
+  background-image: radial-gradient(rgba(232, 56, 61, 0.15) 1px, transparent 1px) !important;
+  background-size: 12px 12px !important;
+  z-index: 10;
+}
+
+.cf-slide:nth-child(odd):hover, .project-card:nth-child(odd):hover, .rec-card:nth-child(odd):hover, .teaser-card:nth-child(odd):hover {
+  transform: translateY(-8px) scale(1.03) rotate(-1.5deg) !important;
+}
+
+.cf-slide:nth-child(even):hover, .project-card:nth-child(even):hover, .rec-card:nth-child(even):hover, .teaser-card:nth-child(even):hover {
+  transform: translateY(-8px) scale(1.03) rotate(1.5deg) !important;
+}
+
+.cf-slide:hover .tags span, .project-card:hover .tags span, .rec-card:hover .tags span, .teaser-card:hover .stack span {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
+
+/* ============================================================
    PROJECTS PAGE: VISUAL OVERHAUL (RESTING STATE)
    ============================================================ */
 
-/* 1. The Tactical Web Grid Background (Behind the cards) */
+/* 1. The Tactical Web Grid Background */
 body {
-  /* Adds a faint, high-tech red grid to the empty black space */
   background-image: 
     linear-gradient(rgba(232, 56, 61, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(232, 56, 61, 0.04) 1px, transparent 1px) !important;
@@ -970,10 +999,10 @@ body {
 }
 
 /* 2. The Case File Cards */
-.cf-slide, .project-card, .rec-card {
+.cf-slide, .project-card, .rec-card, .teaser-card {
   background: linear-gradient(145deg, #0d0d0d, #050505) !important;
-  border: 1px solid rgba(232, 56, 61, 0.2) !important; /* Constant red glow edge */
-  border-left: 4px solid var(--red) !important; /* Thick red tactical strip on the left */
+  border: 1px solid rgba(232, 56, 61, 0.2) !important; 
+  border-left: 4px solid var(--red) !important; 
   border-radius: 4px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.9);
   padding-bottom: 20px;
@@ -983,7 +1012,7 @@ body {
 }
 
 /* 3. The Giant Faded Watermark */
-.cf-slide::after, .project-card::after, .rec-card::after {
+.cf-slide::after, .project-card::after, .rec-card::after, .teaser-card::after {
   content: 'CLASSIFIED';
   position: absolute;
   bottom: 0px;
@@ -991,7 +1020,7 @@ body {
   font-size: 5rem;
   font-weight: 900;
   font-family: Impact, sans-serif;
-  color: rgba(255,255,255,0.015); /* Barely visible */
+  color: rgba(255,255,255,0.015); 
   transform: rotate(-5deg);
   pointer-events: none;
   z-index: 0;
@@ -1000,7 +1029,7 @@ body {
 
 /* 4. Break the perfect grid (Staggered Layout) */
 @media (min-width: 900px) {
-  .cf-slide:nth-child(even), .project-card:nth-child(even), .rec-card:nth-child(even) {
-    transform: translateY(40px) !important; /* Pushes every second card down */
+  .cf-slide:nth-child(even), .project-card:nth-child(even), .rec-card:nth-child(even), .teaser-card:nth-child(even) {
+    transform: translateY(40px) !important; 
   }
 }
