@@ -37,7 +37,7 @@ a { color: inherit; text-decoration: none; }
 
 #cursor {
   position: fixed;
-  width: 34px; height: 34px;
+  width: 40px; height: 40px;
   border: 2px solid var(--red);
   border-radius: 50%;
   pointer-events: none;
@@ -50,9 +50,10 @@ a { color: inherit; text-decoration: none; }
   position: absolute;
   background: var(--red);
 }
-#cursor::before { width: 1.5px; height: 12px; top: -18px; left: 50%; transform: translateX(-50%); }
-#cursor::after { width: 12px; height: 1.5px; left: -18px; top: 50%; transform: translateY(-50%); }
-#cursor.hover { width: 60px; height: 60px; border-color: var(--blue); }
+#cursor::before { width: 2px; height: 14px; top: -20px; left: 50%; transform: translateX(-50%); }
+#cursor::after { width: 14px; height: 2px; left: -20px; top: 50%; transform: translateY(-50%); }
+#cursor.hover { width: 68px; height: 68px; border-color: var(--blue); }
+
 @media (max-width: 900px) {
   body { cursor: auto; }
   #cursor { display: none; }
@@ -83,10 +84,10 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 .nav-logo span { color: var(--red); }
-.nav-logo .spider-mark { width: 32px; height: 32px; flex-shrink: 0; }
+.nav-logo .spider-mark { width: 18px; height: 18px; flex-shrink: 0; }
 .nav-logo .spider-mark ellipse { fill: var(--red); }
 .nav-logo .spider-mark path { stroke: var(--red); stroke-width: 1.3; fill: none; }
 .nav-links {
