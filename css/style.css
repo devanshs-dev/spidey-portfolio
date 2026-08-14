@@ -575,8 +575,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 
 /* ---- scroll progress dots ---- */
 .nav-dots { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 90; }
-.nav-dots a { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink-faint); display: block; transition: all 0.25s ease; }
-.nav-dots a.active { background: var(--red); border-color: var(--red); transform: scale(1.4); box-shadow: 0 0 8px var(--red); }
+.nav-dots a { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink-faint); display: block; transition: all 0.25s ease; }ansform: scale(1.4); box-shadow: 0 0 8px var(--red); }
 @media (max-width: 900px) { .nav-dots { display: none; } }
 
 
@@ -613,36 +612,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .wanted-poster .wp-row span:last-child { font-weight: 600; }
 @media (max-width: 1200px) { .wanted-poster { display: none; } }
 
-/* ============================================================
-   PHASE 2 SPIDEY FEATURES — paste this whole block at the very
-   end of css/style.css. Nothing here touches your existing rules.
-   ============================================================ */
-
-/* ---- 1. Spider crawling the scroll indicator (inside .nav-dots) ---- */
-.scroll-thread-line {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 1px;
-  height: 100%;
-  background: var(--line);
-  transform: translateX(-50%);
-  z-index: 0;
-}
-.scroll-thread-spider {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 14px;
-  height: 14px;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-  transition: top 0.1s linear;
-  pointer-events: none;
-}
-.scroll-thread-spider svg { width: 100%; height: 100%; }
-.scroll-thread-spider ellipse { fill: var(--red); }
-.scroll-thread-spider path { stroke: var(--red); stroke-width: 1; fill: none; }
 .nav-dots a { position: relative; z-index: 1; background: var(--bg); border-radius: 50%; }
 
 /* ---- 2. "Thwip" section transitions ---- */
