@@ -1033,3 +1033,21 @@ body {
     transform: translateY(40px) !important; 
   }
 }
+
+/* ============================================================
+   CINEMATIC SPIDER-VERSE BACKGROUND (ALL PAGES)
+   ============================================================ */
+body {
+  background-color: #050508 !important;
+  background-image: 
+    /* 1. Subtle high-tech red grid */
+    linear-gradient(rgba(232, 56, 61, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 56, 61, 0.05) 1px, transparent 1px),
+    /* 2. Retro comic book halftone dot texture overlay */
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    /* 3. Cinematic dark vignette gradient framing the screen */
+    radial-gradient(circle at 50% 50%, rgba(15, 15, 22, 0) 40%, rgba(2, 2, 4, 0.85) 90%) !important;
+  
+  background-size: 60px 60px, 60px 60px, 20px 20px, 100% 100% !important;
+  background-attachment: fixed !important;
+}
