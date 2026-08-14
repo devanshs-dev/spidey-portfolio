@@ -37,28 +37,25 @@ a { color: inherit; text-decoration: none; }
 
 #cursor {
   position: fixed;
-  width: 90px;
-  height: 90px;
+  width: 22px;
+  height: 22px;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.15s ease, height 0.15s ease, filter 0.15s ease;
-  background-image: url("../assets/spider-cursor.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  animation: spideySense 2.4s ease-in-out infinite;
+  transition: width 0.15s ease, height 0.15s ease;
+  background-color: var(--red);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='12' cy='10' rx='2.4' ry='3.2'/%3E%3Cellipse cx='12' cy='15.5' rx='1.8' ry='2.2'/%3E%3Cg stroke='%23000' stroke-width='1.3' fill='none' stroke-linecap='round'%3E%3Cpath d='M12 8 L4 4M12 9 L3 8M12 11 L3 12M12 13 L4 17M12 8 L20 4M12 9 L21 8M12 11 L21 12M12 13 L20 17'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='12' cy='10' rx='2.4' ry='3.2'/%3E%3Cellipse cx='12' cy='15.5' rx='1.8' ry='2.2'/%3E%3Cg stroke='%23000' stroke-width='1.3' fill='none' stroke-linecap='round'%3E%3Cpath d='M12 8 L4 4M12 9 L3 8M12 11 L3 12M12 13 L4 17M12 8 L20 4M12 9 L21 8M12 11 L21 12M12 13 L20 17'/%3E%3C/g%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
-@keyframes spideySense {
-  0%, 100% { filter: drop-shadow(0 0 0px rgba(232,56,61,0)); }
-  50% { filter: drop-shadow(0 0 10px rgba(232,56,61,0.55)); }
+#cursor.hover {
+  width: 32px;
+  height: 32px;
 }
 
-#cursor.hover {
-  width: 120px;
-  height: 120px;
-  animation: spideySenseFast 0.9s ease-in-out infinite;
-}
 @keyframes spideySenseFast {
   0%, 100% { filter: hue-rotate(200deg) drop-shadow(0 0 0px rgba(59,124,246,0)); transform: translate(-50%,-50%) scale(1); }
   50% { filter: hue-rotate(200deg) drop-shadow(0 0 16px rgba(59,124,246,0.85)); transform: translate(-50%,-50%) scale(1.08); }
