@@ -38,8 +38,7 @@ a { color: inherit; text-decoration: none; }
 #cursor {
   position: fixed;
   width: 32px; height: 32px;
-  background-image: url('assets/spider-cursor.png');
-  background-size: contain;
+  background-image: url('/assets/spider-cursor.png'););  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: none;
