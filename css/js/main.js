@@ -385,3 +385,55 @@ document.querySelectorAll('a:not([href^="#"])').forEach(link => {
   });
 });
 
+/* ============================================================
+   INTERACTIVE WEB-SHOOTER MOUSE TRAIL
+   ============================================================ */
+const canvas = document.getElementById('web-canvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
+
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+
+  const points = [];
+  const maxPoints = 25;
+
+  window.addEventListener('mousemove', (e) => {
+    points.push({ x: e.clientX, y: e.clientY, age: 0 });
+    if (points.length > maxPoints) {
+      points.shift();
+    }
+  });
+
+  function animateWebs() {
+    ctx.clearRect(0, 0, width, height);
+
+    if (points.length > 1) {
+      ctx.beginPath();
+      ctx.moveTo(points[0].x, points[0].y);
+      for (let i = 1; i < points.length; i++) {
+        ctx.lineTo(points[i].x, points[i].y);
+      }
+      ctx.strokeStyle = 'rgba(232, 56, 61, 0.25)'; // Faint glowing red web
+      ctx.lineWidth = 1;
+      ctx.stroke();
+
+      // Draw anchor web lines connecting recent points to create a web mesh effect
+      for (let i = 0; i < points.length; i += 3) {
+        ctx.beginPath();
+        ctx.moveTo(points[i].x, points[i].y);
+        ctx.lineTo(width / 2, height / 2); // Anchor back to center feel
+        ctx.strokeStyle = 'rgba(59, 124, 246, 0.03)'; // Subtle blue tech lines
+        ctx.stroke();
+      }
+    }
+
+    requestAnimationFrame(animateWebs);
+  }
+
+  animateWebs();
+}
