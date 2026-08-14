@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caught in a web — Devansh Singh</title>
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .tangled-wrap {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tangled-404 {
+    font-family: var(--font-display);
+    font-size: clamp(90px, 18vw, 200px);
+    line-height: 1;
+    color: var(--ink);
+    position: relative;
+    letter-spacing: 0.02em;
+  }
+  .tangled-svg {
+    position: absolute;
+    inset: -20% -10%;
+    width: 120%;
+    height: 140%;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .tangled-svg path {
+    stroke: var(--red);
+    stroke-width: 1;
+    fill: none;
+    opacity: 0.55;
+  }
+  .tangled-404 span { position: relative; z-index: 2; }
+  .tangled-msg {
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-top: 24px;
+    max-width: 44ch;
+  }
+  .tangled-msg strong { color: var(--red); }
+  .tangled-actions { margin-top: 36px; }
+</style>
+</head>
+<body>
+
+<main class="tangled-wrap">
+  <div class="tangled-404">
+    <svg class="tangled-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 20 L200 150 M380 20 L200 150 M20 280 L200 150 M380 280 L200 150 M0 150 L200 150 M400 150 L200 150"/>
+      <path d="M60 60 Q200 100 340 60 M50 150 Q200 190 350 150 M60 240 Q200 200 340 240"/>
+      <path d="M120 30 Q140 150 120 270 M280 30 Q260 150 280 270"/>
+      <path d="M200 0 L200 300"/>
+    </svg>
+    <span>404</span>
+  </div>
+  <p class="tangled-msg">Looks like you got caught in a web. This page doesn't exist — but I promise the rest of the site does.</p>
+  <div class="tangled-actions">
+    <a href="index.html" class="btn primary">SWING BACK HOME →</a>
+  </div>
+</main>
+
+</body>
+</html>

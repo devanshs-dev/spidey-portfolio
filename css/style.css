@@ -612,3 +612,133 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .wanted-poster .wp-row span:first-child { color: #666; }
 .wanted-poster .wp-row span:last-child { font-weight: 600; }
 @media (max-width: 1200px) { .wanted-poster { display: none; } }
+
+/* ============================================================
+   PHASE 2 SPIDEY FEATURES — paste this whole block at the very
+   end of css/style.css. Nothing here touches your existing rules.
+   ============================================================ */
+
+/* ---- 1. Spider crawling the scroll indicator (inside .nav-dots) ---- */
+.scroll-thread-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--line);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+.scroll-thread-spider {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  transition: top 0.1s linear;
+  pointer-events: none;
+}
+.scroll-thread-spider svg { width: 100%; height: 100%; }
+.scroll-thread-spider ellipse { fill: var(--red); }
+.scroll-thread-spider path { stroke: var(--red); stroke-width: 1; fill: none; }
+.nav-dots a { position: relative; z-index: 1; background: var(--bg); border-radius: 50%; }
+
+/* ---- 2. "Thwip" section transitions ---- */
+.thwip-flash {
+  position: fixed;
+  width: 46px;
+  height: 46px;
+  pointer-events: none;
+  z-index: 9990;
+  opacity: 0;
+}
+.thwip-flash.go { animation: thwipBurst 0.4s ease-out forwards; }
+.thwip-flash svg { width: 100%; height: 100%; }
+@keyframes thwipBurst {
+  0%   { opacity: 0; transform: scale(0.3) rotate(-8deg); }
+  35%  { opacity: 0.9; transform: scale(1.15) rotate(4deg); }
+  100% { opacity: 0; transform: scale(1.5) rotate(0deg); }
+}
+
+/* ---- 3. Web-swing loading transition ---- */
+#page-swing-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: var(--bg);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.35s ease 0.4s;
+}
+#page-swing-overlay.done { opacity: 0; }
+#page-swing-overlay .swing-mark {
+  position: absolute;
+  top: -30px;
+  left: -5%;
+  width: 34px;
+  height: 34px;
+  animation: swingArc 0.7s cubic-bezier(0.55,0.06,0.68,0.19) forwards;
+}
+@keyframes swingArc {
+  0%   { top: -30px; left: -5%; transform: rotate(-25deg); opacity: 1; }
+  50%  { top: 40%; left: 50%; transform: rotate(10deg); opacity: 1; }
+  100% { top: 100%; left: 105%; transform: rotate(35deg); opacity: 0; }
+}
+
+/* ---- 4. HUD stat callouts ---- */
+.stat { position: relative; }
+.hud-tag {
+  position: absolute;
+  top: -16px;
+  right: 8px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--red);
+  border: 1px solid var(--line-red);
+  background: var(--red-soft);
+  padding: 3px 8px;
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  z-index: 5;
+  white-space: nowrap;
+}
+.hud-tag.show { animation: hudPop 1.8s ease forwards; }
+@keyframes hudPop {
+  0%   { opacity: 0; transform: translateY(6px); }
+  15%  { opacity: 1; transform: translateY(0); }
+  80%  { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-4px); }
+}
+
+/* ---- 5. Web-thread footer connector ---- */
+#web-thread-connector {
+  position: fixed;
+  top: 0;
+  left: 14px;
+  width: 1px;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgba(232,56,61,0.3), rgba(232,56,61,0.03));
+  z-index: 1;
+  pointer-events: none;
+  transform-origin: top center;
+}
+@media (max-width: 900px) { #web-thread-connector { display: none; } }
+
+/* ---- 6. Comic-panel transition on internal page navigation ---- */
+#comic-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  background:
+    radial-gradient(circle, var(--bg) 0%, var(--bg) 40%, transparent 41%),
+    repeating-radial-gradient(circle, var(--ink) 0, var(--ink) 1px, transparent 1px, transparent 6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+#comic-transition.active { opacity: 1; }
