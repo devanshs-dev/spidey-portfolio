@@ -37,22 +37,17 @@ a { color: inherit; text-decoration: none; }
 
 #cursor {
   position: fixed;
-  width: 22px; height: 22px;
-  border: 1.5px solid var(--red);
-  border-radius: 50%;
+  width: 32px; height: 32px;
+  background-image: url('assets/spider-cursor.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.15s ease, height 0.15s ease, border-color 0.15s ease;
+  transition: width 0.15s ease, height 0.15s ease;
 }
-#cursor::before, #cursor::after {
-  content: '';
-  position: absolute;
-  background: var(--red);
-}
-#cursor::before { width: 1px; height: 8px; top: -12px; left: 50%; transform: translateX(-50%); }
-#cursor::after { width: 8px; height: 1px; left: -12px; top: 50%; transform: translateY(-50%); }
-#cursor.hover { width: 44px; height: 44px; border-color: var(--blue); }
+#cursor.hover { width: 46px; height: 46px; }
 
 @media (max-width: 900px) {
   body { cursor: auto; }
@@ -552,3 +547,4 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 
 .nav-logo { display: flex; align-items: center; gap: 8px; }
 .nav-logo .spider-mark { display: block; flex-shrink: 0; object-fit: contain; }
+
