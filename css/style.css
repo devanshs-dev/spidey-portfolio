@@ -776,17 +776,17 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 }
 
 /* ============================================================
-   UPSIDE-DOWN SPIDEY HANGER
+   UPSIDE-DOWN SPIDEY HANGER (SMALL & TOP-LEFT)
    ============================================================ */
 .spidey-hanger {
   position: absolute;
-  top: 0;
-  left: 55%; /* Positions him between the text and the poster */
-  width: 280px;
+  top: -20px; /* Hangs right below the nav bar */
+  left: 60px; /* Aligns with the left side of your content */
+  width: 65px; /* Very small now! */
   z-index: 2;
   transform-origin: top center;
   animation: gentleSwing 6s ease-in-out infinite;
-  pointer-events: none; /* Ensures he doesn't block you from clicking anything */
+  pointer-events: none; 
 }
 
 .spidey-hanger img {
@@ -797,15 +797,15 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 
 /* Adds a subtle, realistic wind sway */
 @keyframes gentleSwing {
-  0%, 100% { transform: rotate(-4deg); }
-  50% { transform: rotate(4deg); }
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
 }
 
 /* Adjusts him for smaller screens */
 @media (max-width: 1200px) {
   .spidey-hanger {
-    left: 70%;
-    width: 200px;
+    left: 40px;
+    width: 50px;
   }
 }
 
