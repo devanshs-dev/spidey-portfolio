@@ -867,3 +867,19 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
   pointer-events: none !important;
   z-index: -999 !important;
 }
+
+/* ============================================================
+   KILL GLITCHY CUSTOM CURSOR & LEFTOVER RINGS
+   ============================================================ */
+#cursor, 
+.pulse-ring, 
+.web-line {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+body, 
+body * {
+  cursor: auto !important;
+}
