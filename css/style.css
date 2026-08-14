@@ -549,3 +549,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .nav-dots a { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--ink-faint); display: block; transition: all 0.25s ease; }
 .nav-dots a.active { background: var(--red); border-color: var(--red); transform: scale(1.4); box-shadow: 0 0 8px var(--red); }
 @media (max-width: 900px) { .nav-dots { display: none; } }
+
+.nav-logo { display: flex; align-items: center; gap: 8px; }
+.nav-logo .spider-mark { display: block; flex-shrink: 0; }
