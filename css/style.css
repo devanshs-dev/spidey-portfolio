@@ -774,3 +774,44 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
   mask-repeat: no-repeat;
   pointer-events: none;
 }
+
+/* ============================================================
+   UPSIDE-DOWN SPIDEY HANGER
+   ============================================================ */
+.spidey-hanger {
+  position: absolute;
+  top: 0;
+  left: 55%; /* Positions him between the text and the poster */
+  width: 280px;
+  z-index: 2;
+  transform-origin: top center;
+  animation: gentleSwing 6s ease-in-out infinite;
+  pointer-events: none; /* Ensures he doesn't block you from clicking anything */
+}
+
+.spidey-hanger img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Adds a subtle, realistic wind sway */
+@keyframes gentleSwing {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(4deg); }
+}
+
+/* Adjusts him for smaller screens */
+@media (max-width: 1200px) {
+  .spidey-hanger {
+    left: 70%;
+    width: 200px;
+  }
+}
+
+/* Hides him on mobile so your text stays readable */
+@media (max-width: 900px) {
+  .spidey-hanger {
+    display: none; 
+  }
+}
