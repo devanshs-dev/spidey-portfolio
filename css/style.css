@@ -83,13 +83,12 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 .nav-logo span { color: var(--red); }
-.nav-logo .spider-mark { width: 18px; height: 18px; flex-shrink: 0; }
+.nav-logo .spider-mark { width: 32px; height: 32px; flex-shrink: 0; }
 .nav-logo .spider-mark ellipse { fill: var(--red); }
 .nav-logo .spider-mark path { stroke: var(--red); stroke-width: 1.3; fill: none; }
-
 .nav-links {
   display: flex;
   gap: 36px;
