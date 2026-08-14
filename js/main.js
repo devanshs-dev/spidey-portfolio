@@ -108,6 +108,35 @@ document.addEventListener('DOMContentLoaded', () => {
    runtime, so no HTML file needs to be touched by hand.
    ============================================================ */
 
+/* ---- 1. Spider crawling the scroll indicator ---- */
+(function initScrollSpider() {
+  const dotsWrap = document.querySelector('.nav-dots');
+  if (!dotsWrap) return; // page has no scroll-dots sidebar, skip
+
+  const line = document.createElement('div');
+  line.className = 'scroll-thread-line';
+  dotsWrap.prepend(line);
+
+  const spider = document.createElement('div');
+  spider.className = 'scroll-thread-spider';
+  spider.innerHTML = `<svg viewBox="0 0 24 24">
+    <ellipse cx="12" cy="10" rx="2.2" ry="3"/>
+    <ellipse cx="12" cy="15" rx="1.6" ry="2"/>
+    <g stroke-linecap="round">
+      <path d="M12 8 C9 6.5,6 5.5,3.5 3.5"/>
+      <path d="M12 9.5 C8.5 8.5,5 8,2 7"/>
+      <path d="M12 11 C8.5 11.5,5 12,2 13"/>
+      <path d="M12 13 C9 14.5,6 16,3.5 18.5"/>
+      <path d="M12 8 C15 6.5,18 5.5,20.5 3.5"/>
+      <path d="M12 9.5 C15.5 8.5,19 8,22 7"/>
+      <path d="M12 11 C15.5 11.5,19 12,22 13"/>
+      <path d="M12 13 C15 14.5,18 16,20.5 18.5"/>
+    </g>
+  </svg>`;
+  dotsWrap.appendChild(spider);
+
+  function updateSpider() {
+    const scrollable = document.body.scrollHeight - window.innerHeight;
     const pct = scrollable > 0 ? window.scrollY / scrollable : 0;
     spider.style.top = (pct * dotsWrap.offsetHeight) + 'px';
   }
