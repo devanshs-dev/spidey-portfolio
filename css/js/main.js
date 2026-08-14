@@ -4,10 +4,27 @@ if (cursor && window.matchMedia('(min-width: 901px)').matches) {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
   });
-  document.querySelectorAll('a, button, .teaser-card, .rec-card').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+  const strandSvg = document.getElementById('web-strand');
+const strandPath = document.getElementById('web-strand-path');
+let mouseX = 0, mouseY = 0;
+document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    document.getElementById('cursor').classList.add('hover');
+    const rect = el.getBoundingClientRect();
+    const targetX = rect.left + rect.width / 2;
+    const targetY = rect.top + rect.height / 2;
+    const midX = (mouseX + targetX) / 2;
+    const sagY = Math.max(mouseY, targetY) + 40;
+    strandPath.setAttribute('d', `M ${mouseX} ${mouseY} Q ${midX} ${sagY} ${targetX} ${targetY}`);
+    strandPath.classList.add('shooting');
   });
+  el.addEventListener('mouseleave', () => {
+    document.getElementById('cursor').classList.remove('hover');
+    strandPath.classList.remove('shooting');
+  });
+});
 }
 
 const revealEls = document.querySelectorAll('.reveal');

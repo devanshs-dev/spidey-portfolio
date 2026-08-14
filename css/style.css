@@ -64,15 +64,26 @@ a { color: inherit; text-decoration: none; }
   50% { filter: hue-rotate(200deg) drop-shadow(0 0 16px rgba(59,124,246,0.85)); transform: translate(-50%,-50%) scale(1.08); }
 }
 
-#cursor.hover::before {
-  content: '';
-  position: absolute;
-  inset: -16px;
-  border: 1.5px dashed var(--blue);
-  border-radius: 50%;
-  animation: targetSpin 1.1s linear infinite;
+#web-strand {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9996;
 }
-@keyframes targetSpin { to { transform: rotate(360deg); } }
+#web-strand path {
+  fill: none;
+  stroke: var(--red);
+  stroke-width: 1.4;
+  opacity: 0;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  transition: stroke-dashoffset 0.35s ease, opacity 0.2s ease;
+}
+#web-strand path.shooting {
+  opacity: 0.85;
+  stroke-dashoffset: 0;
+}
 
 @media (max-width: 900px) {
   body { cursor: auto; }
