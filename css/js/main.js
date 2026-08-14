@@ -343,3 +343,13 @@ document.addEventListener('click', function (e) {
     line.addEventListener('animationend', () => line.remove());
   }
 });
+
+(function initWantedTilt() {
+  const poster = document.getElementById('wantedPoster');
+  if (!poster) return;
+  document.addEventListener('mousemove', e => {
+    const rx = (e.clientY / window.innerHeight - 0.5) * -8;
+    const ry = (e.clientX / window.innerWidth - 0.5) * 8;
+    poster.style.transform = `rotate(3deg) rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+})();

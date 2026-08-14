@@ -586,3 +586,29 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   z-index: 9995;
   pointer-events: none;
 }
+
+.wanted-poster {
+  position: absolute;
+  top: 100px;
+  right: 80px;
+  width: 300px;
+  background: #EFE7D8;
+  color: #1a1a1a;
+  padding: 24px;
+  border: 3px solid #1a1a1a;
+  transform: rotate(3deg);
+  transition: transform 0.15s ease;
+  z-index: 2;
+  font-family: var(--font-body);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.wanted-poster .wp-masthead { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.08em; text-align: center; border-bottom: 2px solid #1a1a1a; padding-bottom: 8px; margin-bottom: 12px; }
+.wanted-poster .wp-title { font-family: var(--font-display); font-size: 40px; text-align: center; color: var(--red-deep); letter-spacing: 0.03em; line-height: 1; margin-bottom: 4px; }
+.wanted-poster .wp-sub { font-family: var(--font-mono); font-size: 10px; text-align: center; letter-spacing: 0.05em; margin-bottom: 16px; color: #444; }
+.wanted-poster .wp-photo { width: 100%; aspect-ratio: 1; background: #1a1a1a; margin-bottom: 14px; display: flex; align-items: center; justify-content: center; }
+.wanted-poster .wp-photo svg { width: 60%; opacity: 0.85; }
+.wanted-poster .wp-photo svg path { stroke: var(--red); fill: none; stroke-width: 3; }
+.wanted-poster .wp-row { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 10.5px; padding: 6px 0; border-top: 1px dashed #999; }
+.wanted-poster .wp-row span:first-child { color: #666; }
+.wanted-poster .wp-row span:last-child { font-weight: 600; }
+@media (max-width: 1200px) { .wanted-poster { display: none; } }
