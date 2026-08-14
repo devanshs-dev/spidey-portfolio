@@ -105,6 +105,45 @@ if (window.matchMedia('(min-width: 901px)').matches) {
   drawThread();
 }
 
+(function initWebTrail() {
+  const canvas = document.getElementById('web-trail');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let points = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  document.addEventListener('mousemove', e => {
+    points.push({ x: e.clientX, y: e.clientY, t: Date.now() });
+  });
+
+  function draw() {
+    const now = Date.now();
+    points = points.filter(p => now - p.t < 420);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 1; i < points.length; i++) {
+      const age = (now - points[i].t) / 420;
+      const opacity = (1 - age) * 0.55;
+      const width = (1 - age) * 2.2 + 0.3;
+      ctx.beginPath();
+      ctx.moveTo(points[i - 1].x, points[i - 1].y);
+      ctx.lineTo(points[i].x, points[i].y);
+      ctx.strokeStyle = `rgba(232,56,61,${opacity})`;
+      ctx.lineWidth = width;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
 // ---- 2. 3D tilt on cards ----
 document.querySelectorAll('.teaser-card, .rec-card').forEach(el => {
   el.style.transformStyle = 'preserve-3d';

@@ -579,3 +579,10 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .nav-dots a.active { background: var(--red); border-color: var(--red); transform: scale(1.4); box-shadow: 0 0 8px var(--red); }
 @media (max-width: 900px) { .nav-dots { display: none; } }
 
+
+#web-trail {
+  position: fixed;
+  inset: 0;
+  z-index: 9995;
+  pointer-events: none;
+}
