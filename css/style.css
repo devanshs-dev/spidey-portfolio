@@ -858,22 +858,12 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 }
 
 /* ============================================================
-   4. DARK ALLEY FLASHLIGHT (ABOUT SECTION)
+   KILL OLD PAGE TRANSITIONS (Spider & Concentric Circles)
    ============================================================ */
-#about {
-  position: relative;
-  background: #050505; /* Pitch black */
-  --x: 50%; 
-  --y: 50%;
-}
-
-#about::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  /* Creates a black mask with a transparent hole at the cursor */
-  background: radial-gradient(circle 250px at var(--x) var(--y), transparent 0%, rgba(5,5,5,0.98) 80%);
-  z-index: 10;
-  pointer-events: none;
-  transition: background 0.1s;
+#page-swing-overlay,
+#comic-transition {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  z-index: -999 !important;
 }

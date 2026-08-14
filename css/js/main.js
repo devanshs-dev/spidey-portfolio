@@ -406,18 +406,3 @@ document.querySelectorAll('a:not([href^="#"])').forEach(link => {
   });
 });
 
-/* ============================================================
-   3. DARK ALLEY FLASHLIGHT
-   ============================================================ */
-const aboutSec = document.getElementById('about');
-if (aboutSec && window.matchMedia('(min-width: 901px)').matches) {
-  aboutSec.addEventListener('mousemove', (e) => {
-    const rect = aboutSec.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    // Pass precise mouse coordinates to CSS variables
-    aboutSec.style.setProperty('--x', x + 'px');
-    aboutSec.style.setProperty('--y', y + 'px');
-  });
-}
