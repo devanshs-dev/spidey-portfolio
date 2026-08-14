@@ -320,30 +320,6 @@ document.querySelectorAll('.section-label').forEach(el => {
   tick();
 })();
 
-/* ---- web-shooter click effect ---- */
-document.addEventListener('click', function (e) {
-  const ring = document.createElement('div');
-  ring.className = 'pulse-ring active';
-  ring.style.left = e.clientX + 'px';
-  ring.style.top = e.clientY + 'px';
-  document.body.appendChild(ring);
-  ring.addEventListener('animationend', () => ring.remove());
-
-  const lineCount = 5;
-  for (let i = 0; i < lineCount; i++) {
-    const line = document.createElement('div');
-    line.className = 'web-line';
-    const angle = (360 / lineCount) * i + (Math.random() * 20 - 10);
-    const length = 24 + Math.random() * 20;
-    line.style.width = length + 'px';
-    line.style.left = e.clientX + 'px';
-    line.style.top = e.clientY + 'px';
-    line.style.transform = `rotate(${angle}deg)`;
-    document.body.appendChild(line);
-    line.addEventListener('animationend', () => line.remove());
-  }
-});
-
 (function initWantedTilt() {
   const poster = document.getElementById('wantedPoster');
   if (!poster) return;
@@ -386,21 +362,24 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 /* ============================================================
-   2. SPINNING NEWSPAPER PAGE TRANSITION
+   2. SPINNING NEWSPAPER PAGE TRANSITION (WITH DEBUGGER)
    ============================================================ */
 document.querySelectorAll('a:not([href^="#"])').forEach(link => {
   link.addEventListener('click', function(e) {
-    // Ignore external links (like LinkedIn) or missing hrefs
     if (this.target === '_blank' || !this.href) return; 
     
     e.preventDefault();
+    console.log("LINK CLICKED! Trying to spin newspaper..."); // <--- DEBUG 1
+    
     const href = this.href;
     const transitionEl = document.getElementById('news-transition');
     
     if (transitionEl) {
+      console.log("Found the newspaper div! Spinning now..."); // <--- DEBUG 2
       transitionEl.classList.add('spin-in');
       setTimeout(() => { window.location.href = href; }, 750);
     } else {
+      console.error("ERROR: Could not find <div id='news-transition'> in HTML!");
       window.location.href = href;
     }
   });
