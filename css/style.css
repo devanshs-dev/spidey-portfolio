@@ -917,3 +917,40 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
   0%, 100% { transform: rotate(-12deg); }
   50% { transform: rotate(12deg); }
 }
+
+/* ============================================================
+   COMIC BOOK PANEL HOVER EFFECT (PROJECTS PAGE)
+   ============================================================ */
+/* Adds a smooth transition baseline */
+.cf-slide, .project-card, .rec-card {
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  border: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+}
+
+/* The aggressive pop-out hover */
+.cf-slide:hover, .project-card:hover, .rec-card:hover {
+  border-color: var(--red);
+  /* Hard-edge comic shadow */
+  box-shadow: 10px 10px 0px var(--red); 
+  /* Retro comic halftone dot pattern overlay */
+  background-image: radial-gradient(rgba(232, 56, 61, 0.15) 1px, transparent 1px) !important;
+  background-size: 12px 12px !important;
+  z-index: 10;
+}
+
+/* Dynamic tilts to make it feel chaotic and "Spider-Verse" */
+.cf-slide:nth-child(odd):hover, .project-card:nth-child(odd):hover, .rec-card:nth-child(odd):hover {
+  transform: translateY(-8px) scale(1.03) rotate(-1.5deg) !important;
+}
+
+.cf-slide:nth-child(even):hover, .project-card:nth-child(even):hover, .rec-card:nth-child(even):hover {
+  transform: translateY(-8px) scale(1.03) rotate(1.5deg) !important;
+}
+
+/* Make the tags pop out more on hover */
+.cf-slide:hover .tags span, .project-card:hover .tags span, .rec-card:hover .tags span {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
+}
