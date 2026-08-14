@@ -353,3 +353,71 @@ document.addEventListener('click', function (e) {
     poster.style.transform = `rotate(3deg) rotateX(${rx}deg) rotateY(${ry}deg)`;
   });
 })();
+
+/* ============================================================
+   1. WEB-ZIP SCROLLING
+   ============================================================ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    const target = document.querySelector(targetId);
+    if (!target) return;
+    
+    e.preventDefault(); // Stop normal scroll
+
+    // Create web line
+    const line = document.createElement('div');
+    line.className = 'web-zip-line';
+    // Align line to where the user clicked
+    line.style.left = e.clientX + 'px'; 
+    document.body.appendChild(line);
+
+    // Shoot line down
+    setTimeout(() => { line.style.height = '100vh'; }, 10);
+
+    // Yank the screen to the section
+    setTimeout(() => {
+      target.scrollIntoView({ behavior: 'auto' }); // Instant snap
+      line.style.opacity = '0'; // Fade out
+      setTimeout(() => line.remove(), 300);
+    }, 280); // Happens exactly as line hits bottom
+  });
+});
+
+/* ============================================================
+   2. SPINNING NEWSPAPER PAGE TRANSITION
+   ============================================================ */
+document.querySelectorAll('a:not([href^="#"])').forEach(link => {
+  link.addEventListener('click', function(e) {
+    // Ignore external links (like LinkedIn) or missing hrefs
+    if (this.target === '_blank' || !this.href) return; 
+    
+    e.preventDefault();
+    const href = this.href;
+    const transitionEl = document.getElementById('news-transition');
+    
+    if (transitionEl) {
+      transitionEl.classList.add('spin-in');
+      setTimeout(() => { window.location.href = href; }, 750);
+    } else {
+      window.location.href = href;
+    }
+  });
+});
+
+/* ============================================================
+   3. DARK ALLEY FLASHLIGHT
+   ============================================================ */
+const aboutSec = document.getElementById('about');
+if (aboutSec && window.matchMedia('(min-width: 901px)').matches) {
+  aboutSec.addEventListener('mousemove', (e) => {
+    const rect = aboutSec.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Pass precise mouse coordinates to CSS variables
+    aboutSec.style.setProperty('--x', x + 'px');
+    aboutSec.style.setProperty('--y', y + 'px');
+  });
+}
