@@ -704,20 +704,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
   100% { opacity: 0; transform: translateY(-4px); }
 }
 
-/* ---- 5. Web-thread footer connector ---- */
-#web-thread-connector {
-  position: fixed;
-  top: 0;
-  left: 14px;
-  width: 1px;
-  height: 100vh;
-  background: linear-gradient(to bottom, rgba(232,56,61,0.3), rgba(232,56,61,0.03));
-  z-index: 1;
-  pointer-events: none;
-  transform-origin: top center;
-}
-@media (max-width: 900px) { #web-thread-connector { display: none; } }
-
 /* ---- 6. Comic-panel transition on internal page navigation ---- */
 #comic-transition {
   position: fixed;
