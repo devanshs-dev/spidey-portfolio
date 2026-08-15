@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work With Me — Devansh Singh</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+.svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 8px; }
+.svc-card { background: var(--bg-2); padding: 30px; }
+.svc-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--red); letter-spacing: 0.06em; margin-bottom: 14px; }
+.svc-card h3 { font-size: 22px; margin-bottom: 12px; }
+.svc-card ul { list-style: none; margin: 0; padding: 0; }
+.svc-card ul li { padding: 10px 0 10px 20px; border-top: 1px solid var(--line); position: relative; font-size: 14px; color: var(--ink-soft); }
+.svc-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--red); font-family: var(--font-mono); }
+
+.steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 8px; }
+.step-card { background: var(--bg-2); padding: 26px; }
+.step-num { font-family: var(--font-display); font-size: 30px; color: var(--red); margin-bottom: 10px; }
+.step-card h4 { font-size: 16px; margin-bottom: 8px; }
+.step-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+
+.cta-block { border: 1px solid var(--line); border-radius: 6px; padding: 40px; margin-top: 8px; background: var(--bg-2); text-align: center; }
+.cta-block h2 { font-size: 30px; margin-bottom: 14px; }
+.cta-block p { color: var(--ink-soft); max-width: 50ch; margin: 0 auto 28px; }
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<canvas id="web-canvas"></canvas>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">DEVANSH<span>.</span></a>
+  <div class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="projects.html">PROJECTS</a>
+    <a href="index.html#about">ABOUT</a>
+    <a href="work-with-me.html" class="active">WORK WITH ME</a>
+    <a href="contact.html">CONTACT</a>
+  </div>
+  <a href="contact.html" class="nav-cta">HIRE ME</a>
+</nav>
+
+<div class="breadcrumb"><a href="index.html">HOME</a> / WORK WITH ME</div>
+
+<main>
+  <section class="p-hero">
+    <span class="tag reveal"><span class="dot"></span> OPEN TO NEW WORK</span>
+    <h1 class="reveal">Have something to build? Open a case.</h1>
+    <p class="lede reveal">I take on freelance and contract work across full-stack development, data science / ML, and brand &amp; visual design — solo, or with a small collaborator on larger scope.</p>
+  </section>
+
+  <section>
+    <div class="p-block reveal">
+      <div class="section-label">WHAT I TAKE ON</div>
+      <div class="svc-grid">
+        <div class="svc-card">
+          <div class="svc-tag">// WEB DEVELOPMENT</div>
+          <h3>Full-Stack Builds</h3>
+          <ul>
+            <li>Websites &amp; web apps — React frontends, Node/Flask backends</li>
+            <li>Dashboards and internal tools</li>
+            <li>API integrations, auth, deployment</li>
+          </ul>
+        </div>
+        <div class="svc-card">
+          <div class="svc-tag">// DATA SCIENCE &amp; ML</div>
+          <h3>Models &amp; Pipelines</h3>
+          <ul>
+            <li>Predictive models — classification, regression, fraud/risk scoring</li>
+            <li>Data cleaning, feature engineering, ETL pipelines</li>
+            <li>Turning model output into something non-technical people can read</li>
+          </ul>
+        </div>
+        <div class="svc-card">
+          <div class="svc-tag">// DASHBOARDS &amp; DATA VIZ</div>
+          <h3>Making Data Legible</h3>
+          <ul>
+            <li>Live dashboards for teams that aren't technical</li>
+            <li>Charting, reporting views, admin panels</li>
+          </ul>
+        </div>
+        <div class="svc-card">
+          <div class="svc-tag">// BRAND &amp; VISUAL DESIGN</div>
+          <h3>Design Work</h3>
+          <ul>
+            <li>Brand identity, campaign &amp; event design</li>
+            <li>UI/UX for web and product</li>
+            <li>Merch, posters, presentation design</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-block reveal">
+      <div class="section-label">HOW IT WORKS</div>
+      <div class="steps-row">
+        <div class="step-card">
+          <div class="step-num">01</div>
+          <h4>Tell me the brief</h4>
+          <p>Email or message what you need built — even rough is fine.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">02</div>
+          <h4>Quick scope call</h4>
+          <p>We align on scope, timeline, and whether it's a solo build or needs a second person.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">03</div>
+          <h4>Build &amp; ship</h4>
+          <p>Regular check-ins, then a live, working deliverable — not just a mockup.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-block reveal">
+      <div class="cta-block">
+        <h2>Open a case</h2>
+        <p>Send a quick brief — what you need, rough timeline, and budget if you have one. I'll reply within a day or two.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a href="mailto:imdevansh.08@gmail.com?subject=New%20Project%20Inquiry&body=Hi%20Devansh%2C%0A%0AHere's%20what%20I%20need%20built%3A%0A%0ATimeline%3A%0ABudget%20(if%20known)%3A" class="btn primary">EMAIL A BRIEF →</a>
+          <a href="index.html#work" class="btn ghost">SEE PAST WORK</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>DEVANSH SINGH — NOIDA, INDIA</p>
+    <div class="social">
+      <a href="mailto:imdevansh.08@gmail.com">EMAIL</a>
+      <a href="https://www.linkedin.com/in/connect-to-devansh-singh/" target="_blank">LINKEDIN</a>
+      <a href="https://github.com/devanshs-dev" target="_blank">GITHUB</a>
+    </div>
+  </footer>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
