@@ -1426,3 +1426,27 @@ body {
   }
 
 }
+
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 40px !important;
+  }
+
+  .hero .spidey-hanger {
+    top: 8px !important;
+    left: 18px !important;
+    width: 60px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero {
+    padding-top: 38px !important;
+  }
+
+  .hero .spidey-hanger {
+    top: 6px !important;
+    left: 14px !important;
+    width: 56px !important;
+  }
+}
