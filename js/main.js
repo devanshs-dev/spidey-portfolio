@@ -174,19 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
   stats.forEach(s => hudObserver.observe(s));
 })();
 
-/* ---- 5. Web-thread footer connector ---- */
-(function initWebThreadConnector() {
-  const thread = document.createElement('div');
-  thread.id = 'web-thread-connector';
-  document.body.appendChild(thread);
-  function sway() {
-    const scrollable = document.body.scrollHeight - window.innerHeight;
-    const pct = scrollable > 0 ? window.scrollY / scrollable : 0;
-    thread.style.transform = `skewX(${(pct - 0.5) * 1.5}deg)`;
-  }
-  window.addEventListener('scroll', sway, { passive: true });
-  sway();
-})();
 
 /* ---- 6. Comic-panel flash on internal page navigation ---- */
 (function initComicTransition() {
