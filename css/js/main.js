@@ -5,7 +5,7 @@ if (cursor && window.matchMedia('(min-width: 901px)').matches) {
     cursor.style.top = e.clientY + 'px';
     cursor.classList.add('active');
   });
-  
+
   const strandSvg = document.getElementById('web-strand');
 const strandPath = document.getElementById('web-strand-path');
 let mouseX = 0, mouseY = 0;

@@ -3,6 +3,7 @@ if (cursor && window.matchMedia('(min-width: 901px)').matches) {
   window.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
+    cursor.classList.add('active');
   });
   document.querySelectorAll('a, button, .teaser-card, .rec-card').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
