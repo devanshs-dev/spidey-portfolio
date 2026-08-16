@@ -810,7 +810,7 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 }
 
 /* ============================================================
-   1. SPIDER-SENSE GLITCH HOVER
+   SPIDER-SENSE GLITCH HOVER
    ============================================================ */
 .btn:hover, .nav-cta:hover, .cf-slide-cta:hover {
   animation: spideyGlitch 0.35s cubic-bezier(.25, .46, .45, .94) both;
@@ -826,81 +826,7 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 }
 
 /* ============================================================
-   2. WEB-ZIP SCROLL PULL
-   ============================================================ */
-.web-zip-line {
-  position: fixed; 
-  top: 0; 
-  left: 50%; 
-  width: 2px; 
-  height: 0;
-  background: var(--red); 
-  box-shadow: 0 0 8px var(--red);
-  z-index: 9999; 
-  pointer-events: none;
-  transition: height 0.25s cubic-bezier(0.8, 0, 0.2, 1);
-}
-
-/* ============================================================
-   3. SPINNING NEWSPAPER TRANSITION
-   ============================================================ */
-#news-transition {
-  position: fixed; 
-  top: 50%; 
-  left: 50%;
-  width: 100vw; 
-  height: 100vh;
-  /* Using your wanted photo as the spinning element */
-  background: url('../assets/wanted-photo.png') center/contain no-repeat, var(--bg);
-  z-index: 100000; 
-  pointer-events: none;
-  transform: translate(-50%, -50%) scale(0) rotate(-1080deg);
-  opacity: 0;
-  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s;
-}
-
-#news-transition.spin-in {
-  transform: translate(-50%, -50%) scale(1.2) rotate(0deg);
-  opacity: 1;
-}
-
-/* ============================================================
-   KILL OLD PAGE TRANSITIONS (Spider & Concentric Circles)
-   ============================================================ */
-#page-swing-overlay,
-#comic-transition {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  z-index: -999 !important;
-}
-
-/* ============================================================
-   1. SYMBIOTE CREEP (VENOM HOVER ON CARDS)
-   ============================================================ */
-.cf-slide, .rec-card, .teaser-card {
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-}
-.cf-slide::before, .rec-card::before, .teaser-card::before {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 0%;
-  background: #020202; /* Pitch black */
-  z-index: -1;
-  transition: height 0.4s cubic-bezier(0.7, 0, 0.3, 1);
-  border-top: 1.5px solid var(--red); /* Red creeping edge */
-}
-.cf-slide:hover::before, .rec-card:hover::before, .teaser-card:hover::before {
-  height: 110%;
-}
-
-/* ============================================================
-   2. SPIDER-VERSE CHROMATIC PULSE (HERO HEADLINE)
+   HERO HEADLINE CHROMATIC PULSE
    ============================================================ */
 .hero h1 {
   animation: spiderVerse 4s infinite;
@@ -913,7 +839,7 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 }
 
 /* ============================================================
-   3. WEB-SWING PENDULUM (SOCIAL LINKS)
+   SOCIAL LINK PENDULUM HOVER
    ============================================================ */
 .nav-social a:hover, .foot .social a:hover {
   transform-origin: top center;
@@ -926,129 +852,40 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 }
 
 /* ============================================================
-   COMIC BOOK PANEL HOVER EFFECT (PROJECTS PAGE)
-   ============================================================ */
-/* Adds a smooth transition baseline */
-.cf-slide, .project-card, .rec-card {
-  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  border: 1px solid rgba(255,255,255,0.05);
-  position: relative;
-}
-
-/* The aggressive pop-out hover */
-.cf-slide:hover, .project-card:hover, .rec-card:hover {
-  border-color: var(--red);
-  /* Hard-edge comic shadow */
-  box-shadow: 10px 10px 0px var(--red); 
-  /* Retro comic halftone dot pattern overlay */
-  background-image: radial-gradient(rgba(232, 56, 61, 0.15) 1px, transparent 1px) !important;
-  background-size: 12px 12px !important;
-  z-index: 10;
-}
-
-/* Dynamic tilts to make it feel chaotic and "Spider-Verse" */
-.cf-slide:nth-child(odd):hover, .project-card:nth-child(odd):hover, .rec-card:nth-child(odd):hover {
-  transform: translateY(-8px) scale(1.03) rotate(-1.5deg) !important;
-}
-
-.cf-slide:nth-child(even):hover, .project-card:nth-child(even):hover, .rec-card:nth-child(even):hover {
-  transform: translateY(-8px) scale(1.03) rotate(1.5deg) !important;
-}
-
-/* Make the tags pop out more on hover */
-.cf-slide:hover .tags span, .project-card:hover .tags span, .rec-card:hover .tags span {
-  background: var(--red);
-  color: #fff;
-  border-color: var(--red);
-}
-
-/* ============================================================
-   COMIC BOOK PANEL HOVER EFFECT (PROJECTS PAGE)
+   CARD HOVER — single consolidated version
    ============================================================ */
 .cf-slide, .project-card, .rec-card, .teaser-card {
-  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
-  position: relative;
-}
-
-.cf-slide:hover, .project-card:hover, .rec-card:hover, .teaser-card:hover {
-  border-color: var(--red) !important;
-  box-shadow: 10px 10px 0px var(--red) !important; 
-  background-image: radial-gradient(rgba(232, 56, 61, 0.15) 1px, transparent 1px) !important;
-  background-size: 12px 12px !important;
-  z-index: 10;
-}
-
-.cf-slide:nth-child(odd):hover, .project-card:nth-child(odd):hover, .rec-card:nth-child(odd):hover, .teaser-card:nth-child(odd):hover {
-  transform: translateY(-8px) scale(1.03) rotate(-1.5deg) !important;
-}
-
-.cf-slide:nth-child(even):hover, .project-card:nth-child(even):hover, .rec-card:nth-child(even):hover, .teaser-card:nth-child(even):hover {
-  transform: translateY(-8px) scale(1.03) rotate(1.5deg) !important;
-}
-
-.cf-slide:hover .tags span, .project-card:hover .tags span, .rec-card:hover .tags span, .teaser-card:hover .stack span {
-  background: var(--red);
-  color: #fff;
-  border-color: var(--red);
-}
-
-/* ============================================================
-   PROJECTS PAGE: VISUAL OVERHAUL (RESTING STATE)
-   ============================================================ */
-
-/* 1. The Tactical Web Grid Background */
-body {
-  background-image: 
-    linear-gradient(rgba(232, 56, 61, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(232, 56, 61, 0.04) 1px, transparent 1px) !important;
-  background-size: 60px 60px !important;
-  background-attachment: fixed !important;
-}
-
-/* 2. The Case File Cards */
-.cf-slide, .project-card, .rec-card, .teaser-card {
-  background: linear-gradient(145deg, #0d0d0d, #050505) !important;
-  border: 1px solid rgba(232, 56, 61, 0.2) !important; 
-  border-left: 4px solid var(--red) !important; 
-  border-radius: 4px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.9);
-  padding-bottom: 20px;
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              border-color 0.35s ease;
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
 
-/* 3. The Giant Faded Watermark */
-.cf-slide::after, .project-card::after, .rec-card::after, .teaser-card::after {
-  content: 'CLASSIFIED';
-  position: absolute;
-  bottom: 0px;
-  right: -10px;
-  font-size: 5rem;
-  font-weight: 900;
-  font-family: Impact, sans-serif;
-  color: rgba(255,255,255,0.015); 
-  transform: rotate(-5deg);
-  pointer-events: none;
-  z-index: 0;
-  letter-spacing: -2px;
+.cf-slide:hover, .project-card:hover, .rec-card:hover, .teaser-card:hover {
+  border-color: var(--red);
+  box-shadow: 10px 10px 0px var(--red);
+  z-index: 10;
+}
+
+.cf-slide:hover .tags span, .project-card:hover .tags span,
+.rec-card:hover .tags span, .teaser-card:hover .stack span {
+  background: var(--red);
+  color: #fff;
+  border-color: var(--red);
 }
 
 /* ============================================================
-   CINEMATIC SPIDER-VERSE BACKGROUND (ALL PAGES)
+   PAGE BACKGROUND — single consolidated version
    ============================================================ */
 body {
-  background-color: #050508 !important;
-  background-image: 
-    /* 1. Subtle high-tech red grid */
+  background-color: #050508;
+  background-image:
     linear-gradient(rgba(232, 56, 61, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(232, 56, 61, 0.05) 1px, transparent 1px),
-    /* 2. Retro comic book halftone dot texture overlay */
     radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    /* 3. Cinematic dark vignette gradient framing the screen */
-    radial-gradient(circle at 50% 50%, rgba(15, 15, 22, 0) 40%, rgba(2, 2, 4, 0.85) 90%) !important;
-  
-  background-size: 60px 60px, 60px 60px, 20px 20px, 100% 100% !important;
-  background-attachment: fixed !important;
+    radial-gradient(circle at 50% 50%, rgba(15, 15, 22, 0) 40%, rgba(2, 2, 4, 0.85) 90%);
+  background-size: 60px 60px, 60px 60px, 20px 20px, 100% 100%;
+  background-attachment: fixed;
 }
-
