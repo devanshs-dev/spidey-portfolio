@@ -3,8 +3,6 @@ if (cursor && window.matchMedia('(min-width: 901px)').matches) {
   window.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
-    cursor.classList.add('active');
-
   });
   const strandSvg = document.getElementById('web-strand');
 const strandPath = document.getElementById('web-strand-path');
