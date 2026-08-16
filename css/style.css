@@ -1053,3 +1053,14 @@ body {
 }
 
 .stat-strip { background: var(--bg); position: relative; z-index: 2; }
+
+#web-thread-connector {
+  position: absolute;
+  top: 0;
+  left: 14px;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(232,56,61,0.3), rgba(232,56,61,0.03));
+  z-index: 1;
+  pointer-events: none;
+}

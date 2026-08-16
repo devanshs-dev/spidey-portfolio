@@ -264,10 +264,12 @@ document.querySelectorAll('.section-label').forEach(el => {
   prevBtn.addEventListener('click', (e) => {
     e.preventDefault();
     scrollToSlide(currentIndex() - 1);
+    setTimeout(updateDots, 400);
   });
   nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
     scrollToSlide(currentIndex() + 1);
+    setTimeout(updateDots, 400);
   });
 })();
 
