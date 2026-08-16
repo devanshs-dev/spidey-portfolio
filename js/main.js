@@ -206,3 +206,80 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => { window.location.href = href; }, 220);
   });
 })();
+
+// Case Files Carousel
+(function(){
+  const track = document.getElementById('cfTrack');
+  if (!track) return;
+  const slides = track.children;
+  const dotsWrap = document.getElementById('cfDots');
+  const prevBtn = document.getElementById('cfPrev');
+  const nextBtn = document.getElementById('cfNext');
+
+  for (let i = 0; i < slides.length; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'cf-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => scrollToSlide(i));
+    dotsWrap.appendChild(dot);
+  }
+  const dots = dotsWrap.children;
+
+  function scrollToSlide(i) {
+    const slide = slides[i];
+    track.scrollTo({ left: slide.offsetLeft - track.offsetLeft, behavior: 'smooth' });
+  }
+
+  function updateActive() {
+    let closest = 0, minDist = Infinity;
+    for (let i = 0; i < slides.length; i++) {
+      const dist = Math.abs(slides[i].offsetLeft - track.scrollLeft);
+      if (dist < minDist) { minDist = dist; closest = i; }
+    }
+    for (let i = 0; i < dots.length; i++) {
+      dots[i].classList.toggle('active', i === closest);
+    }
+    return closest;
+  }
+
+  track.addEventListener('scroll', () => {
+    clearTimeout(track._t);
+    track._t = setTimeout(updateActive, 80);
+  });
+
+  prevBtn.addEventListener('click', () => {
+    const current = updateActive();
+    scrollToSlide(Math.max(0, current - 1));
+  });
+  nextBtn.addEventListener('click', () => {
+    const current = updateActive();
+    scrollToSlide(Math.min(slides.length - 1, current + 1));
+  });
+})();
+
+// Nav scroll-spy dots
+(function(){
+  const navDots = document.querySelectorAll('.nav-dots a');
+  if (!navDots.length) return;
+
+  const targets = [];
+  navDots.forEach(dot => {
+    const id = dot.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      const el = document.querySelector(id);
+      if (el) targets.push({ dot, el });
+    }
+  });
+
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const match = targets.find(t => t.el === entry.target);
+      if (!match) return;
+      if (entry.isIntersecting) {
+        navDots.forEach(d => d.classList.remove('active'));
+        match.dot.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  targets.forEach(t => spyObserver.observe(t.el));
+})();
