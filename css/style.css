@@ -1052,3 +1052,4 @@ body {
   background-attachment: fixed !important;
 }
 
+.stat-strip { background: var(--bg); position: relative; z-index: 2; }
