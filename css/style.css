@@ -773,14 +773,13 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
    ============================================================ */
 .spidey-hanger {
   position: absolute;
-  top: 8px;
-  left: 20px;
-  width: 42px;
-  z-index: 0;
-  opacity: 0.55;
+  top: -20px; /* Hangs right below the nav bar */
+  left: 60px; /* Aligns with the left side of your content */
+  width: 65px; /* Very small now! */
+  z-index: 2;
   transform-origin: top center;
   animation: gentleSwing 6s ease-in-out infinite;
-  pointer-events: none;
+  pointer-events: none; 
 }
 
 .spidey-hanger img {
