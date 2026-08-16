@@ -1090,7 +1090,7 @@ body {
     display: block !important;
     position: relative;
     width: 90px;
-    margin: 0 auto -140px;
+    margin: 0 auto -180px;
   }
   .spidey-hanger img { width: 100%; height: auto; }
 
@@ -1104,4 +1104,30 @@ body {
     margin: 40px auto 0;
     transform: none;
   }
+}
+
+@media (max-width: 900px) {
+  .hero { padding-top: 190px; position: relative; }
+
+  .spidey-hanger {
+    display: block !important;
+    position: absolute;
+    top: 20px; left: 20px;
+    width: 80px;
+    margin: 0;
+  }
+
+  .wanted-poster {
+    display: block;
+    position: absolute;
+    top: 20px; right: 20px;
+    width: 130px;
+    max-width: 130px;
+    margin: 0;
+    transform: none;
+  }
+  .wanted-poster .wp-title { font-size: 20px; }
+  .wanted-poster .wp-masthead { font-size: 8px; padding-bottom: 4px; margin-bottom: 6px; }
+  .wanted-poster .wp-sub { font-size: 7px; margin-bottom: 8px; }
+  .wanted-poster .wp-row { font-size: 7px; padding: 3px 0; }
 }
