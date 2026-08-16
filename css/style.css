@@ -1390,3 +1390,39 @@ body {
     margin-top: 35px !important;
   }
 }
+
+@media (max-width: 900px) {
+
+  /* FIX SPIDER-MAN POSITION */
+  .hero .spidey-hanger {
+    top: 28px !important;
+    left: 18px !important;
+    width: 60px !important;
+    z-index: 6 !important;
+  }
+
+  /* SLIGHTLY ZOOM THE POSTER */
+  .hero .wanted-poster {
+    width: 245px !important;
+    max-width: 245px !important;
+    margin: 45px auto 12px !important;
+    transform: none !important;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  .hero .spidey-hanger {
+    top: 24px !important;
+    left: 14px !important;
+    width: 56px !important;
+  }
+
+  .hero .wanted-poster {
+    width: 230px !important;
+    max-width: 230px !important;
+    margin-top: 42px !important;
+  }
+
+}
