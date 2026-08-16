@@ -522,6 +522,13 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 }
 .reveal.in { opacity: 1; transform: translateY(0) rotate(0deg); }
 
+.teaser-card.reveal {
+  transform: translateY(22px);
+}
+.teaser-card.reveal.in {
+  transform: translateY(0);
+}
+
 /* ---- web-crack section divider ---- */
 .web-divider { width: 100%; height: 40px; opacity: 0.35; margin: 0 auto; display: block; }
 .web-divider path { stroke: var(--line-red); stroke-width: 1; fill: none; }
