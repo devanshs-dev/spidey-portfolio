@@ -134,23 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(s => thwipObserver.observe(s));
 })();
 
-/* ---- 3. Web-swing loading transition ---- */
-(function initPageSwing() {
-  const overlay = document.createElement('div');
-  overlay.id = 'page-swing-overlay';
-  overlay.innerHTML = `<svg class="swing-mark" viewBox="0 0 24 24">
-    <ellipse cx="12" cy="10" rx="2.4" ry="3.2" fill="#E8383D"/>
-    <ellipse cx="12" cy="15.5" rx="1.8" ry="2.2" fill="#E8383D"/>
-    <g stroke="#E8383D" stroke-width="1.2" fill="none" stroke-linecap="round">
-      <path d="M12 8 L4 4M12 9 L3 8M12 11 L3 12M12 13 L4 17M12 8 L20 4M12 9 L21 8M12 11 L21 12M12 13 L20 17"/>
-    </g>
-  </svg>`;
-  document.body.prepend(overlay);
-  setTimeout(() => {
-    overlay.classList.add('done');
-    setTimeout(() => overlay.remove(), 500);
-  }, 150);
-})();
+
 
 /* ---- 4. HUD stat callouts ("Karen mode") ---- */
 (function initHudStats() {
