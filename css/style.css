@@ -1034,13 +1034,6 @@ body {
   letter-spacing: -2px;
 }
 
-/* 4. Break the perfect grid (Staggered Layout) */
-@media (min-width: 900px) {
-  .cf-slide:nth-child(even), .project-card:nth-child(even), .rec-card:nth-child(even), .teaser-card:nth-child(even) {
-    transform: translateY(40px) !important; 
-  }
-}
-
 /* ============================================================
    CINEMATIC SPIDER-VERSE BACKGROUND (ALL PAGES)
    ============================================================ */
