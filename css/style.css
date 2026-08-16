@@ -1131,3 +1131,12 @@ body {
   .wanted-poster .wp-sub { font-size: 7px; margin-bottom: 8px; }
   .wanted-poster .wp-row { font-size: 7px; padding: 3px 0; }
 }
+@media (max-width: 900px) {
+  .hero { padding-top: 320px; }
+
+  .wanted-poster {
+    width: 110px;
+    max-width: 110px;
+  }
+  .spidey-hanger { width: 70px; }
+}
