@@ -1052,7 +1052,3 @@ body {
   background-attachment: fixed !important;
 }
 
-/* Fix: straighten cards when not hovered, leave hover effect alone */
-.fig-card {
-  transform: none;
-}
