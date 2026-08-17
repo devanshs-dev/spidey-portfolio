@@ -389,3 +389,32 @@ document.querySelectorAll('a:not([href^="#"])').forEach(link => {
   });
 });
 
+
+/* ============================================================
+   ACTIVE NAV LINK — automatically highlights current page
+   ============================================================ */
+
+(function initActiveNav() {
+  const navLinks = document.querySelectorAll('.nav-links a');
+  if (!navLinks.length) return;
+
+  let currentPage = window.location.pathname.split('/').pop();
+
+  // When opening the site root, treat it as index.html
+  if (!currentPage || currentPage === '/') {
+    currentPage = 'index.html';
+  }
+
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    const linkPage = href.split('/').pop();
+
+    if (linkPage === currentPage) {
+      link.classList.add('active');
+    }
+  });
+})();

@@ -1447,3 +1447,17 @@ body {
     width: 56px !important;
   }
 }
+
+/* Keep HUD callouts visible 2x longer */
+.hud-tag.show {
+  animation-duration: 3.6s !important;
+}
+
+/* Active navigation item */
+.nav-links a.active {
+  color: var(--red) !important;
+}
+
+.nav-links a.active::after {
+  background: var(--red) !important;
+}
