@@ -1157,3 +1157,13 @@ body {
 
   .spidey-hanger { width: 60px; }
 }
+
+.stat-strip {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+@media (max-width: 700px) {
+  .stat-strip {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
