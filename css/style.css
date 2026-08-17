@@ -1158,20 +1158,6 @@ body {
   .spidey-hanger { width: 60px; }
 }
 
-/* ============================================================
-   MOBILE HERO — FINAL LAYOUT
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-  .hero {
-    position: relative !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    padding: 85px 22px 70px !important;
-  }
-
   /* ------------------------------------------------------------
      SPIDER-MAN
      ------------------------------------------------------------ */
