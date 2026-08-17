@@ -1168,9 +1168,14 @@ body {
   }
 }
 
-.stat {
-  display: inline-block !important;
-  width: 25% !important;
-  box-sizing: border-box !important;
-  vertical-align: top !important;
+.hero-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+}
+@media (max-width: 700px) {
+  .hero-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
