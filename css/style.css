@@ -1167,3 +1167,10 @@ body {
     grid-template-columns: repeat(2, 1fr) !important;
   }
 }
+
+.stat {
+  display: inline-block !important;
+  width: 25% !important;
+  box-sizing: border-box !important;
+  vertical-align: top !important;
+}
