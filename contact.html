@@ -1,99 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Devansh Singh</title>
-<link rel="icon" type="image/png" href="assets/logo-mark.png">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact — Devansh Singh</title>
+
+  <link rel="icon" type="image/png" href="assets/logo-mark.png">
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<div id="cursor"></div>
-<svg id="web-strand"><path id="web-strand-path" d=""/></svg>
-<canvas id="web-trail"></canvas>
-<canvas id="web-canvas"></canvas>
+  <div id="cursor"></div>
 
-<nav class="nav">
+  <svg id="web-strand">
+    <path id="web-strand-path" d=""></path>
+  </svg>
+
+  <canvas id="web-trail"></canvas>
+  <canvas id="web-canvas"></canvas>
+
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+
     <a href="index.html" class="nav-logo">
-    <img src="assets/logo-mark.png" alt="logo" class="spider-mark" width="22" height="22">
-    DEVANSH<span>.</span>
-  </a></a>
-  <div class="nav-links">
-    <a href="index.html">HOME</a>
-    <a href="projects.html">PROJECTS</a>
-    <a href="about.html">ABOUT</a>
-    <a href="work-with-me.html">WORK WITH ME</a>
-    <a href="contact.html" class="active">CONTACT</a>
-  </div>
-  <a href="contact.html" class="nav-cta">HIRE ME</a>
-</nav>
+      <img
+        src="assets/logo-mark.png"
+        alt="logo"
+        class="spider-mark"
+        width="22"
+        height="22"
+      >
+      DEVANSH<span>.</span>
+    </a>
 
-<main>
-    <!-- Spidey Hanging -->
-    <div class="spidey-hanger reveal">
-      <img src="assets/spider-swing.png" alt="Spider-Man hanging upside down">
+    <div class="nav-links">
+      <a href="index.html">HOME</a>
+      <a href="projects.html">PROJECTS</a>
+      <a href="about.html">ABOUT</a>
+      <a href="work-with-me.html">WORK WITH ME</a>
+      <a href="contact.html" class="active">CONTACT</a>
     </div>
 
-  <section class="hero">
-  <span class="tag"><span class="dot"></span> LET'S TALK</span>
-  <h1>Got a role, a project,<br>or just want to <span class="accent">connect?</span></h1>
-  <p class="lede">Open to frontend, full-stack, and ML roles — freelance or full-time. Send a message below or reach out directly, I reply fast.</p>
+    <a href="contact.html" class="nav-cta">HIRE ME</a>
 
-  <form class="contact-form" id="contactForm" action="https://formspree.io/f/mjybrdyk" method="POST">
-    <div>
-      <label for="name">NAME</label>
-      <input type="text" id="name" name="name" required>
-    </div>
-    <div>
-      <label for="email">EMAIL</label>
-      <input type="email" id="email" name="email" required>
-    </div>
-    <div>
-      <label for="message">MESSAGE</label>
-      <textarea id="message" name="message" required></textarea>
-    </div>
-    <button type="submit">SEND MESSAGE →</button>
-    <p class="form-status" id="formStatus"></p>
-  </form>
+  </nav>
 
-  <div class="btn-row" style="margin-top:32px;">
-    <a href="mailto:imdevansh.08@gmail.com" class="btn ghost">EMAIL ME →</a>
-    <a href="https://www.linkedin.com/in/connect-to-devansh-singh/" class="btn ghost" target="_blank">LINKEDIN</a>
-    <a href="https://github.com/devanshs-dev" class="btn ghost" target="_blank">GITHUB</a>
-  </div>
-</section>
 
-  <footer class="foot">
-    <p>DEVANSH SINGH — NOIDA, INDIA</p>
-    <div class="social">
-      <a href="mailto:imdevansh.08@gmail.com">EMAIL</a>
-      <a href="https://www.linkedin.com/in/connect-to-devansh-singh/" target="_blank">LINKEDIN</a>
-      <a href="https://github.com/devanshs-dev" target="_blank">GITHUB</a>
-    </div>
-  </footer>
-</main>
+  <main>
 
-<script>
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  const form = e.target;
-  const status = document.getElementById('formStatus');
-  status.textContent = 'Sending...';
-  status.style.color = 'var(--ink-faint)';
-  try {
-    const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-    if (res.ok) {
-      status.textContent = 'Message sent — I\'ll get back to you soon.';
-      status.style.color = 'var(--red)';
-      form.reset();
-    } else { throw new Error(); }
-  } catch {
-    status.textContent = 'Something went wrong — email me directly instead.';
-    status.style.color = 'var(--ink-faint)';
-  }
-});
-</script>
-<script src="js/main.js"></script>
+    <!-- CONTACT HERO -->
+    <section class="hero contact-hero">
+
+      <!-- Spider-Man -->
+      <div class="spidey-hanger">
+        <img
+          src="assets/spider-swing.png"
+          alt="Spider-Man hanging upside down"
+        >
+      </div>
+
+
+      <!-- Heading -->
+      <span class="tag">
+        <span class="dot"></span>
+        LET'S TALK
+      </span>
+
+      <h1>
+        Got a role, a project,<br>
+        or just want to <span class="accent">connect?</span>
+      </h1>
+
+      <p class="lede">
+        Open to frontend, full-stack, and ML roles — freelance or full-time.
+        Send a message below or reach out directly, I reply fast.
+      </p>
+
+
+      <!-- CONTACT FORM -->
+      <form
+        class="contact-form"
+        id="contactForm"
+        action="https://formspree.io/f/mjybrdyk"
+        method="POST"
+      >
+
+        <div class="form-group">
+          <label for="name">NAME</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+          >
+        </div>
+
+
+        <div class="form-group">
+          <label for="email">EMAIL</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+          >
+        </div>
+
+
+        <div class="form-group">
+          <label for="message">MESSAGE</label>
+          <textarea
+            id="message"
+            name="message"
+            required
+          ></textarea>
+        </div>
+
+
+        <button type="submit">
+          SEND MESSAGE →
+        </button>
+
+        <p
+          class="form-status"
+          id="formStatus"
+          aria-live="polite"
+        ></p>
+
+      </form>
+
+
+      <!-- DIRECT CONTACT -->
+      <div
+        class="btn-row contact-links"
+        style="margin-top:32px;"
+      >
+
+        <a
+          href="mailto:imdevansh.08@gmail.com"
+          class="btn ghost"
+        >
+          EMAIL ME →
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/connect-to-devansh-singh/"
+          class="btn ghost"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LINKEDIN
+        </a>
+
+        <a
+          href="https://github.com/devanshs-dev"
+          class="btn ghost"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GITHUB
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="foot">
+
+      <p>
+        DEVANSH SINGH — NOIDA, INDIA
+      </p>
+
+      <div class="social">
+
+        <a href="mailto:imdevansh.08@gmail.com">
+          EMAIL
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/connect-to-devansh-singh/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LINKEDIN
+        </a>
+
+        <a
+          href="https://github.com/devanshs-dev"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GITHUB
+        </a>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+
+  <!-- CONTACT FORM SCRIPT -->
+  <script>
+    document
+      .getElementById('contactForm')
+      .addEventListener('submit', async function (e) {
+
+        e.preventDefault();
+
+        const form = e.target;
+        const status = document.getElementById('formStatus');
+
+        status.textContent = 'Sending...';
+        status.style.color = 'var(--ink-faint)';
+
+        try {
+
+          const res = await fetch(
+            form.action,
+            {
+              method: 'POST',
+              body: new FormData(form),
+              headers: {
+                Accept: 'application/json'
+              }
+            }
+          );
+
+          if (res.ok) {
+
+            status.textContent =
+              "Message sent — I'll get back to you soon.";
+
+            status.style.color = 'var(--red)';
+
+            form.reset();
+
+          } else {
+
+            throw new Error();
+
+          }
+
+        } catch {
+
+          status.textContent =
+            'Something went wrong — email me directly instead.';
+
+          status.style.color = 'var(--ink-faint)';
+
+        }
+
+      });
+  </script>
+
+  <script src="js/main.js"></script>
+
 </body>
 </html>
