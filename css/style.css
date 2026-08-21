@@ -1188,6 +1188,8 @@ body {
 
 @media (min-width: 901px) {
   .hero-stats-row {
-    padding-right: 360px;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    padding-right: 360px !important;
   }
 }
