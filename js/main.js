@@ -535,3 +535,88 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 })();
+
+/* ============================================================
+   FORCE SPIDER-MAN TO RIGHT SIDE
+   ALL PAGES EXCEPT HOME
+   ============================================================ */
+
+(function forceSpideyRight() {
+
+  function moveSpidey() {
+
+    const currentPage =
+      document.body.dataset.page ||
+      window.location.pathname
+        .split('/')
+        .pop()
+        .toLowerCase();
+
+    /* HOME = leave exactly as it is */
+    if (
+      currentPage === 'index.html' ||
+      currentPage === ''
+    ) {
+      return;
+    }
+
+    const spidey =
+      document.querySelector('.spidey-hanger');
+
+    if (!spidey) {
+      return;
+    }
+
+    /*
+      Move Spider-Man directly under <body>.
+      This removes all the old section/hero positioning
+      rules that have been fighting us.
+    */
+    document.body.appendChild(spidey);
+
+    spidey.style.cssText = `
+      position: absolute !important;
+      left: auto !important;
+      right: 35px !important;
+      top: 180px !important;
+
+      width: 125px !important;
+      height: auto !important;
+
+      margin: 0 !important;
+      padding: 0 !important;
+
+      display: block !important;
+
+      z-index: 99999 !important;
+      pointer-events: none !important;
+
+      transform: none !important;
+    `;
+
+    const img = spidey.querySelector('img');
+
+    if (img) {
+      img.style.cssText = `
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+      `;
+    }
+
+  }
+
+  if (document.readyState === 'loading') {
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      moveSpidey
+    );
+
+  } else {
+
+    moveSpidey();
+
+  }
+
+})();
