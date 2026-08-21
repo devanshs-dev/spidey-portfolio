@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
-
 :root {
   --bg: #0A0A0D;
   --bg-2: #111116;
@@ -590,36 +588,6 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 
 @media (max-width: 900px) { .pulse-ring, .web-line { display: none; } }
 
-/* ---- scroll progress dots ---- */
-.nav-dots { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 90; }
-.nav-dots a {
-  width: 14px; height: 14px;
-  display: block;
-  position: relative;
-  z-index: 1;
-}
-.nav-dots a::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-color: var(--ink-faint);
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='12' cy='10' rx='2.4' ry='3.2'/%3E%3Cellipse cx='12' cy='15.5' rx='1.8' ry='2.2'/%3E%3Cg stroke='%23000' stroke-width='1.3' fill='none' stroke-linecap='round'%3E%3Cpath d='M12 8 L4 4M12 9 L3 8M12 11 L3 12M12 13 L4 17M12 8 L20 4M12 9 L21 8M12 11 L21 12M12 13 L20 17'/%3E%3C/g%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cellipse cx='12' cy='10' rx='2.4' ry='3.2'/%3E%3Cellipse cx='12' cy='15.5' rx='1.8' ry='2.2'/%3E%3Cg stroke='%23000' stroke-width='1.3' fill='none' stroke-linecap='round'%3E%3Cpath d='M12 8 L4 4M12 9 L3 8M12 11 L3 12M12 13 L4 17M12 8 L20 4M12 9 L21 8M12 11 L21 12M12 13 L20 17'/%3E%3C/g%3E%3C/svg%3E");
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  transition: background-color 0.25s ease, transform 0.25s ease;
-}
-.nav-dots a.active::before,
-.nav-dots a:hover::before {
-  background-color: var(--red);
-  transform: scale(1.3);
-}
-.nav-dots a.active::before { filter: drop-shadow(0 0 6px var(--red)); }
-@media (max-width: 900px) { .nav-dots { display: none; } }
-
-
 #web-trail {
   position: fixed;
   inset: 0;
@@ -659,28 +627,7 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 
 
 
-/* ---- 3. Web-swing loading transition ---- */
-#page-swing-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  background: var(--bg);
-  pointer-events: none;
-  opacity: 1;
-  transition: opacity 0.35s ease 0.4s;
-}
-#page-swing-overlay.done { opacity: 0; }
-#page-swing-overlay .swing-mark {
-  position: absolute;
-  top: -30px;
-  left: -5%;
-  width: 34px;
-  height: 34px;
-  animation: swingArc 0.7s cubic-bezier(0.55,0.06,0.68,0.19) forwards;
-}
-@keyframes swingArc {
-  0%   { top: -30px; left: -5%; transform: rotate(-25deg); opacity: 1; }
-  50%  { top: 40%; left: 50%; transform: rotate(10deg); opacity: 1; }
+50%  { top: 40%; left: 50%; transform: rotate(10deg); opacity: 1; }
   100% { top: 100%; left: 105%; transform: rotate(35deg); opacity: 0; }
 }
 
@@ -868,7 +815,6 @@ main > section:nth-of-type(even) { background: var(--bg-2); }
 /* ============================================================
    KILL OLD PAGE TRANSITIONS (Spider & Concentric Circles)
    ============================================================ */
-#page-swing-overlay,
 #comic-transition {
   display: none !important;
   opacity: 0 !important;
@@ -1646,10 +1592,7 @@ body {
     right: 5px !important;
   }
 
-  .hud-tag.show {
-    animation-duration: 3.6s !important;
   }
-}
 
 
 /* ============================================================
@@ -2093,27 +2036,6 @@ body {
 
 
 /* ============================================================
-   HUD CALLOUTS
-   ============================================================ */
-
-.hud-tag.show {
-  animation-duration: 3.6s !important;
-}
-
-
-/* ============================================================
-   ACTIVE NAV
-   ============================================================ */
-
-.nav-links a.active {
-  color: var(--red) !important;
-}
-
-.nav-links a.active::after {
-  background: var(--red) !important;
-}
-
-/* ============================================================
    FINAL MOBILE / GLOBAL POLISH
    ============================================================ */
 
@@ -2122,8 +2044,6 @@ body {
    REMOVE THE ROTATING PAGE IMAGE / TRANSITION
    ------------------------------------------------------------ */
 
-#news-transition,
-#page-swing-overlay,
 #comic-transition {
   display: none !important;
   opacity: 0 !important;
@@ -2305,11 +2225,6 @@ body {
 /* ------------------------------------------------------------
    HUD CALLOUTS — 2X LONGER
    ------------------------------------------------------------ */
-
-.hud-tag.show {
-  animation-duration: 3.6s !important;
-}
-
 
 /* ------------------------------------------------------------
    MOBILE CASE FILES
@@ -2557,11 +2472,6 @@ main > section:first-of-type > .spidey-hanger img {
 
 }
 
-.hud-tag.show {
-  animation-duration: 3.6s !important;
-}
-
-
 /* ============================================================
    INNER PAGE SPIDER-MAN
    ============================================================ */
@@ -2654,31 +2564,11 @@ main > section:first-of-type > .spidey-hanger img {
   background: var(--red) !important;
 }
 
-.hud-tag.show {
-  animation-duration: 3.6s !important;
-}
-
 /* REMOVE DECORATIVE SPIDER/GLYPH FROM CASE FILES */
 #work .cf-slide::before,
 #work .cf-slide::after {
   display: none !important;
 }
-
-/* ACTIVE NAV */
-.nav-links a.active {
-  color: var(--red) !important;
-}
-
-.nav-links a.active::after {
-  content: '' !important;
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: -9px !important;
-  height: 2px !important;
-  background: var(--red) !important;
-}
-
 
 /* WORK WITH ME */
 body[data-page="work-with-me.html"] .p-hero {
@@ -2830,22 +2720,6 @@ body[data-page="about.html"] {
 }
 
 
-/* FORCE ACTIVE NAV VISUAL */
-.nav-links a.active {
-  color: var(--red) !important;
-}
-
-.nav-links a.active::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: -10px !important;
-  height: 2px !important;
-  background: var(--red) !important;
-}
-
-
 /* ============================================================
    WORK WITH ME — CONTENT MUST BE VISIBLE ON PAGE LOAD
    ============================================================ */
@@ -2854,42 +2728,6 @@ body[data-page="work-with-me.html"] .p-block.reveal,
 body[data-page="work-with-me.html"] .p-hero .reveal {
   opacity: 1 !important;
   transform: none !important;
-}
-
-/* ============================================================
-   HUD TIMING — ALL 4 SAME DURATION
-   ============================================================ */
-
-.hud-tag.show {
-  animation: hudPop 3.6s ease forwards !important;
-}
-
-/* MOBILE HUD — SAME TIMING FOR ALL 4 */
-@media (max-width: 900px) {
-  .hud-tag.show {
-    animation: hudPop 3.6s ease forwards !important;
-    animation-duration: 3.6s !important;
-  }
-}
-
-/* ============================================================
-   ACTIVE NAV — RED TEXT + RED UNDERLINE
-   ============================================================ */
-
-.nav-links a.active,
-.nav-links a.active:hover {
-  color: var(--red) !important;
-}
-
-.nav-links a.active::after {
-  content: "" !important;
-  position: absolute !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: -4px !important;
-  height: 2px !important;
-  background: var(--red) !important;
-  opacity: 1 !important;
 }
 
 /* ============================================================
@@ -3397,136 +3235,11 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
 }
 
-
 /* ============================================================
-   NAV LOGO — FINAL FIX
+   FINAL CLEANUP / STABLE OVERRIDES
    ============================================================ */
 
-.nav-logo {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 7px !important;
-  white-space: nowrap !important;
-}
-
-.nav-logo .spider-mark {
-  width: 28px !important;
-  height: 28px !important;
-  min-width: 28px !important;
-  min-height: 28px !important;
-
-  object-fit: contain !important;
-  object-position: center !important;
-
-  display: block !important;
-  flex: 0 0 28px !important;
-}
-
-/* remove unwanted space before the dot */
-.nav-logo span {
-  margin-left: -5px !important;
-}
-
-/* mobile */
-@media (max-width: 900px) {
-  .nav-logo {
-    gap: 6px !important;
-  }
-
-  .nav-logo .spider-mark {
-    width: 24px !important;
-    height: 24px !important;
-    min-width: 24px !important;
-    min-height: 24px !important;
-    flex-basis: 24px !important;
-  }
-
-  .nav-logo span {
-    margin-left: -4px !important;
-  }
-}
-
-/* ============================================================
-   NAV LOGO — STOP STRETCHING
-   ============================================================ */
-
-.nav-logo {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  white-space: nowrap !important;
-}
-
-.nav-logo .spider-mark {
-  width: 24px !important;
-  height: auto !important;
-
-  min-width: 24px !important;
-  min-height: 0 !important;
-
-  display: block !important;
-
-  object-fit: initial !important;
-  flex: 0 0 auto !important;
-}
-
-/* DEVANSH. — remove the gap before the dot */
-.nav-logo span {
-  margin-left: -5px !important;
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-
-  .nav-logo {
-    gap: 5px !important;
-  }
-
-  .nav-logo .spider-mark {
-    width: 21px !important;
-    height: auto !important;
-    min-width: 21px !important;
-  }
-
-  .nav-logo span {
-    margin-left: -4px !important;
-  }
-}
-
-.nav-logo .spider-mark {
-  width: 28px !important;
-  height: 24px !important;
-  min-width: 28px !important;
-  min-height: 24px !important;
-  object-fit: fill !important;
-  flex: 0 0 auto !important;
-}
-
-.nav-logo {
-  gap: 5px !important;
-}
-
-.nav-logo span {
-  margin-left: -5px !important;
-}
-
-@media (max-width: 900px) {
-  .nav-logo .spider-mark {
-    width: 24px !important;
-    height: 21px !important;
-    min-width: 24px !important;
-    min-height: 21px !important;
-  }
-
-  .nav-logo {
-    gap: 4px !important;
-  }
-}
-
-/* ============================================================
-   LOGO — PREVIOUS LOOK, JUST SLIGHTLY SHORTER
-   ============================================================ */
-
+/* Keep the existing logo appearance; only squash it vertically a little. */
 .nav-logo {
   display: inline-flex !important;
   align-items: center !important;
@@ -3537,28 +3250,19 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 .nav-logo .spider-mark {
   width: 24px !important;
   height: auto !important;
-
   min-width: 24px !important;
   min-height: 0 !important;
-
   display: block !important;
-
   flex: 0 0 auto !important;
-
-  /* only make it a little shorter */
   transform: scaleY(0.84) !important;
   transform-origin: center center !important;
 }
 
-/* DEVANSH. — bring dot closer */
 .nav-logo span {
   margin-left: -5px !important;
 }
 
-
-/* MOBILE */
 @media (max-width: 900px) {
-
   .nav-logo {
     gap: 4px !important;
   }
@@ -3566,110 +3270,44 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
   .nav-logo .spider-mark {
     width: 21px !important;
     min-width: 21px !important;
-    transform: scaleY(0.84) !important;
   }
 
   .nav-logo span {
     margin-left: -4px !important;
   }
-
 }
 
-
-/* ============================================================
-   LOGO IMAGE — KEEP NATURAL ASPECT RATIO EVERYWHERE
-   ============================================================ */
-
-img.spider-mark,
-.nav-logo .spider-mark {
-  width: 24px !important;
-  height: auto !important;
-  aspect-ratio: auto !important;
-  object-fit: contain !important;
-  object-position: center !important;
-  display: block !important;
-}
-
-/* Don't let generic img rules stretch it */
-.nav-logo img {
-  height: auto !important;
-  width: 24px !important;
-}
-
-/* Mobile */
-@media (max-width: 900px) {
-  img.spider-mark,
-  .nav-logo .spider-mark,
-  .nav-logo img {
-    width: 21px !important;
-    height: auto !important;
-  }
-}
-
-/* ============================================================
-   ACTIVE NAV — RED + UNDERLINE
-   ============================================================ */
-
-.nav-links a {
-  position: relative !important;
-}
-
-.nav-links a.active {
-  color: #E8383D !important;
+/* Active navigation: preserve the intended red + underline behavior. */
+.nav-links a.active,
+.nav-links a.active:hover {
+  color: var(--red) !important;
 }
 
 .nav-links a.active::after {
   content: "" !important;
-  position: absolute !important;
-
-  left: 0 !important;
-  right: 0 !important;
-  bottom: -10px !important;
-
-  height: 2px !important;
-
-  background: #E8383D !important;
-
-  opacity: 1 !important;
-  transform: none !important;
-}
-
-/* Keep inactive links normal */
-.nav-links a:not(.active) {
-  color: var(--ink-soft) !important;
-}
-
-
-/* ============================================================
-   ACTIVE NAV — FINAL
-   ============================================================ */
-
-.nav-links a.active {
-  color: #E8383D !important;
-}
-
-.nav-links a.active::after {
-  content: "" !important;
-  display: block !important;
-
   position: absolute !important;
   left: 0 !important;
   right: 0 !important;
   bottom: -6px !important;
-
   height: 2px !important;
-
-  background: #E8383D !important;
+  background: var(--red) !important;
   opacity: 1 !important;
   visibility: visible !important;
+  transform: none !important;
 }
 
-/* Keep non-active links gray */
 .nav-links a:not(.active) {
   color: var(--ink-soft) !important;
 }
 
+/* HUD timing — keep the visual change you requested. */
+.hud-tag.show {
+  animation: hudPop 3.6s ease forwards !important;
+}
 
-
-
+@media (max-width: 900px) {
+  .hud-tag.show {
+    animation-duration: 3.6s !important;
+  }
+}
 
