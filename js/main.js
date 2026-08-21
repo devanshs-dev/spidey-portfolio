@@ -578,7 +578,7 @@ document.addEventListener('DOMContentLoaded', () => {
       position: absolute !important;
       left: auto !important;
       right: 35px !important;
-      top: 80px !important;
+      top: 85px !important;
 
       width: 125px !important;
       height: auto !important;
