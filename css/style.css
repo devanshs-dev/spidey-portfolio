@@ -3679,49 +3679,69 @@ body[data-page="contact.html"] .hero {
 
 }
 
-
 /* ============================================================
-   FINAL GAP KILL — NON HOME PAGES
+   FINAL NON-HOME TOP SPACING
    ============================================================ */
 
+/* Hide breadcrumb */
+body:not([data-page="index.html"]) .breadcrumb {
+  display: none !important;
+}
+
+
 /* PROJECT DETAIL PAGES */
-.p-hero {
-  padding-top: 0 !important;
+body[data-page^="project-"] .p-hero {
+  padding-top: 50px !important;
   margin-top: 0 !important;
 }
 
-/* PROJECTS / ABOUT / DESIGN FIRST SECTION */
-body:not([data-page="index.html"]) main > section:first-of-type {
-  padding-top: 0 !important;
+
+/* WORK WITH ME */
+body[data-page="work-with-me.html"] .p-hero {
+  padding-top: 50px !important;
   margin-top: 0 !important;
 }
+
+
+/* PROJECTS */
+body[data-page="projects.html"] main > section:first-of-type {
+  padding-top: 50px !important;
+  margin-top: 0 !important;
+}
+
+
+/* ABOUT */
+body[data-page="about.html"] main > section:first-of-type {
+  padding-top: 50px !important;
+  margin-top: 0 !important;
+}
+
+
+/* DESIGN */
+body[data-page="design.html"] main > section:first-of-type {
+  padding-top: 50px !important;
+  margin-top: 0 !important;
+}
+
 
 /* CONTACT */
 body[data-page="contact.html"] .hero {
-  padding-top: 0 !important;
+  padding-top: 50px !important;
   margin-top: 0 !important;
-}
-
-
-/* REMOVE BREADCRUMB */
-body:not([data-page="index.html"]) .breadcrumb {
-  display: none !important;
 }
 
 
 /* MOBILE */
 @media (max-width: 900px) {
 
-  .p-hero {
-    padding-top: 0 !important;
-  }
-
-  body:not([data-page="index.html"]) main > section:first-of-type {
-    padding-top: 0 !important;
-  }
-
+  body[data-page^="project-"] .p-hero,
+  body[data-page="work-with-me.html"] .p-hero,
+  body[data-page="projects.html"] main > section:first-of-type,
+  body[data-page="about.html"] main > section:first-of-type,
+  body[data-page="design.html"] main > section:first-of-type,
   body[data-page="contact.html"] .hero {
-    padding-top: 0 !important;
+    padding-top: 45px !important;
+    margin-top: 0 !important;
   }
 
 }
@@ -3730,16 +3750,13 @@ body:not([data-page="index.html"]) .breadcrumb {
 /* SMALL PHONES */
 @media (max-width: 520px) {
 
-  .p-hero {
-    padding-top: 0 !important;
-  }
-
-  body:not([data-page="index.html"]) main > section:first-of-type {
-    padding-top: 0 !important;
-  }
-
+  body[data-page^="project-"] .p-hero,
+  body[data-page="work-with-me.html"] .p-hero,
+  body[data-page="projects.html"] main > section:first-of-type,
+  body[data-page="about.html"] main > section:first-of-type,
+  body[data-page="design.html"] main > section:first-of-type,
   body[data-page="contact.html"] .hero {
-    padding-top: 0 !important;
+    padding-top: 40px !important;
   }
 
 }
