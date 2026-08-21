@@ -3678,3 +3678,68 @@ body[data-page="contact.html"] .hero {
   }
 
 }
+
+
+/* ============================================================
+   FINAL GAP KILL — NON HOME PAGES
+   ============================================================ */
+
+/* PROJECT DETAIL PAGES */
+.p-hero {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* PROJECTS / ABOUT / DESIGN FIRST SECTION */
+body:not([data-page="index.html"]) main > section:first-of-type {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* CONTACT */
+body[data-page="contact.html"] .hero {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+
+/* REMOVE BREADCRUMB */
+body:not([data-page="index.html"]) .breadcrumb {
+  display: none !important;
+}
+
+
+/* MOBILE */
+@media (max-width: 900px) {
+
+  .p-hero {
+    padding-top: 0 !important;
+  }
+
+  body:not([data-page="index.html"]) main > section:first-of-type {
+    padding-top: 0 !important;
+  }
+
+  body[data-page="contact.html"] .hero {
+    padding-top: 0 !important;
+  }
+
+}
+
+
+/* SMALL PHONES */
+@media (max-width: 520px) {
+
+  .p-hero {
+    padding-top: 0 !important;
+  }
+
+  body:not([data-page="index.html"]) main > section:first-of-type {
+    padding-top: 0 !important;
+  }
+
+  body[data-page="contact.html"] .hero {
+    padding-top: 0 !important;
+  }
+
+}
