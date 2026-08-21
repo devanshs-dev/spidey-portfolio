@@ -3563,3 +3563,101 @@ body[data-page="contact.html"] .hero {
   }
 
 }
+
+
+
+/* ============================================================
+   FINAL TOP-SPACE FIX — ALL NON-HOME PAGES
+   ============================================================ */
+
+/* Remove breadcrumb completely */
+body:not([data-page="index.html"]) .breadcrumb {
+  display: none !important;
+}
+
+
+/* PROJECT DETAIL PAGES */
+body[data-page^="project-"] .p-hero {
+  padding-top: 35px !important;
+  margin-top: 0 !important;
+}
+
+
+/* WORK WITH ME */
+body[data-page="work-with-me.html"] .p-hero {
+  padding-top: 35px !important;
+  margin-top: 0 !important;
+}
+
+
+/* PROJECTS PAGE */
+body[data-page="projects.html"] main > section:first-of-type {
+  padding-top: 35px !important;
+  margin-top: 0 !important;
+}
+
+
+/* ABOUT PAGE */
+body[data-page="about.html"] main > section:first-of-type {
+  padding-top: 35px !important;
+  margin-top: 0 !important;
+}
+
+
+/* DESIGN PAGE */
+body[data-page="design.html"] main > section:first-of-type {
+  padding-top: 35px !important;
+  margin-top: 0 !important;
+}
+
+
+/* CONTACT PAGE */
+body[data-page="contact.html"] .hero {
+  padding-top: 35px !important;
+  margin-top: 0 !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  body[data-page^="project-"] .p-hero {
+    padding-top: 25px !important;
+  }
+
+  body[data-page="work-with-me.html"] .p-hero {
+    padding-top: 25px !important;
+  }
+
+  body[data-page="projects.html"] main > section:first-of-type,
+  body[data-page="about.html"] main > section:first-of-type,
+  body[data-page="design.html"] main > section:first-of-type {
+    padding-top: 25px !important;
+  }
+
+  body[data-page="contact.html"] .hero {
+    padding-top: 25px !important;
+  }
+
+}
+
+
+/* SMALL PHONES */
+@media (max-width: 520px) {
+
+  body[data-page^="project-"] .p-hero,
+  body[data-page="work-with-me.html"] .p-hero {
+    padding-top: 20px !important;
+  }
+
+  body[data-page="projects.html"] main > section:first-of-type,
+  body[data-page="about.html"] main > section:first-of-type,
+  body[data-page="design.html"] main > section:first-of-type,
+  body[data-page="contact.html"] .hero {
+    padding-top: 20px !important;
+  }
+
+}
