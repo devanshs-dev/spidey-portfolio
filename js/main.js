@@ -270,38 +270,126 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ============================================================
-   SPIDER-MAN SWING INTRO
+   SPIDER-MAN CINEMATIC SWING
    ============================================================ */
 
-(function spiderSwingIntro() {
+(function spiderCinematicSwing() {
 
-  if (sessionStorage.getItem("spiderSwingPlayed")) return;
+  const played = sessionStorage.getItem("spiderSwingPlayed");
+  if (played) return;
 
   sessionStorage.setItem("spiderSwingPlayed", "1");
 
-  const intro = document.createElement("div");
-  intro.id = "spider-swing-intro";
+  const overlay = document.createElement("div");
+  overlay.id = "spider-cinematic";
 
-  intro.innerHTML = `
-    <svg class="spider-web" viewBox="0 0 1000 700">
-      <path d="M180 0 C180 150 210 250 340 340 C470 430 610 450 790 300"/>
+  overlay.innerHTML = `
+    <svg
+      class="swing-stage"
+      viewBox="0 0 1440 900"
+      preserveAspectRatio="none"
+    >
+      <!-- Main web -->
+      <path
+        id="swingPath"
+        d="
+          M 180 -80
+          C 180 90, 180 300, 390 430
+          C 610 565, 890 525, 1110 300
+          C 1240 165, 1320 60, 1500 -100
+        "
+      />
     </svg>
 
-    <img
-      class="swinging-spider"
-      src="assets/spider-swing.png"
-      alt=""
-    />
+    <div class="spider-swing-rig">
+      <div class="spider-web-anchor"></div>
+
+      <img
+        src="assets/spider-swing.png"
+        class="cinematic-spider"
+        alt=""
+      />
+    </div>
   `;
 
-  document.body.appendChild(intro);
+  document.body.appendChild(overlay);
 
-  requestAnimationFrame(() => {
-    intro.classList.add("active");
-  });
+  const path = document.getElementById("swingPath");
+  const spider = overlay.querySelector(".cinematic-spider");
+  const rig = overlay.querySelector(".spider-swing-rig");
 
-  setTimeout(() => {
-    intro.remove();
-  }, 3600);
+  const totalLength = path.getTotalLength();
+
+  let start = null;
+  const duration = 4200;
+
+  function animate(time) {
+
+    if (!start) start = time;
+
+    const progress = Math.min(
+      (time - start) / duration,
+      1
+    );
+
+    /* Smooth pendulum-like movement */
+    const eased =
+      progress < 0.5
+        ? 2 * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+    const point =
+      path.getPointAtLength(eased * totalLength);
+
+    /* Tiny forward sample so we can calculate rotation */
+    const next =
+      path.getPointAtLength(
+        Math.min((eased * totalLength) + 4, totalLength)
+      );
+
+    const dx = next.x - point.x;
+    const dy = next.y - point.y;
+
+    const angle =
+      Math.atan2(dy, dx) * 180 / Math.PI;
+
+    const scale =
+      window.innerWidth / 1440;
+
+    const x = point.x * scale;
+    const y = point.y * scale;
+
+    rig.style.transform = `
+      translate(${x}px, ${y}px)
+      rotate(${angle - 90}deg)
+    `;
+
+    /* Web follows the rig */
+    const webStartX = point.x * scale;
+    const webStartY = 0;
+
+    overlay.style.setProperty(
+      "--web-x",
+      `${webStartX}px`
+    );
+
+    overlay.style.setProperty(
+      "--web-y",
+      `${webStartY}px`
+    );
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    } else {
+      overlay.classList.add("finished");
+
+      setTimeout(() => {
+        overlay.remove();
+      }, 500);
+    }
+  }
+
+  /* Start slightly after page renders */
+  requestAnimationFrame(animate);
 
 })();

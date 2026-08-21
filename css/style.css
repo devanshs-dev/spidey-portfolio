@@ -3674,19 +3674,19 @@ img.spider-mark,
 
 
 /* ============================================================
-   SPIDER-MAN SWING INTRO
+   CINEMATIC SPIDER SWING
    ============================================================ */
 
-#spider-swing-intro {
+#spider-cinematic {
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  z-index: 99999;
   pointer-events: none;
   overflow: hidden;
 }
 
-/* WEB */
-.spider-web {
+/* Full swing path */
+.swing-stage {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -3694,130 +3694,96 @@ img.spider-mark,
   overflow: visible;
 }
 
-.spider-web path {
+.swing-stage path {
   fill: none;
-  stroke: rgba(255,255,255,0.9);
+  stroke: rgba(255,255,255,0.92);
   stroke-width: 2;
+  stroke-linecap: round;
 
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 1400;
+  stroke-dasharray: 8 6;
 
-  opacity: 0;
+  opacity: 0.9;
 }
 
-/* SPIDER */
-.swinging-spider {
+
+/* Spider rig */
+.spider-swing-rig {
   position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 58px;
+  height: 120px;
+
+  transform-origin: 50% 0%;
+  will-change: transform;
+}
+
+
+/* Web coming down to Spider-Man */
+.spider-web-anchor {
+  position: absolute;
+  top: -100vh;
+  left: 50%;
+
+  width: 1.5px;
+  height: 100vh;
+
+  transform: translateX(-50%);
+
+  background: rgba(255,255,255,0.9);
+}
+
+
+/* Spider */
+.cinematic-spider {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
 
   width: 58px;
   height: auto;
 
-  left: 10%;
-  top: -100px;
+  transform: translateX(-50%) translateY(0);
 
+  transform-origin: 50% 0%;
+
+  display: block;
+}
+
+
+/* Fade at the end */
+#spider-cinematic.finished {
   opacity: 0;
-
-  transform-origin: 50% 0;
-}
-
-
-/* START */
-#spider-swing-intro.active .spider-web path {
-  animation: shootWeb 0.55s ease-out forwards;
-}
-
-#spider-swing-intro.active .swinging-spider {
-  animation: swingSpider 3s cubic-bezier(.22,.61,.36,1) forwards;
-}
-
-
-/* WEB SHOOTS */
-@keyframes shootWeb {
-
-  0% {
-    stroke-dashoffset: 1400;
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  100% {
-    stroke-dashoffset: 0;
-    opacity: 1;
-  }
-
-}
-
-
-/* SPIDER SWING */
-@keyframes swingSpider {
-
-  0% {
-    left: 8%;
-    top: -100px;
-    opacity: 0;
-    transform: rotate(-8deg);
-  }
-
-  12% {
-    left: 12%;
-    top: 5%;
-    opacity: 1;
-    transform: rotate(-12deg);
-  }
-
-  28% {
-    left: 28%;
-    top: 20%;
-    transform: rotate(20deg);
-  }
-
-  45% {
-    left: 48%;
-    top: 34%;
-    transform: rotate(-15deg);
-  }
-
-  62% {
-    left: 65%;
-    top: 24%;
-    transform: rotate(14deg);
-  }
-
-  78% {
-    left: 82%;
-    top: 8%;
-    transform: rotate(-10deg);
-  }
-
-  92% {
-    left: 100%;
-    top: -5%;
-    opacity: 1;
-    transform: rotate(15deg);
-  }
-
-  100% {
-    left: 110%;
-    top: -30%;
-    opacity: 0;
-    transform: rotate(20deg);
-  }
-
+  transition: opacity 0.45s ease;
 }
 
 
 /* MOBILE */
 @media (max-width: 900px) {
 
-  .swinging-spider {
+  .spider-swing-rig {
+    width: 46px;
+    height: 100px;
+  }
+
+  .cinematic-spider {
     width: 46px;
   }
 
-  .spider-web path {
+  .swing-stage path {
     stroke-width: 1.5;
+  }
+
+}
+
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  #spider-cinematic {
+    display: none !important;
   }
 
 }
