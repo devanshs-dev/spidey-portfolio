@@ -110,7 +110,30 @@ document.addEventListener('DOMContentLoaded', () => {
    ============================================================ */
 
 /* ---- 1. Spider crawling the scroll indicator ---- */
-
+/* ---- 2. "Thwip" section transitions ---- */
+(function initThwip() {
+  const sections = document.querySelectorAll('section, footer.foot');
+  if (!sections.length) return;
+  const thwipObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      thwipObserver.unobserve(entry.target); // fire once per section only
+      const rect = entry.target.getBoundingClientRect();
+      const flash = document.createElement('div');
+      flash.className = 'thwip-flash';
+      flash.style.left = Math.min(window.innerWidth - 60, Math.max(20, rect.left + 40)) + 'px';
+      flash.style.top = Math.max(20, rect.top + 20) + 'px';
+      flash.innerHTML = `<svg viewBox="0 0 40 40">
+        <circle cx="20" cy="20" r="16" fill="none" stroke="#E8383D" stroke-width="2"/>
+        <path d="M20 4v10M20 26v10M4 20h10M26 20h10M9 9l7 7M31 9l-7 7M9 31l7-7M31 31l-7-7" stroke="#E8383D" stroke-width="1.5"/>
+      </svg>`;
+      document.body.appendChild(flash);
+      requestAnimationFrame(() => flash.classList.add('go'));
+      flash.addEventListener('animationend', () => flash.remove());
+    });
+  }, { threshold: 0.35 });
+  sections.forEach(s => thwipObserver.observe(s));
+})();
 
 /* ---- 3. Web-swing loading transition ---- */
 (function initPageSwing() {
