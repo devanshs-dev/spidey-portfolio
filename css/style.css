@@ -3445,3 +3445,50 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     margin-left: -4px !important;
   }
 }
+
+/* ============================================================
+   NAV LOGO — STOP STRETCHING
+   ============================================================ */
+
+.nav-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap !important;
+}
+
+.nav-logo .spider-mark {
+  width: 24px !important;
+  height: auto !important;
+
+  min-width: 24px !important;
+  min-height: 0 !important;
+
+  display: block !important;
+
+  object-fit: initial !important;
+  flex: 0 0 auto !important;
+}
+
+/* DEVANSH. — remove the gap before the dot */
+.nav-logo span {
+  margin-left: -5px !important;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+
+  .nav-logo {
+    gap: 5px !important;
+  }
+
+  .nav-logo .spider-mark {
+    width: 21px !important;
+    height: auto !important;
+    min-width: 21px !important;
+  }
+
+  .nav-logo span {
+    margin-left: -4px !important;
+  }
+}
