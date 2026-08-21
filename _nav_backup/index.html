@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devansh Singh — Builder & Designer</title>
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Spinning Newspaper Overlay -->
+<div id="news-transition"></div>
+
+<div id="cursor"></div>
+<svg id="web-strand"><path id="web-strand-path" d=""/></svg>
+<canvas id="web-trail"></canvas>
+<canvas id="web-canvas"></canvas>
+
+<div class="nav-dots">
+  <a href="#work" class="active" data-tip="Work"></a>
+  <a href="#about" data-tip="About"></a>
+  <a href="#experience" data-tip="Experience"></a>
+  <a href="#contact" data-tip="Contact"></a>
+</div>
+
+
+
+<nav class="nav">
+<a href="index.html" class="nav-logo">
+    <img src="assets/logo-mark.png" alt="logo" class="spider-mark" width="22" height="22">
+    DEVANSH<span>.</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="index.html">HOME</a>
+    <a href="projects.html">PROJECTS</a>
+    <a href="about.html">ABOUT</a>
+<a href="work-with-me.html">WORK WITH ME</a>
+    <a href="contact.html">CONTACT</a>
+  </div>
+  <div class="nav-right">
+  <div class="nav-social">
+    <a href="https://www.linkedin.com/in/connect-to-devansh-singh/" target="_blank" aria-label="LinkedIn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5v-9h3ZM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75ZM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66Z"/></svg>
+    </a>
+    <a href="https://github.com/devanshs-dev" target="_blank" aria-label="GitHub">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2A10 10 0 0 0 8.84 21.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34a2.64 2.64 0 0 0-1.11-1.46c-.91-.62.07-.6.07-.6a2.1 2.1 0 0 1 1.53 1 2.15 2.15 0 0 0 2.94.84 2.15 2.15 0 0 1 .64-1.35c-2.22-.25-4.55-1.11-4.55-4.94a3.87 3.87 0 0 1 1-2.69 3.6 3.6 0 0 1 .1-2.65s.84-.27 2.75 1a9.47 9.47 0 0 1 5 0c1.91-1.29 2.75-1 2.75-1a3.6 3.6 0 0 1 .1 2.65 3.87 3.87 0 0 1 1 2.69c0 3.84-2.34 4.68-4.57 4.93a2.4 2.4 0 0 1 .69 1.85V21c0 .27.16.59.67.5A10 10 0 0 0 12 2Z"/></svg>
+    </a>
+    <a href="mailto:imdevansh.08@gmail.com" aria-label="Email">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 4 8 9 8-9"/></svg>
+    </a>
+  </div>
+  <a href="contact.html" class="nav-cta">HIRE ME</a>
+</div>
+</nav>
+<div class="mobile-menu">
+  <a href="index.html">HOME</a>
+  <a href="projects.html">PROJECTS</a>
+  <a href="about.html">ABOUT</a>
+<a href="work-with-me.html">WORK WITH ME</a>
+  <a href="contact.html">CONTACT</a>
+</div>
+
+<main>
+  <section class="hero">
+
+  <!-- Spider-Man -->
+  <div class="spidey-hanger reveal">
+    <img src="assets/spider-swing.png" alt="Spider-Man hanging upside down">
+  </div>
+
+  <!-- Open to Work -->
+  <span class="tag reveal">
+    <span class="dot"></span> OPEN TO WORK
+  </span>
+
+  <!-- Main headline -->
+  <h1 class="reveal">
+    Building fast, functional
+    <span class="accent">web experiences.</span>
+  </h1>
+
+  <!-- Intro -->
+  <p class="lede reveal">
+    I'm Devansh Singh, a full-stack developer and ML engineer who designs and
+    ships complete products — from React frontends to XGBoost models and
+    Node/Python backends — with an eye for clean, cinematic UI. I also lead
+    brand and visual design work, from apparel to campaign design.
+  </p>
+
+  <!-- Buttons -->
+  <div class="btn-row reveal">
+    <a href="projects.html" class="btn primary">VIEW PROJECTS →</a>
+    <a href="contact.html" class="btn ghost">GET IN TOUCH</a>
+  </div>
+
+  <!-- Stats -->
+  <div class="hero-stats-row reveal">
+
+    <div class="stat">
+      <div class="stat-num red">9+</div>
+      <div class="stat-label">PROJECTS BUILT</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">FULL-STACK BUILDS</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-num">8</div>
+      <div class="stat-label">TECH STACK TOOLS</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-num red">20+</div>
+      <div class="stat-label">TECHNOLOGIES EXPLORED</div>
+    </div>
+
+  </div>
+
+  <!-- Daily Bugle Poster -->
+  <div class="wanted-poster" id="wantedPoster">
+
+    <div class="wp-masthead">
+      DAILY BUGLE — SPECIAL EDITION
+    </div>
+
+    <div class="wp-title">
+      WANTED
+    </div>
+
+    <div class="wp-sub">
+      FRIENDLY NEIGHBORHOOD DEVELOPER
+    </div>
+
+    <div class="wp-photo">
+      <img src="assets/wanted-photo.png" alt="Devansh Singh">
+    </div>
+
+    <div class="wp-row">
+      <span>ALIAS</span>
+      <span>DEVANSH SINGH</span>
+    </div>
+
+    <div class="wp-row">
+      <span>SPECIALTY</span>
+      <span>FULL-STACK DEV</span>
+    </div>
+
+    <div class="wp-row">
+      <span>LAST SEEN</span>
+      <span>NOIDA, INDIA</span>
+    </div>
+
+    <div class="wp-row">
+      <span>STATUS</span>
+      <span style="color: var(--red-deep);">AT LARGE</span>
+    </div>
+
+  </div>
+
+</section>
+
+  <section id="work">
+  <div class="section-label reveal">// THE CASE FILES</div>
+  <div class="cf-carousel-wrap reveal">
+    <div class="cf-track" id="cfTrack">
+
+      <a href="project-ticket-resale.html" class="cf-slide">
+        <div class="cf-slide-num">CASE 01 / 04</div>
+        <h3>Ticket Resale Platform</h3>
+        <div class="cf-meta">FULL-STACK · ML FRAUD DETECTION · LIVE</div>
+        <p>A full-stack marketplace with ML fraud scoring, real-time inventory sync, and three independently deployed services — built solo, start to production.</p>
+        <div class="stack"><span>React</span><span>Flask</span><span>Socket.io</span><span>JWT</span></div>
+        <span class="cf-slide-cta">OPEN CASE FILE →</span>
+      </a>
+
+      <a href="project-risk-dashboard.html" class="cf-slide">
+        <div class="cf-slide-num">CASE 02 / 04</div>
+        <h3>Student Risk Dashboard</h3>
+        <div class="cf-meta">IIT BHU · ML INTERNSHIP · XGBOOST</div>
+        <p>Built during my internship at IIT BHU — an XGBoost classifier flagging at-risk students, wired into a live dashboard designed for faculty with zero ML background.</p>
+        <div class="stack"><span>Python</span><span>XGBoost</span><span>Pandas</span></div>
+        <span class="cf-slide-cta">OPEN CASE FILE →</span>
+      </a>
+
+      
+
+      <div class="cf-slide" id="designSlide">
+        <div class="cf-slide-num">CASE 03 / 04</div>
+        <h3>Visual Design Work</h3>
+        <div class="cf-meta">180DC · HEAD OF MARKETING &amp; DESIGN</div>
+        <p>Club merch, event campaigns, and brand work from leading design at 180 Degrees Consulting.</p>
+        <div class="stack"><span>Figma</span><span>Canva</span><span>Brand Design</span></div>
+        <a href="design.html" class="cf-slide-cta">VIEW DESIGN WORK →</a>
+      </div>
+
+      <div class="cf-slide">
+        <div class="cf-slide-num">CASE 04 / 04</div>
+        <h3>Strategy Work</h3>
+        <div class="cf-meta">CONSULTING · MARKET RESEARCH</div>
+        <p>Two case studies — a hotel-B&amp;B partnership strategy report, and leading a 7-person team through a live case competition.</p>
+        <div class="cf-dual">
+          <a href="project-bnb.html">
+            <div class="dtag">FIG. 06</div>
+            <div class="dname">Project on B&amp;B</div>
+          </a>
+          <a href="project-ace-the-case.html">
+            <div class="dtag">TEAM LEAD</div>
+            <div class="dname">Ace The Case 2.0</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cf-nav">
+      <div class="cf-dots" id="cfDots"></div>
+      <div class="cf-arrows">
+        <button class="cf-arrow" id="cfPrev" aria-label="Previous">←</button>
+        <button class="cf-arrow" id="cfNext" aria-label="Next">→</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row reveal" style="margin-top:28px;">
+    <a href="projects.html" class="btn ghost">VIEW ALL WORK →</a>
+  </div>
+</section>
+  <section id="about">
+    <div class="section-label reveal">ABOUT</div>
+    <div class="two-col reveal">
+      <h2>A developer who ships complete, working products — not just prototypes.</h2>
+      <p>I'm a final-year IT student at Manipal University Jaipur who builds and ships real products end to end — designing the frontend, architecting the backend, and deploying everything so it actually works in production. My most recent build is a full-stack ticket resale marketplace with ML fraud detection and real-time WebSocket updates. I care about clean UI, solid architecture, and shipping things that hold up under real use.</p>
+      <p>I also work on the design side — UI/UX, brand identity, and visual campaigns — which shapes how I build interfaces as much as how I architect them.</p>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-label reveal">EXPERIENCE</div>
+    <div class="rec-grid reveal">
+      <div class="rec-card">
+        <div class="rec-tag">SEPT 2025 – JUN 2026</div>
+        <h3>Project Based Internship — IIT BHU</h3>
+        <p>Built an XGBoost-based classifier to predict at-risk students from academic records, and integrated it into a real-time faculty-facing dashboard.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-tag">JUN 2025 – AUG 2025</div>
+        <h3>Summer Intern — Celebal Technologies</h3>
+        <p>Automated data pipelines with Python and SQL; built and optimized BigQuery queries for business reporting on GCP.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-tag">SEPT 2023 – JUL 2024</div>
+        <h3>Head of Marketing &amp; Design — 180 Degrees Consulting</h3>
+        <p>Led marketing and design output for the college chapter of the world's largest student consultancy — brand, campaigns, and visual identity in one role.</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-tag">MUJ, 2022 – 2026</div>
+        <h3>Media Team — Cyberspace Club</h3>
+        <p>Contributed to media and content for the campus cybersecurity community.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-label reveal">EDUCATION</div>
+    <div class="two-col reveal">
+      <h2>B.Tech, Information Technology</h2>
+      <p>Manipal University Jaipur — 2022 to 2026.</p>
+    </div>
+  </section>
+
+ <footer class="foot" id="contact">
+  <p>DEVANSH SINGH — NOIDA, INDIA</p>
+  <div class="social">
+    <a href="mailto:imdevansh.08@gmail.com">EMAIL</a>
+    <a href="https://www.linkedin.com/in/connect-to-devansh-singh/" target="_blank">LINKEDIN</a>
+    <a href="https://github.com/devanshs-dev" target="_blank">GITHUB</a>
+  </div>
+</footer>
+</main>
+
+<script src="js/main.js"></script>
+</body>
+</html>
