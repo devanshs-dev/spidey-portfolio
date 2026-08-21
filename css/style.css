@@ -3411,3 +3411,58 @@ body[data-page="contact.html"] main > .spidey-hanger img {
   }
 
 }
+
+
+/* ============================================================
+   MOBILE SPIDER-MAN — SMALL LIKE HOME
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  /* All non-home pages */
+  body:not([data-page="index.html"]) .spidey-hanger {
+    right: 8px !important;
+    left: auto !important;
+
+    top: 0 !important;
+
+    width: 52px !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: block !important;
+    z-index: 99999 !important;
+  }
+
+  body:not([data-page="index.html"]) .spidey-hanger img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+}
+
+
+/* SMALLER PHONES */
+@media (max-width: 520px) {
+
+  body:not([data-page="index.html"]) .spidey-hanger {
+    right: 6px !important;
+    top: 0 !important;
+    width: 50px !important;
+  }
+
+}
+
+/* Keep navbar above Spider-Man and web */
+.nav {
+  position: relative !important;
+  z-index: 1000000 !important;
+}
+
+.nav * {
+  position: relative !important;
+  z-index: 1000001 !important;
+}
