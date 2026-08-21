@@ -482,13 +482,12 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 })();
 
 /* ============================================================
-   HUD STAT CALLOUTS
+   HUD STAT CALLOUTS — ALL 4 SYNCHRONIZED
    ============================================================ */
 
 (function initHudStats() {
 
   const stats = document.querySelectorAll('.hero .stat');
-
   if (!stats.length) return;
 
   const labels = [
@@ -498,11 +497,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     'LOGGED'
   ];
 
-  const statsContainer =
-    document.querySelector('.hero-stats-row') ||
-    document.querySelector('.stat-strip');
+  const container =
+    document.querySelector('.hero .stat-strip') ||
+    document.querySelector('.hero .hero-stats-row');
 
-  if (!statsContainer) return;
+  if (!container) return;
 
   const observer = new IntersectionObserver((entries) => {
 
@@ -513,7 +512,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     stats.forEach((stat, index) => {
 
       const tag = document.createElement('div');
-
       tag.className = 'hud-tag';
       tag.textContent = '[ ' + labels[index] + ' ]';
 
@@ -526,9 +524,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 
   }, {
-    threshold: 0.35
+    threshold: 0.25
   });
 
-  observer.observe(statsContainer);
+  observer.observe(container);
 
 })();

@@ -2668,3 +2668,178 @@ main > section:first-of-type > .spidey-hanger img {
 .nav-links a.active::after {
   background: var(--red) !important;
 }
+
+.hud-tag.show {
+  animation-duration: 3.6s !important;
+}
+
+/* REMOVE DECORATIVE SPIDER/GLYPH FROM CASE FILES */
+#work .cf-slide::before,
+#work .cf-slide::after {
+  display: none !important;
+}
+
+/* ACTIVE NAV */
+.nav-links a.active {
+  color: var(--red) !important;
+}
+
+.nav-links a.active::after {
+  content: '' !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -9px !important;
+  height: 2px !important;
+  background: var(--red) !important;
+}
+
+
+/* WORK WITH ME */
+body[data-page="work-with-me.html"] .p-hero {
+  position: relative !important;
+  padding-top: 95px !important;
+  padding-bottom: 70px !important;
+}
+
+body[data-page="work-with-me.html"] .p-hero .spidey-hanger {
+  position: absolute !important;
+  top: -14px !important;
+  left: 22px !important;
+  width: 58px !important;
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+body[data-page="work-with-me.html"] .p-hero .spidey-hanger img {
+  width: 100% !important;
+  display: block !important;
+}
+
+/* Don't hide the page sections behind reveal animations */
+body[data-page="work-with-me.html"] .p-block.reveal,
+body[data-page="work-with-me.html"] .p-hero .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (max-width: 900px) {
+
+  body[data-page="work-with-me.html"] .p-hero {
+    padding-top: 82px !important;
+    padding-bottom: 50px !important;
+  }
+
+  body[data-page="work-with-me.html"] .p-hero .spidey-hanger {
+    top: -12px !important;
+    left: 14px !important;
+    width: 52px !important;
+  }
+
+  body[data-page="work-with-me.html"] .svc-grid,
+  body[data-page="work-with-me.html"] .steps-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  body[data-page="work-with-me.html"] .svc-card,
+  body[data-page="work-with-me.html"] .step-card {
+    padding: 22px !important;
+  }
+
+  body[data-page="work-with-me.html"] .cta-block {
+    padding: 26px 20px !important;
+  }
+}
+
+
+/* CONTACT — FORM BELOW HERO */
+.contact-form-section {
+  padding: 70px 56px 80px;
+  border-top: 1px solid var(--line);
+}
+
+.contact-form-section .contact-form {
+  margin-top: 28px;
+}
+
+.contact-form-section .contact-links {
+  margin-top: 28px !important;
+}
+
+@media (max-width: 900px) {
+
+  .contact-form-section {
+    padding: 55px 20px 65px !important;
+  }
+
+  .contact-form-section .contact-form {
+    max-width: 100% !important;
+  }
+
+  .contact-form-section .contact-links {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+}
+
+/* ABOUT PAGE — EDUCATION SECTION */
+body[data-page="about.html"] main > section:last-of-type {
+  background: #08080c !important;
+  border-top: 1px solid var(--line) !important;
+  border-bottom: 1px solid var(--line) !important;
+}
+
+body[data-page="about.html"] main > section:last-of-type::before {
+  display: none !important;
+}
+
+body[data-page="about.html"] {
+  background-attachment: scroll !important;
+}
+
+/* ============================================================
+   CONTACT FORM — SEPARATE SECTION
+   ============================================================ */
+
+.contact-form-section {
+  padding: 70px 56px 80px !important;
+  border-top: 1px solid var(--line) !important;
+  background: #08080c !important;
+}
+
+.contact-form-section .contact-form {
+  margin-top: 28px !important;
+}
+
+.contact-form-section .contact-links {
+  margin-top: 28px !important;
+}
+
+@media (max-width: 900px) {
+
+  .contact-form-section {
+    padding: 55px 20px 65px !important;
+  }
+
+  .contact-form-section .contact-form {
+    max-width: 100% !important;
+  }
+
+  .contact-form-section .contact-links {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .contact-form-section .contact-links .btn {
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .contact-form-section {
+    padding: 48px 14px 55px !important;
+  }
+}

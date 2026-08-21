@@ -52,7 +52,10 @@
 
   <main>
 
-    <!-- CONTACT HERO -->
+    <!-- ========================================================
+         CONTACT HERO
+         ======================================================== -->
+
     <section class="hero contact-hero">
 
       <!-- Spider-Man -->
@@ -70,18 +73,33 @@
         LET'S TALK
       </span>
 
+
       <h1>
         Got a role, a project,<br>
         or just want to <span class="accent">connect?</span>
       </h1>
+
 
       <p class="lede">
         Open to frontend, full-stack, and ML roles — freelance or full-time.
         Send a message below or reach out directly, I reply fast.
       </p>
 
+    </section>
 
-      <!-- CONTACT FORM -->
+
+
+    <!-- ========================================================
+         SEND MESSAGE
+         ======================================================== -->
+
+    <section class="contact-form-section">
+
+      <div class="section-label">
+        // SEND A MESSAGE
+      </div>
+
+
       <form
         class="contact-form"
         id="contactForm"
@@ -89,42 +107,63 @@
         method="POST"
       >
 
+        <!-- NAME -->
         <div class="form-group">
-          <label for="name">NAME</label>
+
+          <label for="name">
+            NAME
+          </label>
+
           <input
             type="text"
             id="name"
             name="name"
             required
           >
+
         </div>
 
 
+        <!-- EMAIL -->
         <div class="form-group">
-          <label for="email">EMAIL</label>
+
+          <label for="email">
+            EMAIL
+          </label>
+
           <input
             type="email"
             id="email"
             name="email"
             required
           >
+
         </div>
 
 
+        <!-- MESSAGE -->
         <div class="form-group">
-          <label for="message">MESSAGE</label>
+
+          <label for="message">
+            MESSAGE
+          </label>
+
           <textarea
             id="message"
             name="message"
             required
           ></textarea>
+
         </div>
 
 
+        <!-- SEND -->
         <button type="submit">
           SEND MESSAGE →
         </button>
 
+
+        <!-- STATUS -->
         <p
           class="form-status"
           id="formStatus"
@@ -134,11 +173,9 @@
       </form>
 
 
+
       <!-- DIRECT CONTACT -->
-      <div
-        class="btn-row contact-links"
-        style="margin-top:32px;"
-      >
+      <div class="btn-row contact-links">
 
         <a
           href="mailto:imdevansh.08@gmail.com"
@@ -146,6 +183,7 @@
         >
           EMAIL ME →
         </a>
+
 
         <a
           href="https://www.linkedin.com/in/connect-to-devansh-singh/"
@@ -155,6 +193,7 @@
         >
           LINKEDIN
         </a>
+
 
         <a
           href="https://github.com/devanshs-dev"
@@ -170,18 +209,24 @@
     </section>
 
 
-    <!-- FOOTER -->
+
+    <!-- ========================================================
+         FOOTER
+         ======================================================== -->
+
     <footer class="foot">
 
       <p>
         DEVANSH SINGH — NOIDA, INDIA
       </p>
 
+
       <div class="social">
 
         <a href="mailto:imdevansh.08@gmail.com">
           EMAIL
         </a>
+
 
         <a
           href="https://www.linkedin.com/in/connect-to-devansh-singh/"
@@ -190,6 +235,7 @@
         >
           LINKEDIN
         </a>
+
 
         <a
           href="https://github.com/devanshs-dev"
@@ -206,7 +252,11 @@
   </main>
 
 
-  <!-- CONTACT FORM SCRIPT -->
+
+  <!-- ========================================================
+       CONTACT FORM SCRIPT
+       ======================================================== -->
+
   <script>
     document
       .getElementById('contactForm')
@@ -220,6 +270,7 @@
         status.textContent = 'Sending...';
         status.style.color = 'var(--ink-faint)';
 
+
         try {
 
           const res = await fetch(
@@ -232,6 +283,7 @@
               }
             }
           );
+
 
           if (res.ok) {
 
@@ -260,6 +312,8 @@
       });
   </script>
 
+
+  <!-- MAIN JS -->
   <script src="js/main.js"></script>
 
 </body>
