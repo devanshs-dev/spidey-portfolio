@@ -3249,3 +3249,45 @@ body[data-page="work-with-me.html"] .p-hero .reveal {
   }
 
 }
+
+/* ============================================================
+   HEADER SOCIAL LINKS
+   ============================================================ */
+
+.nav-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-right: 18px !important;
+}
+
+.nav-social a {
+  width: 36px !important;
+  height: 36px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: 1px solid var(--line) !important;
+  border-radius: 50% !important;
+
+  color: var(--ink-soft) !important;
+}
+
+.nav-social a:hover {
+  color: var(--red) !important;
+  border-color: var(--red) !important;
+}
+
+.nav-social svg {
+  display: block !important;
+}
+
+
+/* Keep mobile clean like your current Home layout */
+@media (max-width: 900px) {
+  .nav-social {
+    display: none !important;
+  }
+}
