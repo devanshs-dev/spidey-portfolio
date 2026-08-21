@@ -391,79 +391,168 @@ document.querySelectorAll('a:not([href^="#"])').forEach(link => {
 
 
 /* ============================================================
-   ACTIVE NAV LINK — automatically highlights current page
+   GLOBAL NAVIGATION FIX
    ============================================================ */
 
-(function initActiveNav() {
-  const navLinks = document.querySelectorAll('.nav-links a');
-  if (!navLinks.length) return;
+(function initGlobalNavigation() {
 
-  let currentPage = window.location.pathname.split('/').pop();
+  function setupNavigation() {
 
-  // When opening the site root, treat it as index.html
-  if (!currentPage || currentPage === '/') {
-    currentPage = 'index.html';
+    const nav = document.querySelector('.nav-links');
+
+    if (!nav) return;
+
+    let currentPage =
+      window.location.pathname
+        .split('/')
+        .pop()
+        .toLowerCase();
+
+    if (!currentPage || currentPage === '/') {
+      currentPage = 'index.html';
+    }
+
+    /*
+      Rebuild the navigation so every page always has
+      the exact same five links.
+    */
+
+    const links = [
+      ['HOME', 'index.html'],
+      ['PROJECTS', 'projects.html'],
+      ['ABOUT', 'about.html'],
+      ['WORK WITH ME', 'work-with-me.html'],
+      ['CONTACT', 'contact.html']
+    ];
+
+    nav.innerHTML = '';
+
+    links.forEach(([label, href]) => {
+
+      const link = document.createElement('a');
+
+      link.href = href;
+      link.textContent = label;
+
+      const targetPage = href.toLowerCase();
+
+      let isActive = currentPage === targetPage;
+
+      /*
+        Project detail pages count as PROJECTS.
+      */
+
+      if (
+        targetPage === 'projects.html' &&
+        currentPage.startsWith('project-')
+      ) {
+        isActive = true;
+      }
+
+      if (isActive) {
+        link.classList.add('active');
+      }
+
+      nav.appendChild(link);
+
+    });
+
+    /*
+      Expose current page for page-specific CSS.
+    */
+
+    document.body.dataset.page = currentPage;
+
   }
 
-  navLinks.forEach(link => {
-    link.classList.remove('active');
 
-    const href = link.getAttribute('href');
-    if (!href) return;
+  /*
+    Add Spider-Man to pages that don't already have him.
+  */
 
-    const linkPage = href.split('/').pop();
+  function ensureSpidey() {
 
-    if (linkPage === currentPage) {
-      link.classList.add('active');
+    const main = document.querySelector('main');
+
+    if (!main) return;
+
+    const firstSection = main.querySelector('section');
+
+    if (!firstSection) return;
+
+    if (firstSection.querySelector('.spidey-hanger')) {
+      return;
     }
-  });
+
+    const spidey = document.createElement('div');
+
+    spidey.className = 'spidey-hanger';
+
+    spidey.innerHTML = `
+      <img
+        src="assets/spider-swing.png"
+        alt="Spider-Man hanging upside down"
+      >
+    `;
+
+    firstSection.prepend(spidey);
+
+  }
+
+
+  setupNavigation();
+  ensureSpidey();
+
 })();
 
 /* ============================================================
-   ACTIVE NAVIGATION
+   HUD STAT CALLOUTS
    ============================================================ */
 
-(function initActiveNavigation() {
+(function initHudStats() {
 
-  const links = document.querySelectorAll('.nav-links a');
+  const stats = document.querySelectorAll('.hero .stat');
 
-  if (!links.length) return;
+  if (!stats.length) return;
 
-  let currentPage = window.location.pathname.split('/').pop();
+  const labels = [
+    'CONFIRMED',
+    'VERIFIED',
+    'TRACKED',
+    'LOGGED'
+  ];
 
-  if (!currentPage || currentPage === '/') {
-    currentPage = 'index.html';
-  }
+  const statsContainer =
+    document.querySelector('.hero-stats-row') ||
+    document.querySelector('.stat-strip');
 
-  links.forEach(link => {
+  if (!statsContainer) return;
 
-    const href = link.getAttribute('href');
+  const observer = new IntersectionObserver((entries) => {
 
-    if (!href) return;
+    if (!entries.some(entry => entry.isIntersecting)) return;
 
-    const targetPage = href.split('/').pop();
+    observer.disconnect();
 
-    link.classList.remove('active');
+    stats.forEach((stat, index) => {
 
-    /* Home */
-    if (
-      currentPage === targetPage ||
-      (currentPage === 'index.html' && targetPage === 'index.html')
-    ) {
-      link.classList.add('active');
-    }
+      const tag = document.createElement('div');
 
-    /* Project detail pages */
-    if (
-      targetPage === 'projects.html' &&
-      (
-        currentPage.startsWith('project-') ||
-        currentPage === 'projects.html'
-      )
-    ) {
-      link.classList.add('active');
-    }
+      tag.className = 'hud-tag';
+      tag.textContent = '[ ' + labels[index] + ' ]';
 
+      stat.appendChild(tag);
+
+      requestAnimationFrame(() => {
+        tag.classList.add('show');
+      });
+
+    });
+
+  }, {
+    threshold: 0.35
   });
+
+  observer.observe(statsContainer);
 
 })();

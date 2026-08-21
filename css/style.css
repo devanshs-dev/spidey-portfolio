@@ -2493,3 +2493,85 @@ body {
     letter-spacing: 0.02em !important;
   }
 }
+
+/* ============================================================
+   CASE FILE SPIDER GLYPH — MOVE IT AWAY FROM CASE NUMBER
+   ============================================================ */
+
+.cf-slide::after {
+  top: 18px !important;
+  left: auto !important;
+  right: 24px !important;
+  width: 16px !important;
+  height: 16px !important;
+  opacity: 0.35 !important;
+}
+
+.cf-slide {
+  padding-top: 48px !important;
+}
+
+/* ============================================================
+   PAGE SPIDER-MAN POSITIONING
+   ============================================================ */
+
+main > section {
+  position: relative !important;
+}
+
+main > section:first-of-type > .spidey-hanger {
+  position: absolute !important;
+
+  top: -20px !important;
+  left: 20px !important;
+
+  width: 58px !important;
+
+  margin: 0 !important;
+
+  z-index: 20 !important;
+
+  pointer-events: none !important;
+}
+
+main > section:first-of-type > .spidey-hanger img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+
+/* Mobile */
+@media (max-width: 900px) {
+
+  main > section:first-of-type {
+    padding-top: 75px !important;
+  }
+
+  main > section:first-of-type > .spidey-hanger {
+    top: -14px !important;
+    left: 14px !important;
+    width: 52px !important;
+  }
+
+}
+
+
+/* Small phones */
+@media (max-width: 520px) {
+
+  main > section:first-of-type {
+    padding-top: 70px !important;
+  }
+
+  main > section:first-of-type > .spidey-hanger {
+    top: -12px !important;
+    left: 11px !important;
+    width: 48px !important;
+  }
+
+}
+
+.hud-tag.show {
+  animation-duration: 3.6s !important;
+}
