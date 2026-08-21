@@ -365,30 +365,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-/* ============================================================
-   2. SPINNING NEWSPAPER PAGE TRANSITION (WITH DEBUGGER)
-   ============================================================ */
-document.querySelectorAll('a:not([href^="#"])').forEach(link => {
-  link.addEventListener('click', function(e) {
-    if (this.target === '_blank' || !this.href) return; 
-    
-    e.preventDefault();
-    console.log("LINK CLICKED! Trying to spin newspaper..."); // <--- DEBUG 1
-    
-    const href = this.href;
-    const transitionEl = document.getElementById('news-transition');
-    
-    if (transitionEl) {
-      console.log("Found the newspaper div! Spinning now..."); // <--- DEBUG 2
-      transitionEl.classList.add('spin-in');
-      setTimeout(() => { window.location.href = href; }, 750);
-    } else {
-      console.error("ERROR: Could not find <div id='news-transition'> in HTML!");
-      window.location.href = href;
-    }
-  });
-});
-
 
 /* ============================================================
    GLOBAL NAVIGATION FIX

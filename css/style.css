@@ -2575,3 +2575,96 @@ main > section:first-of-type > .spidey-hanger img {
 .hud-tag.show {
   animation-duration: 3.6s !important;
 }
+
+
+/* ============================================================
+   INNER PAGE SPIDER-MAN
+   ============================================================ */
+
+main > section:first-of-type {
+  position: relative !important;
+}
+
+main > section:first-of-type > .spidey-hanger {
+  position: absolute !important;
+
+  top: -18px !important;
+  left: 20px !important;
+
+  width: 58px !important;
+
+  margin: 0 !important;
+
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+main > section:first-of-type > .spidey-hanger img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+
+/* Work With Me specifically */
+.p-hero {
+  position: relative !important;
+  padding-top: 70px !important;
+}
+
+@media (max-width: 900px) {
+
+  main > section:first-of-type {
+    padding-top: 82px !important;
+  }
+
+  main > section:first-of-type > .spidey-hanger {
+    top: -12px !important;
+    left: 14px !important;
+    width: 52px !important;
+  }
+
+  .p-hero {
+    padding-top: 80px !important;
+  }
+}
+
+@media (max-width: 520px) {
+
+  main > section:first-of-type {
+    padding-top: 76px !important;
+  }
+
+  main > section:first-of-type > .spidey-hanger {
+    top: -10px !important;
+    left: 11px !important;
+    width: 48px !important;
+  }
+
+  .p-hero {
+    padding-top: 74px !important;
+  }
+}
+
+.cf-slide-num {
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+.cf-slide h3,
+.cf-slide .cf-meta,
+.cf-slide p,
+.cf-slide .stack,
+.cf-slide .cf-slide-cta {
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+
+.nav-links a.active {
+  color: var(--red) !important;
+}
+
+.nav-links a.active::after {
+  background: var(--red) !important;
+}
