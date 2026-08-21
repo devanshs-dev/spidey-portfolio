@@ -1185,3 +1185,9 @@ body {
     display: none;
   }
 }
+
+@media (min-width: 901px) {
+  .hero-stats-row {
+    padding-right: 360px;
+  }
+}
