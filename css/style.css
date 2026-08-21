@@ -3522,3 +3522,55 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     gap: 4px !important;
   }
 }
+
+/* ============================================================
+   LOGO — PREVIOUS LOOK, JUST SLIGHTLY SHORTER
+   ============================================================ */
+
+.nav-logo {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  white-space: nowrap !important;
+}
+
+.nav-logo .spider-mark {
+  width: 24px !important;
+  height: auto !important;
+
+  min-width: 24px !important;
+  min-height: 0 !important;
+
+  display: block !important;
+
+  flex: 0 0 auto !important;
+
+  /* only make it a little shorter */
+  transform: scaleY(0.84) !important;
+  transform-origin: center center !important;
+}
+
+/* DEVANSH. — bring dot closer */
+.nav-logo span {
+  margin-left: -5px !important;
+}
+
+
+/* MOBILE */
+@media (max-width: 900px) {
+
+  .nav-logo {
+    gap: 4px !important;
+  }
+
+  .nav-logo .spider-mark {
+    width: 21px !important;
+    min-width: 21px !important;
+    transform: scaleY(0.84) !important;
+  }
+
+  .nav-logo span {
+    margin-left: -4px !important;
+  }
+
+}
