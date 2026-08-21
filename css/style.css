@@ -3574,3 +3574,34 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
   }
 
 }
+
+
+/* ============================================================
+   LOGO IMAGE — KEEP NATURAL ASPECT RATIO EVERYWHERE
+   ============================================================ */
+
+img.spider-mark,
+.nav-logo .spider-mark {
+  width: 24px !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+/* Don't let generic img rules stretch it */
+.nav-logo img {
+  height: auto !important;
+  width: 24px !important;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  img.spider-mark,
+  .nav-logo .spider-mark,
+  .nav-logo img {
+    width: 21px !important;
+    height: auto !important;
+  }
+}
