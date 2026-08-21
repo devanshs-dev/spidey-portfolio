@@ -3456,3 +3456,13 @@ body[data-page="contact.html"] main > .spidey-hanger img {
 
 }
 
+
+/* Keep navbar above Spider-Man */
+.nav {
+  z-index: 1000000 !important;
+}
+
+/* Spider-Man stays below navbar */
+.spidey-hanger {
+  z-index: 99999 !important;
+}
