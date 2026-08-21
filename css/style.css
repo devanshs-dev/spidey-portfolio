@@ -3320,3 +3320,167 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
   }
 }
 
+
+
+/* ============================================================
+   SPIDER-MAN — RIGHT SIDE LAYOUT
+   ============================================================ */
+
+/* HOME HERO */
+.hero {
+  position: relative !important;
+}
+
+.hero > .spidey-hanger {
+  position: absolute !important;
+
+  top: 20px !important;
+  left: auto !important;
+  right: 7% !important;
+
+  width: 105px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  z-index: 20 !important;
+
+  pointer-events: none !important;
+}
+
+.hero > .spidey-hanger img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+
+/* PROJECTS PAGE */
+main > section:first-of-type {
+  position: relative !important;
+}
+
+main > section:first-of-type > .spidey-hanger {
+  position: absolute !important;
+
+  top: 20px !important;
+  left: auto !important;
+  right: 7% !important;
+
+  width: 95px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  z-index: 20 !important;
+
+  pointer-events: none !important;
+}
+
+main > section:first-of-type > .spidey-hanger img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+
+/* PROJECT DETAIL PAGES */
+.p-hero {
+  position: relative !important;
+}
+
+.p-hero > .spidey-hanger {
+  position: absolute !important;
+
+  top: 0 !important;
+  left: auto !important;
+  right: 7% !important;
+
+  width: 95px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  z-index: 20 !important;
+
+  pointer-events: none !important;
+}
+
+.p-hero > .spidey-hanger img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+
+/* WORK WITH ME */
+body[data-page="work-with-me.html"] .p-hero {
+  position: relative !important;
+}
+
+body[data-page="work-with-me.html"] .p-hero .spidey-hanger {
+  position: absolute !important;
+
+  top: 0 !important;
+  left: auto !important;
+  right: 7% !important;
+
+  width: 100px !important;
+
+  margin: 0 !important;
+  z-index: 20 !important;
+}
+
+
+/* CONTACT */
+body[data-page="contact.html"] .spidey-hanger {
+  position: absolute !important;
+
+  top: 0 !important;
+  left: auto !important;
+  right: 7% !important;
+
+  width: 95px !important;
+
+  margin: 0 !important;
+  z-index: 20 !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  .hero > .spidey-hanger,
+  main > section:first-of-type > .spidey-hanger,
+  .p-hero > .spidey-hanger,
+  body[data-page="work-with-me.html"] .p-hero .spidey-hanger,
+  body[data-page="contact.html"] .spidey-hanger {
+    display: block !important;
+
+    top: 8px !important;
+    left: auto !important;
+    right: 12px !important;
+
+    width: 70px !important;
+
+    margin: 0 !important;
+  }
+
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 520px) {
+
+  .hero > .spidey-hanger,
+  main > section:first-of-type > .spidey-hanger,
+  .p-hero > .spidey-hanger,
+  body[data-page="work-with-me.html"] .p-hero .spidey-hanger,
+  body[data-page="contact.html"] .spidey-hanger {
+    top: 6px !important;
+    right: 8px !important;
+    width: 62px !important;
+  }
+
+}
