@@ -2886,3 +2886,166 @@ body[data-page="work-with-me.html"] .p-hero .reveal {
     animation-duration: 3.6s !important;
   }
 }
+
+/* ============================================================
+   ACTIVE NAV — RED TEXT + RED UNDERLINE
+   ============================================================ */
+
+.nav-links a.active,
+.nav-links a.active:hover {
+  color: var(--red) !important;
+}
+
+.nav-links a.active::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -4px !important;
+  height: 2px !important;
+  background: var(--red) !important;
+  opacity: 1 !important;
+}
+
+/* ============================================================
+   PROJECT PAGES — FINAL SPIDER-MAN POSITION
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   ALL PROJECT DETAIL PAGES
+   project-*.html
+   ------------------------------------------------------------ */
+
+body[data-page^="project-"] .p-hero {
+  position: relative !important;
+  padding-top: 95px !important;
+}
+
+body[data-page^="project-"] .p-hero > .spidey-hanger {
+  position: absolute !important;
+
+  top: 8px !important;
+  left: 24px !important;
+
+  width: 52px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+
+  z-index: 20 !important;
+
+  pointer-events: none !important;
+
+  transform-origin: top center !important;
+  animation: gentleSwing 6s ease-in-out infinite !important;
+}
+
+body[data-page^="project-"] .p-hero > .spidey-hanger img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+
+/* ------------------------------------------------------------
+   PROJECT LIST PAGE — projects.html
+   ------------------------------------------------------------ */
+
+body[data-page="projects.html"] main > section:first-of-type {
+  position: relative !important;
+
+  padding-top: 100px !important;
+}
+
+body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
+  position: absolute !important;
+
+  top: 18px !important;
+  left: 24px !important;
+
+  width: 52px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+
+  z-index: 20 !important;
+
+  pointer-events: none !important;
+
+  animation: gentleSwing 6s ease-in-out infinite !important;
+}
+
+body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE — ALL PROJECT PAGES
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  /* Detail pages */
+  body[data-page^="project-"] .p-hero {
+    padding-top: 92px !important;
+  }
+
+  body[data-page^="project-"] .p-hero > .spidey-hanger {
+    top: 8px !important;
+    left: 16px !important;
+
+    width: 46px !important;
+
+    margin: 0 !important;
+  }
+
+
+  /* Projects listing */
+  body[data-page="projects.html"] main > section:first-of-type {
+    padding-top: 92px !important;
+  }
+
+  body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
+    top: 14px !important;
+    left: 14px !important;
+
+    width: 46px !important;
+
+    margin: 0 !important;
+  }
+
+}
+
+
+/* ------------------------------------------------------------
+   SMALL PHONES
+   ------------------------------------------------------------ */
+
+@media (max-width: 520px) {
+
+  body[data-page^="project-"] .p-hero {
+    padding-top: 86px !important;
+  }
+
+  body[data-page^="project-"] .p-hero > .spidey-hanger {
+    top: 6px !important;
+    left: 12px !important;
+    width: 42px !important;
+  }
+
+
+  body[data-page="projects.html"] main > section:first-of-type {
+    padding-top: 88px !important;
+  }
+
+  body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
+    top: 12px !important;
+    left: 11px !important;
+    width: 42px !important;
+  }
+
+}
