@@ -268,49 +268,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
 /* ============================================================
-   SPIDER SWING INTRO
+   SPIDER-MAN SWING INTRO
    ============================================================ */
 
 (function spiderSwingIntro() {
 
-  function startSpiderSwing() {
+  if (sessionStorage.getItem("spiderSwingPlayed")) return;
 
-    if (document.getElementById('spider-swing-intro')) return;
+  sessionStorage.setItem("spiderSwingPlayed", "1");
 
-    const wrap = document.createElement('div');
-    wrap.id = 'spider-swing-intro';
+  const intro = document.createElement("div");
+  intro.id = "spider-swing-intro";
 
-    wrap.innerHTML = `
-      <svg class="swing-web" viewBox="0 0 1000 700" preserveAspectRatio="none">
-        <path
-          class="swing-web-line"
-          d="M180 0 C180 100 180 180 260 300 C350 430 500 500 650 430"
-        />
-      </svg>
+  intro.innerHTML = `
+    <svg class="spider-web" viewBox="0 0 1000 700">
+      <path d="M180 0 C180 150 210 250 340 340 C470 430 610 450 790 300"/>
+    </svg>
 
-      <img
-        class="swing-spider"
-        src="assets/spider-swing.png"
-        alt=""
-      />
-    `;
+    <img
+      class="swinging-spider"
+      src="assets/spider-swing.png"
+      alt=""
+    />
+  `;
 
-    document.body.appendChild(wrap);
+  document.body.appendChild(intro);
 
-    requestAnimationFrame(() => {
-      wrap.classList.add('play');
-    });
+  requestAnimationFrame(() => {
+    intro.classList.add("active");
+  });
 
-    setTimeout(() => {
-      wrap.remove();
-    }, 4200);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startSpiderSwing);
-  } else {
-    startSpiderSwing();
-  }
+  setTimeout(() => {
+    intro.remove();
+  }, 3600);
 
 })();

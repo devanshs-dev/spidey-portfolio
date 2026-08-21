@@ -3674,18 +3674,19 @@ img.spider-mark,
 
 
 /* ============================================================
-   SPIDER SWING INTRO
+   SPIDER-MAN SWING INTRO
    ============================================================ */
 
 #spider-swing-intro {
   position: fixed;
   inset: 0;
-  z-index: 9998;
+  z-index: 9999;
   pointer-events: none;
   overflow: hidden;
 }
 
-.swing-web {
+/* WEB */
+.spider-web {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -3693,54 +3694,52 @@ img.spider-mark,
   overflow: visible;
 }
 
-.swing-web-line {
+.spider-web path {
   fill: none;
-  stroke: rgba(255,255,255,0.85);
+  stroke: rgba(255,255,255,0.9);
   stroke-width: 2;
-  stroke-linecap: round;
 
-  stroke-dasharray: 1200;
-  stroke-dashoffset: 1200;
+  stroke-dasharray: 1400;
+  stroke-dashoffset: 1400;
 
   opacity: 0;
 }
 
-.swing-spider {
+/* SPIDER */
+.swinging-spider {
   position: absolute;
 
-  width: 72px;
+  width: 58px;
   height: auto;
 
-  left: -100px;
-  top: -120px;
+  left: 10%;
+  top: -100px;
 
   opacity: 0;
 
-  transform-origin: 50% 0%;
+  transform-origin: 50% 0;
 }
 
 
 /* START */
-#spider-swing-intro.play .swing-web-line {
-  animation:
-    webShoot 0.65s ease-out forwards,
-    webFade 0.4s ease 3.15s forwards;
+#spider-swing-intro.active .spider-web path {
+  animation: shootWeb 0.55s ease-out forwards;
 }
 
-#spider-swing-intro.play .swing-spider {
-  animation: spiderSwing 3.5s cubic-bezier(.22,.61,.36,1) forwards;
+#spider-swing-intro.active .swinging-spider {
+  animation: swingSpider 3s cubic-bezier(.22,.61,.36,1) forwards;
 }
 
 
-/* WEB SHOOTS OUT */
-@keyframes webShoot {
+/* WEB SHOOTS */
+@keyframes shootWeb {
 
   0% {
-    stroke-dashoffset: 1200;
+    stroke-dashoffset: 1400;
     opacity: 0;
   }
 
-  15% {
+  20% {
     opacity: 1;
   }
 
@@ -3753,72 +3752,58 @@ img.spider-mark,
 
 
 /* SPIDER SWING */
-@keyframes spiderSwing {
+@keyframes swingSpider {
 
   0% {
-    left: -90px;
-    top: -110px;
+    left: 8%;
+    top: -100px;
     opacity: 0;
-    transform: rotate(-20deg);
+    transform: rotate(-8deg);
   }
 
   12% {
-    left: 10%;
+    left: 12%;
     top: 5%;
     opacity: 1;
-    transform: rotate(-10deg);
+    transform: rotate(-12deg);
   }
 
   28% {
     left: 28%;
-    top: 17%;
-    transform: rotate(18deg);
+    top: 20%;
+    transform: rotate(20deg);
   }
 
   45% {
     left: 48%;
     top: 34%;
-    transform: rotate(-8deg);
+    transform: rotate(-15deg);
   }
 
-  60% {
-    left: 66%;
-    top: 27%;
+  62% {
+    left: 65%;
+    top: 24%;
     transform: rotate(14deg);
   }
 
-  76% {
-    left: 84%;
-    top: 13%;
-    transform: rotate(-12deg);
+  78% {
+    left: 82%;
+    top: 8%;
+    transform: rotate(-10deg);
   }
 
-  90% {
+  92% {
     left: 100%;
-    top: -2%;
+    top: -5%;
     opacity: 1;
-    transform: rotate(18deg);
+    transform: rotate(15deg);
   }
 
   100% {
     left: 110%;
-    top: -20%;
+    top: -30%;
     opacity: 0;
-    transform: rotate(25deg);
-  }
-
-}
-
-
-/* WEB DISAPPEARS */
-@keyframes webFade {
-
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
+    transform: rotate(20deg);
   }
 
 }
@@ -3827,20 +3812,12 @@ img.spider-mark,
 /* MOBILE */
 @media (max-width: 900px) {
 
-  .swing-spider {
-    width: 52px;
+  .swinging-spider {
+    width: 46px;
   }
 
-  .swing-web-line {
+  .spider-web path {
     stroke-width: 1.5;
-  }
-
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-  #spider-swing-intro {
-    display: none !important;
   }
 
 }
