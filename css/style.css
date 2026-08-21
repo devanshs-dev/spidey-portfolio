@@ -3771,3 +3771,78 @@ body[data-page="contact.html"] .hero {
   }
 
 }
+
+
+/* ============================================================
+   MOBILE — GIVE NON-HOME PAGES PROPER BREATHING ROOM
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  /* Space below navbar */
+  body:not([data-page="index.html"]) main {
+    padding-top: 18px !important;
+  }
+
+  /* First sections */
+  body:not([data-page="index.html"]) main > section:first-of-type,
+  body:not([data-page="index.html"]) .p-hero {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    padding-bottom: 42px !important;
+  }
+
+  /* Project/detail content */
+  body:not([data-page="index.html"]) .p-block,
+  body:not([data-page="index.html"]) .contact-form-section,
+  body:not([data-page="index.html"]) .section {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Project cards / grids */
+  body:not([data-page="index.html"]) .project-grid,
+  body:not([data-page="index.html"]) .teaser-grid,
+  body:not([data-page="index.html"]) .cf-track,
+  body:not([data-page="index.html"]) .svc-grid,
+  body:not([data-page="index.html"]) .steps-row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  /* Individual cards */
+  body:not([data-page="index.html"]) .project-card,
+  body:not([data-page="index.html"]) .cf-slide,
+  body:not([data-page="index.html"]) .svc-card,
+  body:not([data-page="index.html"]) .step-card {
+    margin-bottom: 16px !important;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 520px) {
+
+  body:not([data-page="index.html"]) main {
+    padding-top: 14px !important;
+  }
+
+  body:not([data-page="index.html"]) main > section:first-of-type,
+  body:not([data-page="index.html"]) .p-hero {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-bottom: 34px !important;
+  }
+
+  body:not([data-page="index.html"]) .project-card,
+  body:not([data-page="index.html"]) .cf-slide,
+  body:not([data-page="index.html"]) .svc-card,
+  body:not([data-page="index.html"]) .step-card {
+    margin-bottom: 14px !important;
+  }
+
+}
