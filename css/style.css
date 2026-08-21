@@ -621,14 +621,23 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 @media (max-width: 1200px) { .wanted-poster { display: none; } }
 
 /* ============================================================
-   PHASE 2 SPIDEY FEATURES — paste this whole block at the very
-   end of css/style.css. Nothing here touches your existing rules.
+   PHASE 2 SPIDEY FEATURES
    ============================================================ */
 
+@keyframes spiderSwing {
+  50% {
+    top: 40%;
+    left: 50%;
+    transform: rotate(10deg);
+    opacity: 1;
+  }
 
-
-50%  { top: 40%; left: 50%; transform: rotate(10deg); opacity: 1; }
-  100% { top: 100%; left: 105%; transform: rotate(35deg); opacity: 0; }
+  100% {
+    top: 100%;
+    left: 105%;
+    transform: rotate(35deg);
+    opacity: 0;
+  }
 }
 
 /* ---- 4. HUD stat callouts ---- */
