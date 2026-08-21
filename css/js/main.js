@@ -705,3 +705,167 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   nav.insertBefore(social, hireMe);
 
 })();
+
+
+/* ============================================================
+   UNIVERSAL NAVBAR — SAME ON EVERY PAGE
+   ============================================================ */
+
+(function syncUniversalNavbar() {
+
+  const nav = document.querySelector('.nav');
+
+  if (!nav) return;
+
+
+  /* ------------------------------------------------------------
+     1. MAKE LOGO CONSISTENT
+     ------------------------------------------------------------ */
+
+  const logo = nav.querySelector('.nav-logo');
+
+  if (logo) {
+
+    logo.innerHTML = `
+      <img
+        src="assets/logo-mark.png"
+        alt="logo"
+        class="spider-mark"
+        width="22"
+        height="22"
+      >
+      DEVANSH<span>.</span>
+    `;
+
+  }
+
+
+  /* ------------------------------------------------------------
+     2. MAKE SURE ALL 5 NAV LINKS EXIST
+     ------------------------------------------------------------ */
+
+  const navLinks = nav.querySelector('.nav-links');
+
+  if (navLinks) {
+
+    const currentPage =
+      window.location.pathname
+        .split('/')
+        .pop()
+        .toLowerCase() || 'index.html';
+
+    const links = [
+      ['HOME', 'index.html'],
+      ['PROJECTS', 'projects.html'],
+      ['ABOUT', 'about.html'],
+      ['WORK WITH ME', 'work-with-me.html'],
+      ['CONTACT', 'contact.html']
+    ];
+
+    navLinks.innerHTML = '';
+
+    links.forEach(([label, href]) => {
+
+      const link = document.createElement('a');
+
+      link.href = href;
+      link.textContent = label;
+
+      const target = href.toLowerCase();
+
+      let active = currentPage === target;
+
+      /* Project detail pages = PROJECTS active */
+      if (
+        target === 'projects.html' &&
+        currentPage.startsWith('project-')
+      ) {
+        active = true;
+      }
+
+      if (active) {
+        link.classList.add('active');
+      }
+
+      navLinks.appendChild(link);
+
+    });
+
+  }
+
+
+  /* ------------------------------------------------------------
+     3. ADD SOCIAL ICONS ON EVERY PAGE
+     ------------------------------------------------------------ */
+
+  let social = nav.querySelector('.nav-social');
+
+  if (!social) {
+
+    social = document.createElement('div');
+
+    social.className = 'nav-social';
+
+    social.innerHTML = `
+      <a
+        href="https://www.linkedin.com/in/connect-to-devansh-singh/"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="LinkedIn"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2ZM8 19H5v-9h3ZM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75ZM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19v5h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66Z"/>
+        </svg>
+      </a>
+
+      <a
+        href="https://github.com/devanshs-dev"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="GitHub"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2A10 10 0 0 0 8.84 21.49c.5.09.68-.22.68-.48v-1.69c-2.78.6-3.37-1.34-3.37-1.34a2.64 2.64 0 0 0-1.11-1.46c-.91-.62.07-.61.07-.61a2.1 2.1 0 0 1 1.53 1 2.15 2.15 0 0 0 2.94.84 2.15 2.15 0 0 1 .64-1.35c-2.22-.25-4.55-1.12-4.55-4.94a3.87 3.87 0 0 1 1-2.69 3.6 3.6 0 0 1 .1-2.65s.84-.27 2.75-1a9.47 9.47 0 0 1 5 0c1.91-1.29 2.75-1 2.75-1a3.6 3.6 0 0 1 .1 2.65 3.87 3.87 0 0 1 1 2.69 3.6 3.6 0 0 1 .1 2.65c-.91-.62.07-.6.07-.6a10 10 0 0 0-2-19Z"/>
+        </svg>
+      </a>
+
+      <a
+        href="mailto:imdevansh.08@gmail.com"
+        aria-label="Email"
+      >
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16v16H4z"/>
+          <path d="m4 4 8 9 8-9"/>
+        </svg>
+      </a>
+    `;
+
+  }
+
+
+  /* ------------------------------------------------------------
+     4. KEEP THE EXISTING HIRE ME BUTTON
+        DO NOT CREATE A SECOND ONE
+     ------------------------------------------------------------ */
+
+  const hireMe = nav.querySelector('.nav-cta');
+
+  if (hireMe) {
+    nav.insertBefore(social, hireMe);
+  } else {
+    nav.appendChild(social);
+  }
+
+
+  /* ------------------------------------------------------------
+     5. PAGE IDENTIFIER
+     ------------------------------------------------------------ */
+
+  document.body.dataset.page =
+    window.location.pathname
+      .split('/')
+      .pop()
+      .toLowerCase() || 'index.html';
+
+
+})();

@@ -3049,3 +3049,203 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
   }
 
 }
+
+/* ============================================================
+   UNIVERSAL NAVBAR — ALL PAGES
+   ============================================================ */
+
+.nav-logo .spider-mark {
+  width: 22px !important;
+  height: 22px !important;
+  flex-shrink: 0 !important;
+  display: block !important;
+}
+
+.nav-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-left: auto !important;
+  margin-right: 18px !important;
+}
+
+.nav-social a {
+  width: 36px !important;
+  height: 36px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: 1px solid var(--line) !important;
+  border-radius: 50% !important;
+
+  color: var(--ink-soft) !important;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease !important;
+}
+
+.nav-social a:hover {
+  color: var(--red) !important;
+  border-color: var(--red) !important;
+}
+
+.nav-social svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+
+/* Active navigation */
+.nav-links a.active {
+  color: var(--red) !important;
+}
+
+.nav-links a.active::after {
+  background: var(--red) !important;
+}
+
+
+/* ------------------------------------------------------------
+   PROJECT DETAIL PAGES
+   ------------------------------------------------------------ */
+
+body[data-page^="project-"] .p-hero {
+  position: relative !important;
+  padding-top: 95px !important;
+}
+
+body[data-page^="project-"] .p-hero > .spidey-hanger {
+  position: absolute !important;
+  top: 10px !important;
+  left: 24px !important;
+  width: 50px !important;
+  margin: 0 !important;
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+body[data-page^="project-"] .p-hero > .spidey-hanger img {
+  width: 100% !important;
+  display: block !important;
+}
+
+
+/* ------------------------------------------------------------
+   WORK WITH ME
+   ------------------------------------------------------------ */
+
+body[data-page="work-with-me.html"] .p-hero {
+  position: relative !important;
+  padding-top: 95px !important;
+  padding-bottom: 70px !important;
+}
+
+body[data-page="work-with-me.html"] .p-hero .spidey-hanger {
+  position: absolute !important;
+  top: 10px !important;
+  left: 24px !important;
+  width: 50px !important;
+  margin: 0 !important;
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+body[data-page="work-with-me.html"] .p-hero .spidey-hanger img {
+  width: 100% !important;
+  display: block !important;
+}
+
+
+/* Work With Me content visible immediately */
+body[data-page="work-with-me.html"] .p-block.reveal,
+body[data-page="work-with-me.html"] .p-hero .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  .nav-social {
+    display: flex !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    gap: 6px !important;
+  }
+
+  .nav-social a {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .nav-social svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .nav {
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .nav-links {
+    width: 100% !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    gap: 0 !important;
+    overflow: visible !important;
+  }
+
+  .nav-links a {
+    white-space: nowrap !important;
+  }
+
+  /* Project detail */
+  body[data-page^="project-"] .p-hero {
+    padding-top: 82px !important;
+  }
+
+  body[data-page^="project-"] .p-hero > .spidey-hanger {
+    top: 7px !important;
+    left: 12px !important;
+    width: 44px !important;
+  }
+
+  /* Work With Me */
+  body[data-page="work-with-me.html"] .p-hero {
+    padding-top: 82px !important;
+    padding-bottom: 55px !important;
+  }
+
+  body[data-page="work-with-me.html"] .p-hero .spidey-hanger {
+    top: 7px !important;
+    left: 12px !important;
+    width: 44px !important;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  .nav-social {
+    gap: 4px !important;
+  }
+
+  .nav-social a {
+    width: 27px !important;
+    height: 27px !important;
+  }
+
+  .nav-social svg {
+    width: 12px !important;
+    height: 12px !important;
+  }
+
+}
