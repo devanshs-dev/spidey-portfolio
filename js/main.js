@@ -592,8 +592,6 @@ spidey.style.cssText = `
 
   z-index: 99999 !important;
   pointer-events: none !important;
-
-  transform: none !important;
 `;
 
     const img = spidey.querySelector('img');

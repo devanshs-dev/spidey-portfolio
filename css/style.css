@@ -3466,3 +3466,91 @@ body[data-page="contact.html"] main > .spidey-hanger img {
 .spidey-hanger {
   z-index: 99999 !important;
 }
+
+
+/* ============================================================
+   FINAL NON-HOME PAGE CLEANUP
+   ============================================================ */
+
+/* REMOVE BREADCRUMBS */
+body:not([data-page="index.html"]) .breadcrumb {
+  display: none !important;
+}
+
+
+/* SPIDER-MAN SWING ON ALL NON-HOME PAGES */
+body:not([data-page="index.html"]) .spidey-hanger {
+  transform-origin: top center !important;
+  animation: gentleSwing 6s ease-in-out infinite !important;
+}
+
+
+/* ============================================================
+   REDUCE TOP SPACE BY ~50%
+   ============================================================ */
+
+/* Project detail pages */
+body[data-page^="project-"] .p-hero {
+  padding-top: 45px !important;
+}
+
+/* Work With Me */
+body[data-page="work-with-me.html"] .p-hero {
+  padding-top: 45px !important;
+}
+
+/* About */
+body[data-page="about.html"] main > section:first-of-type {
+  padding-top: 40px !important;
+}
+
+/* Projects */
+body[data-page="projects.html"] main > section:first-of-type {
+  padding-top: 40px !important;
+}
+
+/* Contact */
+body[data-page="contact.html"] .hero {
+  padding-top: 40px !important;
+}
+
+/* Design */
+body[data-page="design.html"] main > section:first-of-type {
+  padding-top: 40px !important;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  body:not([data-page="index.html"]) .breadcrumb {
+    display: none !important;
+  }
+
+  body:not([data-page="index.html"]) .spidey-hanger {
+    transform-origin: top center !important;
+    animation: gentleSwing 6s ease-in-out infinite !important;
+  }
+
+  body[data-page^="project-"] .p-hero {
+    padding-top: 30px !important;
+  }
+
+  body[data-page="work-with-me.html"] .p-hero {
+    padding-top: 30px !important;
+  }
+
+  body[data-page="about.html"] main > section:first-of-type,
+  body[data-page="projects.html"] main > section:first-of-type,
+  body[data-page="design.html"] main > section:first-of-type {
+    padding-top: 28px !important;
+  }
+
+  body[data-page="contact.html"] .hero {
+    padding-top: 28px !important;
+  }
+
+}
