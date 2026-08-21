@@ -3323,121 +3323,173 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
 
 /* ============================================================
-   FINAL: SPIDER-MAN ON RIGHT — ALL PAGES EXCEPT HOME
+   FINAL NON-HOME SPACING + SPIDER-MAN
    ============================================================ */
 
-/* Make sure the containers can position Spider-Man */
-body:not([data-page="index.html"]) main,
-body:not([data-page="index.html"]) section,
-body:not([data-page="index.html"]) .hero,
-body:not([data-page="index.html"]) .p-hero {
+/* ------------------------------------------------------------
+   PROJECT DETAIL PAGES
+   ------------------------------------------------------------ */
+
+body[data-page^="project-"] .breadcrumb {
+  padding-top: 14px !important;
+  padding-bottom: 0 !important;
+}
+
+body[data-page^="project-"] .p-hero {
+  padding-top: 12px !important;
+  padding-bottom: 45px !important;
   position: relative !important;
 }
 
-
-/* EVERY NON-HOME PAGE */
-body:not([data-page="index.html"]) .spidey-hanger {
-
+/* Spider-Man — right side */
+body[data-page^="project-"] .spidey-hanger {
   position: absolute !important;
-
+  top: -2px !important;
   left: auto !important;
-  right: 5% !important;
+  right: 4% !important;
 
-  top: 10px !important;
-
-  width: 110px !important;
+  width: 125px !important;
   height: auto !important;
 
   margin: 0 !important;
-  padding: 0 !important;
-
-  z-index: 999 !important;
-
-  display: block !important;
-
+  z-index: 50 !important;
   pointer-events: none !important;
-
-  transform: none !important;
 }
 
-
-/* IMAGE */
-body:not([data-page="index.html"]) .spidey-hanger img {
+body[data-page^="project-"] .spidey-hanger img {
   width: 100% !important;
   height: auto !important;
   display: block !important;
 }
 
 
-/* PROJECT DETAIL PAGES */
-body[data-page^="project-"] .p-hero {
-  padding-top: 45px !important;
-}
+/* ------------------------------------------------------------
+   PROJECTS LIST
+   ------------------------------------------------------------ */
 
-body[data-page^="project-"] .spidey-hanger {
-  right: 5% !important;
-  top: 5px !important;
-  width: 120px !important;
-}
-
-
-/* PROJECTS PAGE */
 body[data-page="projects.html"] main > section:first-of-type {
-  padding-top: 45px !important;
+  padding-top: 35px !important;
+  position: relative !important;
 }
 
 body[data-page="projects.html"] .spidey-hanger {
-  right: 5% !important;
-  top: 5px !important;
+  position: absolute !important;
+  top: -2px !important;
+  left: auto !important;
+  right: 4% !important;
+
   width: 115px !important;
+  margin: 0 !important;
+
+  z-index: 50 !important;
+  pointer-events: none !important;
 }
 
 
-/* ABOUT */
+/* ------------------------------------------------------------
+   ABOUT
+   ------------------------------------------------------------ */
+
 body[data-page="about.html"] main > section:first-of-type {
-  padding-top: 45px !important;
+  padding-top: 35px !important;
+  position: relative !important;
 }
 
 body[data-page="about.html"] .spidey-hanger {
-  right: 5% !important;
-  top: 5px !important;
+  position: absolute !important;
+  top: -2px !important;
+  left: auto !important;
+  right: 4% !important;
+
   width: 115px !important;
+  margin: 0 !important;
+
+  z-index: 50 !important;
+  pointer-events: none !important;
 }
 
 
-/* WORK WITH ME */
+/* ------------------------------------------------------------
+   WORK WITH ME
+   ------------------------------------------------------------ */
+
 body[data-page="work-with-me.html"] .p-hero {
-  padding-top: 45px !important;
+  position: relative !important;
+
+  padding-top: 30px !important;
+  padding-bottom: 45px !important;
 }
 
 body[data-page="work-with-me.html"] .spidey-hanger {
-  right: 5% !important;
-  top: 5px !important;
-  width: 120px !important;
+  position: absolute !important;
+
+  top: -2px !important;
+  left: auto !important;
+  right: 4% !important;
+
+  width: 125px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+
+  z-index: 50 !important;
+  pointer-events: none !important;
+}
+
+body[data-page="work-with-me.html"] .spidey-hanger img {
+  width: 100% !important;
+  height: auto !important;
 }
 
 
-/* CONTACT */
-body[data-page="contact.html"] .hero {
-  padding-top: 45px !important;
-}
+/* ------------------------------------------------------------
+   CONTACT
+   ------------------------------------------------------------ */
 
+/* Contact Spider-Man is OUTSIDE the hero, so target it directly */
+body[data-page="contact.html"] > main > .spidey-hanger,
 body[data-page="contact.html"] .spidey-hanger {
-  right: 5% !important;
-  top: 5px !important;
+  position: absolute !important;
+
+  top: 225px !important;
+  left: auto !important;
+  right: 4% !important;
+
   width: 115px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+
+  z-index: 50 !important;
+  pointer-events: none !important;
+}
+
+body[data-page="contact.html"] .hero {
+  position: relative !important;
+  padding-top: 35px !important;
 }
 
 
-/* DESIGN */
+/* ------------------------------------------------------------
+   DESIGN
+   ------------------------------------------------------------ */
+
 body[data-page="design.html"] main > section:first-of-type {
-  padding-top: 45px !important;
+  position: relative !important;
+  padding-top: 35px !important;
 }
 
 body[data-page="design.html"] .spidey-hanger {
-  right: 5% !important;
-  top: 5px !important;
+  position: absolute !important;
+
+  top: -2px !important;
+  left: auto !important;
+  right: 4% !important;
+
   width: 115px !important;
+  margin: 0 !important;
+
+  z-index: 50 !important;
 }
 
 
@@ -3447,46 +3499,109 @@ body[data-page="design.html"] .spidey-hanger {
 
 @media (max-width: 900px) {
 
-  body:not([data-page="index.html"]) .spidey-hanger {
+  /* PROJECT DETAIL */
+  body[data-page^="project-"] .breadcrumb {
+    padding-top: 10px !important;
+  }
 
-    left: auto !important;
-    right: 12px !important;
-
-    top: 4px !important;
-
-    width: 78px !important;
-
-    margin: 0 !important;
+  body[data-page^="project-"] .p-hero {
+    padding-top: 8px !important;
   }
 
   body[data-page^="project-"] .spidey-hanger {
-    width: 82px !important;
+    top: -2px !important;
     right: 10px !important;
+    width: 78px !important;
   }
 
-  body[data-page="projects.html"] .spidey-hanger,
-  body[data-page="about.html"] .spidey-hanger,
-  body[data-page="contact.html"] .spidey-hanger,
-  body[data-page="design.html"] .spidey-hanger {
-    width: 78px !important;
+
+  /* PROJECTS */
+  body[data-page="projects.html"] main > section:first-of-type {
+    padding-top: 28px !important;
+  }
+
+  body[data-page="projects.html"] .spidey-hanger {
+    top: -2px !important;
     right: 10px !important;
+    width: 72px !important;
+  }
+
+
+  /* ABOUT */
+  body[data-page="about.html"] main > section:first-of-type {
+    padding-top: 28px !important;
+  }
+
+  body[data-page="about.html"] .spidey-hanger {
+    top: -2px !important;
+    right: 10px !important;
+    width: 72px !important;
+  }
+
+
+  /* WORK WITH ME */
+  body[data-page="work-with-me.html"] .p-hero {
+    padding-top: 25px !important;
   }
 
   body[data-page="work-with-me.html"] .spidey-hanger {
-    width: 82px !important;
+    top: -2px !important;
     right: 10px !important;
+    width: 78px !important;
+  }
+
+
+  /* CONTACT */
+  body[data-page="contact.html"] .hero {
+    padding-top: 28px !important;
+  }
+
+  body[data-page="contact.html"] > main > .spidey-hanger,
+  body[data-page="contact.html"] .spidey-hanger {
+    top: 160px !important;
+    right: 10px !important;
+    width: 72px !important;
+  }
+
+
+  /* DESIGN */
+  body[data-page="design.html"] main > section:first-of-type {
+    padding-top: 28px !important;
+  }
+
+  body[data-page="design.html"] .spidey-hanger {
+    top: -2px !important;
+    right: 10px !important;
+    width: 72px !important;
   }
 
 }
 
 
-/* SMALL PHONES */
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
 @media (max-width: 520px) {
 
-  body:not([data-page="index.html"]) .spidey-hanger {
+  body[data-page^="project-"] .spidey-hanger,
+  body[data-page="work-with-me.html"] .spidey-hanger {
     right: 7px !important;
-    top: 2px !important;
-    width: 68px !important;
+    width: 66px !important;
+  }
+
+  body[data-page="projects.html"] .spidey-hanger,
+  body[data-page="about.html"] .spidey-hanger,
+  body[data-page="design.html"] .spidey-hanger {
+    right: 7px !important;
+    width: 62px !important;
+  }
+
+  body[data-page="contact.html"] > main > .spidey-hanger,
+  body[data-page="contact.html"] .spidey-hanger {
+    right: 7px !important;
+    width: 62px !important;
+    top: 145px !important;
   }
 
 }
