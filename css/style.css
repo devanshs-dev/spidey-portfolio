@@ -3668,3 +3668,179 @@ img.spider-mark,
 .nav-links a:not(.active) {
   color: var(--ink-soft) !important;
 }
+
+
+
+
+
+/* ============================================================
+   SPIDER SWING INTRO
+   ============================================================ */
+
+#spider-swing-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.swing-web {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.swing-web-line {
+  fill: none;
+  stroke: rgba(255,255,255,0.85);
+  stroke-width: 2;
+  stroke-linecap: round;
+
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+
+  opacity: 0;
+}
+
+.swing-spider {
+  position: absolute;
+
+  width: 72px;
+  height: auto;
+
+  left: -100px;
+  top: -120px;
+
+  opacity: 0;
+
+  transform-origin: 50% 0%;
+}
+
+
+/* START */
+#spider-swing-intro.play .swing-web-line {
+  animation:
+    webShoot 0.65s ease-out forwards,
+    webFade 0.4s ease 3.15s forwards;
+}
+
+#spider-swing-intro.play .swing-spider {
+  animation: spiderSwing 3.5s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+
+/* WEB SHOOTS OUT */
+@keyframes webShoot {
+
+  0% {
+    stroke-dashoffset: 1200;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+
+}
+
+
+/* SPIDER SWING */
+@keyframes spiderSwing {
+
+  0% {
+    left: -90px;
+    top: -110px;
+    opacity: 0;
+    transform: rotate(-20deg);
+  }
+
+  12% {
+    left: 10%;
+    top: 5%;
+    opacity: 1;
+    transform: rotate(-10deg);
+  }
+
+  28% {
+    left: 28%;
+    top: 17%;
+    transform: rotate(18deg);
+  }
+
+  45% {
+    left: 48%;
+    top: 34%;
+    transform: rotate(-8deg);
+  }
+
+  60% {
+    left: 66%;
+    top: 27%;
+    transform: rotate(14deg);
+  }
+
+  76% {
+    left: 84%;
+    top: 13%;
+    transform: rotate(-12deg);
+  }
+
+  90% {
+    left: 100%;
+    top: -2%;
+    opacity: 1;
+    transform: rotate(18deg);
+  }
+
+  100% {
+    left: 110%;
+    top: -20%;
+    opacity: 0;
+    transform: rotate(25deg);
+  }
+
+}
+
+
+/* WEB DISAPPEARS */
+@keyframes webFade {
+
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+
+}
+
+
+/* MOBILE */
+@media (max-width: 900px) {
+
+  .swing-spider {
+    width: 52px;
+  }
+
+  .swing-web-line {
+    stroke-width: 1.5;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  #spider-swing-intro {
+    display: none !important;
+  }
+
+}

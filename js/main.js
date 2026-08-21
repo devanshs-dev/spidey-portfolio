@@ -264,3 +264,53 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('scroll', updateActive, { passive: true });
   updateActive();
 })();
+
+
+
+
+/* ============================================================
+   SPIDER SWING INTRO
+   ============================================================ */
+
+(function spiderSwingIntro() {
+
+  function startSpiderSwing() {
+
+    if (document.getElementById('spider-swing-intro')) return;
+
+    const wrap = document.createElement('div');
+    wrap.id = 'spider-swing-intro';
+
+    wrap.innerHTML = `
+      <svg class="swing-web" viewBox="0 0 1000 700" preserveAspectRatio="none">
+        <path
+          class="swing-web-line"
+          d="M180 0 C180 100 180 180 260 300 C350 430 500 500 650 430"
+        />
+      </svg>
+
+      <img
+        class="swing-spider"
+        src="assets/spider-swing.png"
+        alt=""
+      />
+    `;
+
+    document.body.appendChild(wrap);
+
+    requestAnimationFrame(() => {
+      wrap.classList.add('play');
+    });
+
+    setTimeout(() => {
+      wrap.remove();
+    }, 4200);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startSpiderSwing);
+  } else {
+    startSpiderSwing();
+  }
+
+})();
