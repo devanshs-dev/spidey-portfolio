@@ -2878,3 +2878,11 @@ body[data-page="work-with-me.html"] .p-hero .reveal {
 .hud-tag.show {
   animation: hudPop 3.6s ease forwards !important;
 }
+
+/* MOBILE HUD — SAME TIMING FOR ALL 4 */
+@media (max-width: 900px) {
+  .hud-tag.show {
+    animation: hudPop 3.6s ease forwards !important;
+    animation-duration: 3.6s !important;
+  }
+}
