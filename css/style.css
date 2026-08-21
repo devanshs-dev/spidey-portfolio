@@ -3323,170 +3323,91 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
 
 /* ============================================================
-   FINAL SPIDER-MAN POSITION
-   RIGHT SIDE ON EVERY PAGE
+   SPIDER-MAN — FORCE RIGHT SIDE
+   WORK WITH ME + CONTACT
    ============================================================ */
 
-/* Make sure the main/page containers can anchor the hanger */
-main,
-main > section,
-.hero,
-.p-hero {
-  position: relative !important;
-}
-
-/* ALL SPIDER-MAN HANGERS */
-.spidey-hanger {
+/* WORK WITH ME */
+body[data-page="work-with-me.html"] main > section.p-hero > .spidey-hanger {
   position: absolute !important;
 
   left: auto !important;
-  right: 4% !important;
-
+  right: 35px !important;
   top: 0 !important;
 
-  width: 115px !important;
+  width: 125px !important;
   height: auto !important;
 
   margin: 0 !important;
   padding: 0 !important;
 
   display: block !important;
-
   z-index: 999 !important;
   pointer-events: none !important;
-
-  transform: none !important;
 }
 
-.spidey-hanger img {
+body[data-page="work-with-me.html"] main > section.p-hero > .spidey-hanger img {
   width: 100% !important;
   height: auto !important;
   display: block !important;
 }
 
 
-/* ============================================================
-   PROJECT DETAIL PAGES
-   ============================================================ */
+/* CONTACT */
+body[data-page="contact.html"] main > .spidey-hanger {
+  position: absolute !important;
 
-body[data-page^="project-"] .spidey-hanger {
-  top: 0 !important;
-  right: 4% !important;
-  width: 125px !important;
-}
-
-
-/* ============================================================
-   PROJECTS PAGE
-   ============================================================ */
-
-body[data-page="projects.html"] .spidey-hanger {
-  top: 0 !important;
-  right: 4% !important;
-  width: 120px !important;
-}
-
-
-/* ============================================================
-   ABOUT
-   ============================================================ */
-
-body[data-page="about.html"] .spidey-hanger {
-  top: 0 !important;
-  right: 4% !important;
-  width: 120px !important;
-}
-
-
-/* ============================================================
-   WORK WITH ME
-   ============================================================ */
-
-body[data-page="work-with-me.html"] .spidey-hanger {
-  top: 0 !important;
-  right: 4% !important;
-  width: 125px !important;
-}
-
-
-/* ============================================================
-   CONTACT
-   ============================================================ */
-
-body[data-page="contact.html"] .spidey-hanger {
-  top: 0 !important;
-  right: 4% !important;
-  width: 120px !important;
-}
-
-
-/* ============================================================
-   DESIGN
-   ============================================================ */
-
-body[data-page="design.html"] .spidey-hanger {
-  top: 0 !important;
-  right: 4% !important;
-  width: 120px !important;
-}
-
-
-/* ============================================================
-   HOME
-   ============================================================ */
-
-body[data-page="index.html"] .spidey-hanger {
-  top: 0 !important;
-  right: 4% !important;
   left: auto !important;
-  width: 115px !important;
+  right: 35px !important;
+  top: 0 !important;
+
+  width: 120px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  display: block !important;
+  z-index: 999 !important;
+  pointer-events: none !important;
+}
+
+body[data-page="contact.html"] main > .spidey-hanger img {
+  width: 100% !important;
+  height: auto !important;
+  display: block !important;
 }
 
 
-/* ============================================================
-   MOBILE
-   ============================================================ */
-
+/* MOBILE */
 @media (max-width: 900px) {
 
-  .spidey-hanger,
-  body[data-page^="project-"] .spidey-hanger,
-  body[data-page="projects.html"] .spidey-hanger,
-  body[data-page="about.html"] .spidey-hanger,
-  body[data-page="work-with-me.html"] .spidey-hanger,
-  body[data-page="contact.html"] .spidey-hanger,
-  body[data-page="design.html"] .spidey-hanger,
-  body[data-page="index.html"] .spidey-hanger {
-
-    left: auto !important;
+  body[data-page="work-with-me.html"] main > section.p-hero > .spidey-hanger {
     right: 10px !important;
-
     top: 0 !important;
-
-    width: 72px !important;
-
-    margin: 0 !important;
+    width: 75px !important;
   }
+
+  body[data-page="contact.html"] main > .spidey-hanger {
+    right: 10px !important;
+    top: 0 !important;
+    width: 72px !important;
+  }
+
 }
 
 
-/* ============================================================
-   SMALL PHONES
-   ============================================================ */
-
+/* SMALL PHONES */
 @media (max-width: 520px) {
 
-  .spidey-hanger,
-  body[data-page^="project-"] .spidey-hanger,
-  body[data-page="projects.html"] .spidey-hanger,
-  body[data-page="about.html"] .spidey-hanger,
-  body[data-page="work-with-me.html"] .spidey-hanger,
-  body[data-page="contact.html"] .spidey-hanger,
-  body[data-page="design.html"] .spidey-hanger,
-  body[data-page="index.html"] .spidey-hanger {
-
-    right: 7px !important;
-    top: 0 !important;
-    width: 64px !important;
+  body[data-page="work-with-me.html"] main > section.p-hero > .spidey-hanger {
+    right: 6px !important;
+    width: 65px !important;
   }
+
+  body[data-page="contact.html"] main > .spidey-hanger {
+    right: 6px !important;
+    width: 62px !important;
+  }
+
 }
