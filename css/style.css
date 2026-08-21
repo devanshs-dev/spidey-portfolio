@@ -3582,3 +3582,85 @@ body[data-page="contact.html"] .hero {
   }
 
 }
+
+
+/* ============================================================
+   FINAL — MOVE NON-HOME CONTENT UP
+   ============================================================ */
+
+/* PROJECT DETAIL PAGES */
+body[data-page^="project-"] .p-hero {
+  position: relative !important;
+  top: -75px !important;
+}
+
+
+/* WORK WITH ME */
+body[data-page="work-with-me.html"] .p-hero {
+  position: relative !important;
+  top: -75px !important;
+}
+
+
+/* PROJECTS PAGE */
+body[data-page="projects.html"] main > section:first-of-type {
+  position: relative !important;
+  top: -75px !important;
+}
+
+
+/* ABOUT PAGE */
+body[data-page="about.html"] main > section:first-of-type {
+  position: relative !important;
+  top: -75px !important;
+}
+
+
+/* DESIGN PAGE */
+body[data-page="design.html"] main > section:first-of-type {
+  position: relative !important;
+  top: -75px !important;
+}
+
+
+/* CONTACT PAGE */
+body[data-page="contact.html"] .hero {
+  position: relative !important;
+  top: -75px !important;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  body[data-page^="project-"] .p-hero,
+  body[data-page="work-with-me.html"] .p-hero,
+  body[data-page="projects.html"] main > section:first-of-type,
+  body[data-page="about.html"] main > section:first-of-type,
+  body[data-page="design.html"] main > section:first-of-type,
+  body[data-page="contact.html"] .hero {
+    top: -55px !important;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 520px) {
+
+  body[data-page^="project-"] .p-hero,
+  body[data-page="work-with-me.html"] .p-hero,
+  body[data-page="projects.html"] main > section:first-of-type,
+  body[data-page="about.html"] main > section:first-of-type,
+  body[data-page="design.html"] main > section:first-of-type,
+  body[data-page="contact.html"] .hero {
+    top: -45px !important;
+  }
+
+}
