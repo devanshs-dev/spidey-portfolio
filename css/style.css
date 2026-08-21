@@ -3638,3 +3638,33 @@ img.spider-mark,
 .nav-links a:not(.active) {
   color: var(--ink-soft) !important;
 }
+
+
+/* ============================================================
+   ACTIVE NAV — FINAL
+   ============================================================ */
+
+.nav-links a.active {
+  color: #E8383D !important;
+}
+
+.nav-links a.active::after {
+  content: "" !important;
+  display: block !important;
+
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -6px !important;
+
+  height: 2px !important;
+
+  background: #E8383D !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Keep non-active links gray */
+.nav-links a:not(.active) {
+  color: var(--ink-soft) !important;
+}
