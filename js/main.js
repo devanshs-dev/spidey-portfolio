@@ -575,12 +575,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(spidey);
 
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
+const isHome = document.body.dataset.page === 'index.html';
 
 spidey.style.cssText = `
   position: absolute !important;
+
   left: auto !important;
-  right: ${isMobile ? '8px' : '35px'} !important;
-  top: ${isMobile ? '107px' : '75px'} !important;
+  right: ${isHome && isMobile ? '8px' : '35px'} !important;
+
+  top: ${isMobile ? '75px' : '75px'} !important;
 
   width: ${isMobile ? '52px' : '125px'} !important;
   height: auto !important;
@@ -589,7 +592,6 @@ spidey.style.cssText = `
   padding: 0 !important;
 
   display: block !important;
-
   z-index: 99999 !important;
   pointer-events: none !important;
 `;
