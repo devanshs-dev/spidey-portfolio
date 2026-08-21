@@ -932,3 +932,53 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   nav.insertBefore(social, hireButton);
 
 })();
+
+
+/* ============================================================
+   ACTIVE NAV — FINAL FIX
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', () => {
+
+  const links = document.querySelectorAll('.nav-links a');
+
+  if (!links.length) return;
+
+  let currentPage = window.location.pathname
+    .split('/')
+    .pop()
+    .toLowerCase();
+
+  if (!currentPage || currentPage === '/') {
+    currentPage = 'index.html';
+  }
+
+  links.forEach(link => {
+
+    link.classList.remove('active');
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    const target = href
+      .split('/')
+      .pop()
+      .toLowerCase();
+
+    let isActive = currentPage === target;
+
+    /* All project detail pages = PROJECTS active */
+    if (
+      target === 'projects.html' &&
+      currentPage.startsWith('project-')
+    ) {
+      isActive = true;
+    }
+
+    if (isActive) {
+      link.classList.add('active');
+    }
+
+  });
+
+});

@@ -3605,3 +3605,36 @@ img.spider-mark,
     height: auto !important;
   }
 }
+
+/* ============================================================
+   ACTIVE NAV — RED + UNDERLINE
+   ============================================================ */
+
+.nav-links a {
+  position: relative !important;
+}
+
+.nav-links a.active {
+  color: #E8383D !important;
+}
+
+.nav-links a.active::after {
+  content: "" !important;
+  position: absolute !important;
+
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -10px !important;
+
+  height: 2px !important;
+
+  background: #E8383D !important;
+
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Keep inactive links normal */
+.nav-links a:not(.active) {
+  color: var(--ink-soft) !important;
+}
