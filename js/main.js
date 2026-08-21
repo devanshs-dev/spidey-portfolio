@@ -552,6 +552,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .pop()
         .toLowerCase();
 
+    /* HOME = leave exactly as it is */
+    if (
+      currentPage === 'index.html' ||
+      currentPage === ''
+    ) {
+      return;
+    }
+
     const spidey =
       document.querySelector('.spidey-hanger');
 
@@ -567,17 +575,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(spidey);
 
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
-const isHome = page === 'index.html' || page === '';
+const isHome = document.body.dataset.page === 'index.html';
 
 spidey.style.cssText = `
   position: absolute !important;
 
   left: auto !important;
-  right: ${isMobile ? '8px' : (isHome ? '16px' : '35px')} !important;
+  right: ${isHome && isMobile ? '8px' : '35px'} !important;
 
-  top: ${isMobile ? '0px' : '75px'} !important;
+  top: ${isMobile ? '75px' : '75px'} !important;
 
-  width: ${isMobile ? '52px' : (isHome ? '60px' : '125px')} !important;
+  width: ${isMobile ? '52px' : '125px'} !important;
   height: auto !important;
 
   margin: 0 !important;
