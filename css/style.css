@@ -2127,3 +2127,268 @@ body {
 .nav-links a.active::after {
   background: var(--red) !important;
 }
+
+/* ============================================================
+   FINAL MOBILE / GLOBAL POLISH
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   REMOVE THE ROTATING PAGE IMAGE / TRANSITION
+   ------------------------------------------------------------ */
+
+#news-transition,
+#page-swing-overlay,
+#comic-transition {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE NAV — KEEP ALL 5 ITEMS ON ONE ROW
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  .nav {
+    padding: 14px 16px 12px !important;
+    gap: 10px !important;
+  }
+
+  .nav-links {
+    width: 100% !important;
+
+    display: flex !important;
+    flex-wrap: nowrap !important;
+
+    justify-content: space-between !important;
+    align-items: center !important;
+
+    gap: 0 !important;
+
+    overflow: visible !important;
+
+    white-space: nowrap !important;
+
+    font-size: 10px !important;
+    letter-spacing: 0.04em !important;
+
+    padding-top: 10px !important;
+  }
+
+  .nav-links a {
+    padding: 5px 2px !important;
+    white-space: nowrap !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Active page */
+  .nav-links a.active {
+    color: var(--red) !important;
+  }
+
+  .nav-links a.active::after {
+    background: var(--red) !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   GIVE EVERY MOBILE PAGE SOME BREATHING ROOM BELOW NAV
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  main > section:first-of-type {
+    padding-top: 65px !important;
+  }
+
+  .hero {
+    padding-top: 65px !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   SPIDER-MAN — CONSISTENT ON ALL MOBILE PAGES
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  .spidey-hanger {
+    display: block !important;
+
+    position: absolute !important;
+
+    top: -12px !important;
+    left: 14px !important;
+
+    width: 56px !important;
+
+    margin: 0 !important;
+
+    z-index: 20 !important;
+
+    pointer-events: none !important;
+  }
+
+  .spidey-hanger img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+
+@media (max-width: 520px) {
+
+  .spidey-hanger {
+    top: -10px !important;
+    left: 12px !important;
+    width: 52px !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   ABOUT / PROJECTS / CONTACT — DON'T LET SPIDEY CROWD CONTENT
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  section:has(.spidey-hanger) {
+    padding-top: 68px !important;
+  }
+
+  section:has(.spidey-hanger) .section-label {
+    margin-top: 12px !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   CONTACT PAGE CLEANUP
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  section:has(.contact-form) {
+    padding-top: 70px !important;
+    padding-bottom: 65px !important;
+  }
+
+  section:has(.contact-form) .contact-form {
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin-top: 28px !important;
+
+    gap: 14px !important;
+  }
+
+  .contact-form label {
+    font-size: 10px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100% !important;
+
+    padding: 13px 14px !important;
+
+    font-size: 14px !important;
+
+    border-radius: 3px !important;
+  }
+
+  .contact-form textarea {
+    min-height: 130px !important;
+  }
+
+  .contact-form button {
+    margin-top: 4px !important;
+    padding: 13px 22px !important;
+    font-size: 11px !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   HUD CALLOUTS — 2X LONGER
+   ------------------------------------------------------------ */
+
+.hud-tag.show {
+  animation-duration: 3.6s !important;
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE CASE FILES
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  .cf-track {
+    gap: 12px !important;
+  }
+
+  .cf-slide {
+    flex: 0 0 88vw !important;
+    padding: 24px !important;
+  }
+
+  .cf-slide h3 {
+    font-size: 23px !important;
+  }
+
+  .cf-slide p {
+    font-size: 13px !important;
+    line-height: 1.55 !important;
+  }
+
+  .cf-slide-cta {
+    font-size: 10px !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   MOBILE EXPERIENCE CARDS
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+
+  .rec-grid {
+    gap: 12px !important;
+  }
+
+  .rec-card {
+    padding: 20px !important;
+  }
+
+  .rec-card h3 {
+    font-size: 15px !important;
+  }
+
+  .rec-card p {
+    font-size: 12.5px !important;
+    line-height: 1.55 !important;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   ACTIVE DESKTOP NAV
+   ------------------------------------------------------------ */
+
+.nav-links a.active {
+  color: var(--red) !important;
+}
+
+.nav-links a.active::after {
+  background: var(--red) !important;
+}

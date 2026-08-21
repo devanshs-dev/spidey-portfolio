@@ -418,3 +418,52 @@ document.querySelectorAll('a:not([href^="#"])').forEach(link => {
     }
   });
 })();
+
+/* ============================================================
+   ACTIVE NAVIGATION
+   ============================================================ */
+
+(function initActiveNavigation() {
+
+  const links = document.querySelectorAll('.nav-links a');
+
+  if (!links.length) return;
+
+  let currentPage = window.location.pathname.split('/').pop();
+
+  if (!currentPage || currentPage === '/') {
+    currentPage = 'index.html';
+  }
+
+  links.forEach(link => {
+
+    const href = link.getAttribute('href');
+
+    if (!href) return;
+
+    const targetPage = href.split('/').pop();
+
+    link.classList.remove('active');
+
+    /* Home */
+    if (
+      currentPage === targetPage ||
+      (currentPage === 'index.html' && targetPage === 'index.html')
+    ) {
+      link.classList.add('active');
+    }
+
+    /* Project detail pages */
+    if (
+      targetPage === 'projects.html' &&
+      (
+        currentPage.startsWith('project-') ||
+        currentPage === 'projects.html'
+      )
+    ) {
+      link.classList.add('active');
+    }
+
+  });
+
+})();
