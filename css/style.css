@@ -3291,3 +3291,123 @@ body[data-page="work-with-me.html"] .p-hero .reveal {
     display: none !important;
   }
 }
+
+/* ============================================================
+   FINAL SPIDER-MAN POSITION — PROJECT PAGES
+   ============================================================ */
+
+/* PROJECT DETAIL PAGES */
+body[data-page^="project-"] .p-hero {
+  position: relative !important;
+  padding-top: 125px !important;
+}
+
+body[data-page^="project-"] .p-hero > .spidey-hanger {
+  position: absolute !important;
+  top: 18px !important;
+  left: 24px !important;
+
+  width: 52px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  z-index: 20 !important;
+  pointer-events: none !important;
+
+  transform: none !important;
+}
+
+body[data-page^="project-"] .p-hero > .spidey-hanger img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+
+/* PROJECTS LIST PAGE */
+body[data-page="projects.html"] main > section:first-of-type {
+  position: relative !important;
+  padding-top: 110px !important;
+}
+
+body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
+  position: absolute !important;
+  top: 20px !important;
+  left: 24px !important;
+
+  width: 52px !important;
+  height: auto !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  z-index: 20 !important;
+  pointer-events: none !important;
+
+  transform: none !important;
+}
+
+body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+
+/* MOBILE — PROJECT DETAIL */
+@media (max-width: 900px) {
+
+  body[data-page^="project-"] .p-hero {
+    padding-top: 95px !important;
+  }
+
+  body[data-page^="project-"] .p-hero > .spidey-hanger {
+    top: 8px !important;
+    left: 12px !important;
+    width: 44px !important;
+    margin: 0 !important;
+  }
+
+
+  /* MOBILE — PROJECTS LIST */
+  body[data-page="projects.html"] main > section:first-of-type {
+    padding-top: 92px !important;
+  }
+
+  body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
+    top: 10px !important;
+    left: 12px !important;
+    width: 44px !important;
+    margin: 0 !important;
+  }
+
+}
+
+
+/* SMALL PHONES */
+@media (max-width: 520px) {
+
+  body[data-page^="project-"] .p-hero {
+    padding-top: 88px !important;
+  }
+
+  body[data-page^="project-"] .p-hero > .spidey-hanger {
+    top: 5px !important;
+    left: 10px !important;
+    width: 40px !important;
+  }
+
+
+  body[data-page="projects.html"] main > section:first-of-type {
+    padding-top: 86px !important;
+  }
+
+  body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
+    top: 8px !important;
+    left: 10px !important;
+    width: 40px !important;
+  }
+
+}
