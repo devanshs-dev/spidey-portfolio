@@ -530,3 +530,53 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   observer.observe(container);
 
 })();
+
+/* ============================================================
+   FORCE ACTIVE NAV
+   ============================================================ */
+
+(function forceActiveNav() {
+
+  const links = document.querySelectorAll('.nav-links a');
+
+  if (!links.length) return;
+
+  let page = window.location.pathname
+    .split('/')
+    .pop()
+    .toLowerCase();
+
+  if (!page || page === '/') {
+    page = 'index.html';
+  }
+
+  links.forEach(link => {
+
+    link.classList.remove('active');
+
+    const href = link.getAttribute('href');
+
+    if (!href) return;
+
+    const target = href
+      .split('/')
+      .pop()
+      .toLowerCase();
+
+    let active = page === target;
+
+    /* Project detail pages */
+    if (
+      target === 'projects.html' &&
+      page.startsWith('project-')
+    ) {
+      active = true;
+    }
+
+    if (active) {
+      link.classList.add('active');
+    }
+
+  });
+
+})();

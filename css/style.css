@@ -2843,3 +2843,38 @@ body[data-page="about.html"] {
     padding: 48px 14px 55px !important;
   }
 }
+
+
+/* FORCE ACTIVE NAV VISUAL */
+.nav-links a.active {
+  color: var(--red) !important;
+}
+
+.nav-links a.active::after {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: -10px !important;
+  height: 2px !important;
+  background: var(--red) !important;
+}
+
+
+/* ============================================================
+   WORK WITH ME — CONTENT MUST BE VISIBLE ON PAGE LOAD
+   ============================================================ */
+
+body[data-page="work-with-me.html"] .p-block.reveal,
+body[data-page="work-with-me.html"] .p-hero .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* ============================================================
+   HUD TIMING — ALL 4 SAME DURATION
+   ============================================================ */
+
+.hud-tag.show {
+  animation: hudPop 3.6s ease forwards !important;
+}
