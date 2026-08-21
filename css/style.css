@@ -1721,3 +1721,409 @@ body {
 .nav-links a.active::after {
   background: var(--red) !important;
 }
+
+/* ============================================================
+   FINAL HERO CLEANUP
+   ============================================================ */
+
+
+/* ============================================================
+   DESKTOP
+   ============================================================ */
+
+@media (min-width: 901px) {
+
+  .hero {
+    position: relative !important;
+    display: block !important;
+    padding: 90px 56px 80px !important;
+    min-height: 820px !important;
+  }
+
+  /* OPEN TO WORK */
+  .hero > .tag {
+    position: relative !important;
+    display: inline-flex !important;
+
+    margin: 0 0 26px 0 !important;
+
+    z-index: 10 !important;
+  }
+
+  /* HEADLINE */
+  .hero h1 {
+    position: relative !important;
+
+    width: min(760px, 58%) !important;
+    max-width: 760px !important;
+
+    z-index: 8 !important;
+  }
+
+  /* DESCRIPTION */
+  .hero .lede {
+    position: relative !important;
+
+    width: min(620px, 52%) !important;
+    max-width: 620px !important;
+
+    font-size: 17px !important;
+    line-height: 1.65 !important;
+
+    z-index: 8 !important;
+  }
+
+  /* BUTTONS */
+  .hero .btn-row {
+    position: relative !important;
+
+    margin-top: 34px !important;
+
+    z-index: 8 !important;
+  }
+
+
+  /* ============================================================
+     STATS
+     ============================================================ */
+
+  .hero-stats-row {
+    display: grid !important;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+
+    width: calc(100% - 360px) !important;
+    max-width: 800px !important;
+
+    margin-top: 60px !important;
+
+    border-top: 1px solid var(--line) !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  .hero-stats-row .stat {
+    position: relative !important;
+
+    min-width: 0 !important;
+
+    padding: 22px 18px !important;
+
+    border-left: 1px solid var(--line) !important;
+  }
+
+  .hero-stats-row .stat:first-child {
+    border-left: none !important;
+  }
+
+  .hero-stats-row .stat-num {
+    font-size: 32px !important;
+  }
+
+  .hero-stats-row .stat-label {
+    font-size: 10px !important;
+    line-height: 1.4 !important;
+  }
+
+
+  /* ============================================================
+     DAILY BUGLE
+     ============================================================ */
+
+  .hero .wanted-poster {
+    display: block !important;
+
+    position: absolute !important;
+
+    top: 70px !important;
+    right: 60px !important;
+
+    width: 285px !important;
+    max-width: 285px !important;
+
+    margin: 0 !important;
+
+    transform: rotate(2deg) !important;
+
+    z-index: 5 !important;
+
+    opacity: 1 !important;
+  }
+}
+
+
+/* ============================================================
+   TABLET + MOBILE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .hero {
+    position: relative !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+
+    padding: 65px 20px 65px !important;
+
+    overflow: visible !important;
+  }
+
+
+  /* SPIDER-MAN */
+
+  .hero .spidey-hanger {
+    position: absolute !important;
+
+    top: -10px !important;
+    left: 16px !important;
+
+    width: 58px !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+
+    z-index: 20 !important;
+  }
+
+  .hero .spidey-hanger img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+
+  /* OPEN TO WORK */
+
+  .hero > .tag {
+    order: 1 !important;
+
+    align-self: flex-start !important;
+
+    display: inline-flex !important;
+
+    width: 200px !important;
+    min-height: 46px !important;
+
+    margin: 0 0 22px 0 !important;
+
+    padding: 9px 18px !important;
+
+    z-index: 15 !important;
+
+    background: #351313 !important;
+    border: 1px solid rgba(232,56,61,.65) !important;
+    color: var(--red) !important;
+
+    clip-path: polygon(
+      7% 0,
+      93% 0,
+      100% 50%,
+      93% 100%,
+      7% 100%,
+      0 50%
+    ) !important;
+  }
+
+
+  /* HEADLINE */
+
+  .hero h1 {
+    order: 2 !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    font-size: clamp(40px, 11vw, 62px) !important;
+    line-height: .95 !important;
+
+    z-index: 10 !important;
+  }
+
+
+  /* DESCRIPTION */
+
+  .hero .lede {
+    order: 3 !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin-top: 22px !important;
+
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+
+    z-index: 10 !important;
+  }
+
+
+  /* BUTTONS */
+
+  .hero .btn-row {
+    order: 4 !important;
+
+    margin-top: 26px !important;
+
+    display: flex !important;
+    flex-wrap: wrap !important;
+
+    gap: 10px !important;
+
+    z-index: 10 !important;
+  }
+
+
+  /* STATS */
+
+  .hero-stats-row {
+    order: 5 !important;
+
+    display: grid !important;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+    width: 100% !important;
+
+    margin-top: 36px !important;
+
+    border-top: 1px solid var(--line) !important;
+    border-bottom: 1px solid var(--line) !important;
+  }
+
+  .hero-stats-row .stat {
+    padding: 18px 14px !important;
+
+    border-left: 1px solid var(--line) !important;
+  }
+
+  .hero-stats-row .stat:nth-child(odd) {
+    border-left: none !important;
+  }
+
+  .hero-stats-row .stat:nth-child(n+3) {
+    border-top: 1px solid var(--line) !important;
+  }
+
+  .hero-stats-row .stat-num {
+    font-size: 28px !important;
+  }
+
+  .hero-stats-row .stat-label {
+    font-size: 8px !important;
+    line-height: 1.4 !important;
+  }
+
+
+  /* POSTER */
+
+  .hero .wanted-poster {
+    order: 6 !important;
+
+    display: block !important;
+
+    position: relative !important;
+
+    top: auto !important;
+    right: auto !important;
+
+    width: min(235px, 82vw) !important;
+    max-width: none !important;
+
+    margin: 44px auto 5px !important;
+
+    padding: 14px !important;
+
+    transform: none !important;
+
+    align-self: center !important;
+
+    z-index: 5 !important;
+
+    opacity: 1 !important;
+  }
+
+  .hero .wanted-poster .wp-masthead {
+    font-size: 8px !important;
+  }
+
+  .hero .wanted-poster .wp-title {
+    font-size: 27px !important;
+  }
+
+  .hero .wanted-poster .wp-sub {
+    font-size: 6.5px !important;
+  }
+
+  .hero .wanted-poster .wp-row {
+    font-size: 6px !important;
+  }
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 520px) {
+
+  .hero {
+    padding: 52px 14px 55px !important;
+  }
+
+  .hero .spidey-hanger {
+    top: -8px !important;
+    left: 12px !important;
+    width: 52px !important;
+  }
+
+  .hero > .tag {
+    width: 185px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 11vw, 51px) !important;
+  }
+
+  .hero .lede {
+    font-size: 14px !important;
+  }
+
+  .hero-stats-row .stat-num {
+    font-size: 25px !important;
+  }
+
+  .hero-stats-row .stat-label {
+    font-size: 7.5px !important;
+  }
+
+  .hero .wanted-poster {
+    width: min(220px, 82vw) !important;
+
+    margin-top: 38px !important;
+  }
+}
+
+
+/* ============================================================
+   HUD CALLOUTS
+   ============================================================ */
+
+.hud-tag.show {
+  animation-duration: 3.6s !important;
+}
+
+
+/* ============================================================
+   ACTIVE NAV
+   ============================================================ */
+
+.nav-links a.active {
+  color: var(--red) !important;
+}
+
+.nav-links a.active::after {
+  background: var(--red) !important;
+}
