@@ -3707,3 +3707,20 @@ body[data-page="contact.html"] .hero {
     padding-top: 12px !important;
   }
 }
+
+/* HOME — MOBILE SPIDER-MAN TO RIGHT */
+@media (max-width: 900px) {
+  body[data-page="index.html"] .spidey-hanger {
+    left: auto !important;
+    right: 8px !important;
+    width: 52px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  body[data-page="index.html"] .spidey-hanger {
+    left: auto !important;
+    right: 6px !important;
+    width: 50px !important;
+  }
+}
