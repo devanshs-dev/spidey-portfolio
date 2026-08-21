@@ -56,10 +56,8 @@ if (canvas) {
       for (let j = i + 1; j < nodes.length; j++) {
         const a = nodes[i], b = nodes[j];
         const dx = a.x - b.x, dy = a.y - b.y;
-        const distSq = dx * dx + dy * dy;
-
-        if (distSq < LINK_DIST * LINK_DIST) {
-          const dist = Math.sqrt(distSq);
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < LINK_DIST) {
           const opacity = (1 - dist / LINK_DIST) * 0.16;
           ctx.strokeStyle = `rgba(243,243,245,${opacity})`;
           ctx.lineWidth = 1;
@@ -70,10 +68,8 @@ if (canvas) {
         }
       }
       const dmx = nodes[i].x - mouse.x, dmy = nodes[i].y - mouse.y;
-      const mouseDistSq = dmx * dmx + dmy * dmy;
-
-      if (mouseDistSq < MOUSE_RADIUS * MOUSE_RADIUS) {
-        const mdist = Math.sqrt(mouseDistSq);
+      const mdist = Math.sqrt(dmx * dmx + dmy * dmy);
+      if (mdist < MOUSE_RADIUS) {
         const opacity = (1 - mdist / MOUSE_RADIUS) * 0.55;
         ctx.strokeStyle = `rgba(232,56,61,${opacity})`;
         ctx.lineWidth = 1.2;
@@ -85,29 +81,13 @@ if (canvas) {
     }
     requestAnimationFrame(tick);
   }
-
-  let canvasRunning = true;
-
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden && !canvasRunning) {
-      canvasRunning = true;
-      tick();
-    }
-    if (document.hidden) {
-      canvasRunning = false;
-    }
-  });
-
   tick();
 }
 
 const revealEls = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      io.unobserve(entry.target);
-    }
+    if (entry.isIntersecting) entry.target.classList.add('in');
   });
 }, { threshold: 0.15 });
 revealEls.forEach(el => io.observe(el));
@@ -128,6 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
    end of js/main.js. Every feature creates its own DOM at
    runtime, so no HTML file needs to be touched by hand.
    ============================================================ */
+
+/* ---- 1. Spider crawling the scroll indicator ---- */
+
 
 /* ---- 3. Web-swing loading transition ---- */
 (function initPageSwing() {
@@ -238,46 +221,51 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 })();
 
+// Nav scroll-spy dots
+(function(){
+  const navDots = document.querySelectorAll('.nav-dots a');
+  if (!navDots.length) return;
 
-
-/* ============================================================
-   ACTIVE NAV
-   ============================================================ */
-
-(function initActiveNav() {
-
-  const links = document.querySelectorAll('.nav-links a');
-  if (!links.length) return;
-
-  let currentPage =
-    window.location.pathname.split('/').pop().toLowerCase();
-
-  if (!currentPage || currentPage === '/') {
-    currentPage = 'index.html';
-  }
-
-  links.forEach(link => {
-
-    link.classList.remove('active');
-
-    const href = link.getAttribute('href');
-    if (!href) return;
-
-    const target = href.split('/').pop().toLowerCase();
-
-    let active = currentPage === target;
-
-    if (
-      target === 'projects.html' &&
-      currentPage.startsWith('project-')
-    ) {
-      active = true;
+  const targets = [];
+  navDots.forEach(dot => {
+    const id = dot.getAttribute('href');
+    if (id && id.startsWith('#')) {
+      const el = document.querySelector(id);
+      if (el) targets.push({ dot, el });
     }
-
-    if (active) {
-      link.classList.add('active');
-    }
-
   });
 
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const match = targets.find(t => t.el === entry.target);
+      if (!match) return;
+      if (entry.isIntersecting) {
+        navDots.forEach(d => d.classList.remove('active'));
+        match.dot.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  targets.forEach(t => spyObserver.observe(t.el));
 })();
+
+// scroll not moving as moves the page
+(function initDotScrollSpy() {
+  const dots = document.querySelectorAll('.nav-dots a');
+  if (!dots.length) return;
+  const targets = Array.from(dots).map(d => document.querySelector(d.getAttribute('href'))).filter(Boolean);
+  function updateActive() {
+    let current = 0;
+    targets.forEach((t, i) => {
+      if (t.getBoundingClientRect().top - 120 <= 0) current = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+})();
+
+
+
+
+
