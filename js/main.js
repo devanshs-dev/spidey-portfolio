@@ -574,25 +574,27 @@ document.addEventListener('DOMContentLoaded', () => {
     */
     document.body.appendChild(spidey);
 
-    spidey.style.cssText = `
-      position: absolute !important;
-      left: auto !important;
-      right: 35px !important;
-      top: 75px !important;
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
 
-      width: 125px !important;
-      height: auto !important;
+spidey.style.cssText = `
+  position: absolute !important;
+  left: auto !important;
+  right: ${isMobile ? '8px' : '35px'} !important;
+  top: ${isMobile ? '0px' : '75px'} !important;
 
-      margin: 0 !important;
-      padding: 0 !important;
+  width: ${isMobile ? '52px' : '125px'} !important;
+  height: auto !important;
 
-      display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
 
-      z-index: 99999 !important;
-      pointer-events: none !important;
+  display: block !important;
 
-      transform: none !important;
-    `;
+  z-index: 99999 !important;
+  pointer-events: none !important;
+
+  transform: none !important;
+`;
 
     const img = spidey.querySelector('img');
 
