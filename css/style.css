@@ -2392,3 +2392,104 @@ body {
 .nav-links a.active::after {
   background: var(--red) !important;
 }
+
+/* ============================================================
+   FINAL MOBILE PAGE POLISH
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  /* More breathing room below navbar */
+  main > section:first-child {
+    padding-top: 85px !important;
+  }
+
+  /* Keep Spider-Man above the content, not on top of headings */
+  main > section:first-child .spidey-hanger {
+    position: absolute !important;
+    top: -18px !important;
+    left: 14px !important;
+    width: 52px !important;
+    margin: 0 !important;
+    z-index: 20 !important;
+    pointer-events: none !important;
+  }
+
+  main > section:first-child .spidey-hanger img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Contact page */
+  .contact-form {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 32px !important;
+    gap: 16px !important;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    width: 100% !important;
+    font-size: 14px !important;
+    padding: 14px !important;
+  }
+
+  .contact-form textarea {
+    min-height: 150px !important;
+  }
+
+  .contact-form button {
+    margin-top: 6px !important;
+    width: fit-content !important;
+  }
+
+  /* Keep mobile nav compact */
+  .nav-links {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 0 !important;
+    overflow: visible !important;
+  }
+
+  .nav-links a {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    font-size: 9.5px !important;
+    letter-spacing: 0.03em !important;
+    padding: 5px 1px !important;
+  }
+
+  /* Active page */
+  .nav-links a.active {
+    color: var(--red) !important;
+  }
+
+  .nav-links a.active::after {
+    background: var(--red) !important;
+  }
+}
+
+
+/* Small phones */
+@media (max-width: 520px) {
+
+  main > section:first-child {
+    padding-top: 78px !important;
+  }
+
+  main > section:first-child .spidey-hanger {
+    top: -15px !important;
+    left: 10px !important;
+    width: 48px !important;
+  }
+
+  .nav-links a {
+    font-size: 8.5px !important;
+    letter-spacing: 0.02em !important;
+  }
+}
