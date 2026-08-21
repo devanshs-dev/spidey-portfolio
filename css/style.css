@@ -3492,3 +3492,33 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     margin-left: -4px !important;
   }
 }
+
+.nav-logo .spider-mark {
+  width: 28px !important;
+  height: 24px !important;
+  min-width: 28px !important;
+  min-height: 24px !important;
+  object-fit: fill !important;
+  flex: 0 0 auto !important;
+}
+
+.nav-logo {
+  gap: 5px !important;
+}
+
+.nav-logo span {
+  margin-left: -5px !important;
+}
+
+@media (max-width: 900px) {
+  .nav-logo .spider-mark {
+    width: 24px !important;
+    height: 21px !important;
+    min-width: 24px !important;
+    min-height: 21px !important;
+  }
+
+  .nav-logo {
+    gap: 4px !important;
+  }
+}
