@@ -174,35 +174,24 @@ if (canvas) {
 }
 
 
-/* ============================================================
-   REVEAL ANIMATIONS
-   ============================================================ */
+window.addEventListener('load', () => {
+  const revealEls = document.querySelectorAll('.reveal');
 
-const revealEls = document.querySelectorAll('.reveal');
+  if (!revealEls.length) return;
 
-if (revealEls.length) {
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-
-        if (!entry.isIntersecting) {
-          return;
-        }
-
+        if (!entry.isIntersecting) return;
         entry.target.classList.add('in');
         revealObserver.unobserve(entry.target);
-
       });
     },
-    {
-      threshold: 0.15
-    }
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
 
-  revealEls.forEach((el) => {
-    revealObserver.observe(el);
-  });
-}
+  revealEls.forEach((el) => revealObserver.observe(el));
+});
 
 
 /* ============================================================
@@ -536,89 +525,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })();
 
-/* ============================================================
-   FORCE SPIDER-MAN TO RIGHT SIDE
-   ALL PAGES EXCEPT HOME
-   ============================================================ */
+(function pinSpideyCorner() {
 
-(function forceSpideyRight() {
-
-  function moveSpidey() {
+  function pinSpidey() {
 
     const currentPage =
       document.body.dataset.page ||
-      window.location.pathname
-        .split('/')
-        .pop()
-        .toLowerCase();
+      window.location.pathname.split('/').pop().toLowerCase();
 
-    /* HOME = leave exactly as it is */
-    if (
-      currentPage === 'index.html' ||
-      currentPage === ''
-    ) {
-      return;
-    }
+    if (currentPage === 'index.html' || currentPage === '') return;
 
-    const spidey =
-      document.querySelector('.spidey-hanger');
+    const spidey = document.querySelector('.spidey-hanger');
+    if (!spidey) return;
 
-    if (!spidey) {
-      return;
-    }
-
-    /*
-      Move Spider-Man directly under <body>.
-      This removes all the old section/hero positioning
-      rules that have been fighting us.
-    */
     document.body.appendChild(spidey);
 
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
-const isHome = document.body.dataset.page === 'index.html';
 
-spidey.style.cssText = `
-  position: absolute !important;
-
-  left: auto !important;
-  right: ${isHome && isMobile ? '8px' : '35px'} !important;
-
-  top: ${isMobile ? '75px' : '75px'} !important;
-
-  width: ${isMobile ? '52px' : '125px'} !important;
-  height: auto !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  display: block !important;
-  z-index: 99999 !important;
-  pointer-events: none !important;
-`;
+    spidey.style.cssText = `
+      position: fixed;
+      right: ${isMobile ? '10px' : '35px'};
+      top: ${isMobile ? '70px' : '90px'};
+      width: ${isMobile ? '46px' : '110px'};
+      height: auto;
+      margin: 0;
+      padding: 0;
+      z-index: 500;
+      pointer-events: none;
+    `;
 
     const img = spidey.querySelector('img');
-
-    if (img) {
-      img.style.cssText = `
-        width: 100% !important;
-        height: auto !important;
-        display: block !important;
-      `;
-    }
-
+    if (img) img.style.cssText = 'width:100%; height:auto; display:block;';
   }
 
   if (document.readyState === 'loading') {
-
-    document.addEventListener(
-      'DOMContentLoaded',
-      moveSpidey
-    );
-
+    document.addEventListener('DOMContentLoaded', pinSpidey);
   } else {
-
-    moveSpidey();
-
+    pinSpidey();
   }
 
 })();
