@@ -3969,3 +3969,57 @@ body[data-page="contact.html"] .hero {
   }
 
 }
+
+/* ============================================================
+   MOBILE — FINAL SPIDER-MAN POSITION
+   NON-HOME PAGES ONLY
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  body:not([data-page="index.html"])
+  main > section:first-of-type > .spidey-hanger {
+
+    position: absolute !important;
+
+    left: auto !important;
+    right: 8px !important;
+
+    top: 42px !important;
+
+    width: 52px !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: none !important;
+
+    z-index: 50 !important;
+    pointer-events: none !important;
+  }
+
+  body:not([data-page="index.html"])
+  main > section:first-of-type > .spidey-hanger img {
+
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 520px) {
+
+  body:not([data-page="index.html"])
+  main > section:first-of-type > .spidey-hanger {
+
+    right: 6px !important;
+    top: 36px !important;
+    width: 48px !important;
+  }
+
+}
