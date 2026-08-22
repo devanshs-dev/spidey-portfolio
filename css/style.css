@@ -3086,8 +3086,6 @@ body[data-page^="project-"] .p-hero > .spidey-hanger {
 
   z-index: 20 !important;
   pointer-events: none !important;
-
-  transform: none !important;
 }
 
 body[data-page^="project-"] .p-hero > .spidey-hanger img {
@@ -3116,8 +3114,6 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
 
   z-index: 20 !important;
   pointer-events: none !important;
-
-  transform: none !important;
 }
 
 body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger img {
@@ -3286,8 +3282,6 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
     margin: 0 !important;
     padding: 0 !important;
-
-    transform: none !important;
     z-index: 50 !important;
     pointer-events: none !important;
   }
@@ -3398,7 +3392,6 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     margin: 0 !important;
     padding: 0 !important;
 
-    transform: none !important;
     z-index: 50 !important;
     pointer-events: none !important;
   }
@@ -3441,7 +3434,7 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     padding: 0 !important;
 
     display: block !important;
-    transform: none !important;
+   
 
     z-index: 50 !important;
     pointer-events: none !important;
@@ -3494,7 +3487,6 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     padding: 0 !important;
 
     display: block !important;
-    transform: none !important;
 
     z-index: 50 !important;
     pointer-events: none !important;
@@ -3591,7 +3583,6 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     top: 55px !important;
     width: 52px !important;
     margin: 0 !important;
-    transform: none !important;
     display: block !important;
     z-index: 50 !important;
   }
@@ -3612,7 +3603,6 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
   body[data-page="work-with-me.html"] .p-block,
   body[data-page="work-with-me.html"] .p-block.reveal {
     opacity: 1 !important;
-    transform: none !important;
     visibility: visible !important;
   }
 
@@ -3665,7 +3655,6 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     margin: 0 !important;
     padding: 0 !important;
     display: block !important;
-    transform: none !important;
     z-index: 50 !important;
     pointer-events: none !important;
   }
