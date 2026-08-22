@@ -3759,7 +3759,7 @@ body[data-page="contact.html"] .hero {
 
   body:not([data-page="index.html"]) .spidey-hanger {
     right: 4px !important;
-    top: 8px !important;
+    top: 24px !important;
     width: 48px !important;
   }
 
@@ -3778,7 +3778,7 @@ body[data-page="contact.html"] .hero {
     position: absolute !important;
     left: auto !important;
     right: 6px !important;
-    top: 8px !important;
+    top: 28px !important;
     width: 52px !important;
     margin: 0 !important;
     z-index: 50 !important;
@@ -3794,7 +3794,6 @@ body[data-page="contact.html"] .hero {
 
 }
 
-
 /* SMALL PHONES */
 
 @media (max-width: 520px) {
@@ -3802,7 +3801,7 @@ body[data-page="contact.html"] .hero {
   body:not(:has(.wanted-poster))
   main > section:first-child .spidey-hanger {
     right: 4px !important;
-    top: 8px !important;
+    top: 28px !important;
     width: 48px !important;
   }
 
