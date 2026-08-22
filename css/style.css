@@ -3764,3 +3764,46 @@ body[data-page="contact.html"] .hero {
   }
 
 }
+
+/* ============================================================
+   FINAL — NON-HOME MOBILE SPIDER ONLY
+   HOME IS COMPLETELY EXCLUDED
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  /* NON-HOME PAGES */
+  body:not(:has(.wanted-poster))
+  main > section:first-child .spidey-hanger {
+    position: absolute !important;
+    left: auto !important;
+    right: 6px !important;
+    top: 8px !important;
+    width: 52px !important;
+    margin: 0 !important;
+    z-index: 50 !important;
+    pointer-events: none !important;
+  }
+
+  body:not(:has(.wanted-poster))
+  main > section:first-child .spidey-hanger img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 520px) {
+
+  body:not(:has(.wanted-poster))
+  main > section:first-child .spidey-hanger {
+    right: 4px !important;
+    top: 8px !important;
+    width: 48px !important;
+  }
+
+}
