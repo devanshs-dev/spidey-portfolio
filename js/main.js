@@ -533,30 +533,47 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.dataset.page ||
       window.location.pathname.split('/').pop().toLowerCase();
 
-    
-
     const spidey = document.querySelector('.spidey-hanger');
     if (!spidey) return;
 
     document.body.appendChild(spidey);
 
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    const isHome = currentPage === 'index.html' || currentPage === '';
 
-    spidey.style.cssText = `
-  position: fixed !important;
-  left: auto !important;
-  right: ${isMobile ? '10px' : '35px'} !important;
-  top: ${isMobile ? '95px' : '90px'} !important;
-  width: ${isMobile ? '52px' : '110px'} !important;
-  height: auto !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block !important;
-  z-index: 500 !important;
-  pointer-events: none !important;
-  animation: gentleSwing 6s ease-in-out infinite !important;
-transform-origin: top center !important;
-`;
+    if (isHome && !isMobile) {
+      spidey.style.cssText = `
+        position: fixed !important;
+        right: auto !important;
+        left: 35px !important;
+        top: 90px !important;
+        width: 52px !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        z-index: 500 !important;
+        pointer-events: none !important;
+        animation: gentleSwing 6s ease-in-out infinite !important;
+        transform-origin: top center !important;
+      `;
+    } else {
+      spidey.style.cssText = `
+        position: fixed !important;
+        left: auto !important;
+        right: ${isMobile ? '20px' : '55px'} !important;
+        top: ${isMobile ? '95px' : '90px'} !important;
+        width: ${isMobile ? '52px' : '110px'} !important;
+        height: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+        z-index: 500 !important;
+        pointer-events: none !important;
+        animation: gentleSwing 6s ease-in-out infinite !important;
+        transform-origin: top center !important;
+      `;
+    }
 
     const img = spidey.querySelector('img');
     if (img) img.style.cssText = 'width:100%; height:auto; display:block;';
