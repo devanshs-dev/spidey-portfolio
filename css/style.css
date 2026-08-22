@@ -3985,7 +3985,7 @@ body[data-page="contact.html"] .hero {
     left: auto !important;
     right: 8px !important;
 
-    top: 42px !important;
+    top: -12px !important;
 
     width: 52px !important;
     height: auto !important;
@@ -4018,7 +4018,7 @@ body[data-page="contact.html"] .hero {
   main > section:first-of-type > .spidey-hanger {
 
     right: 6px !important;
-    top: 36px !important;
+    top: -8px !important;
     width: 48px !important;
   }
 
