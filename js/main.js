@@ -554,6 +554,8 @@ document.addEventListener('DOMContentLoaded', () => {
   display: block !important;
   z-index: 500 !important;
   pointer-events: none !important;
+  animation: gentleSwing 6s ease-in-out infinite !important;
+transform-origin: top center !important;
 `;
 
     const img = spidey.querySelector('img');
