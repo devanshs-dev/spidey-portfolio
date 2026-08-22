@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', () => {
   position: fixed !important;
   left: auto !important;
   right: ${isMobile ? '10px' : '35px'} !important;
-  top: ${isMobile ? '70px' : '90px'} !important;
+  top: ${isMobile ? '95px' : '90px'} !important;
   width: ${isMobile ? '52px' : '110px'} !important;
   height: auto !important;
   margin: 0 !important;
