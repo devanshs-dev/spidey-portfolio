@@ -3831,3 +3831,47 @@ body[data-page="contact.html"] .hero {
   }
 
 }
+
+
+/* ============================================================
+   MOBILE — SPIDER-MAN RIGHT ON EVERY PAGE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .spidey-hanger {
+    position: absolute !important;
+
+    left: auto !important;
+    right: 6px !important;
+
+    top: 28px !important;
+
+    width: 52px !important;
+    height: auto !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    transform: none !important;
+    z-index: 50 !important;
+    pointer-events: none !important;
+  }
+
+  .spidey-hanger img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+}
+
+@media (max-width: 520px) {
+
+  .spidey-hanger {
+    right: 4px !important;
+    top: 24px !important;
+    width: 48px !important;
+  }
+
+}
