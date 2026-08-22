@@ -533,7 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.dataset.page ||
       window.location.pathname.split('/').pop().toLowerCase();
 
-    if (currentPage === 'index.html' || currentPage === '') return;
+    
 
     const spidey = document.querySelector('.spidey-hanger');
     if (!spidey) return;
