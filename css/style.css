@@ -2521,7 +2521,7 @@ main > section:first-of-type > .spidey-hanger img {
 /* WORK WITH ME */
 body[data-page="work-with-me.html"] .p-hero {
   position: relative !important;
-  padding-top: 95px !important;
+  padding-top: 50px !important;
   padding-bottom: 70px !important;
 }
 
@@ -2690,7 +2690,7 @@ body[data-page="work-with-me.html"] .p-hero .reveal {
 
 body[data-page^="project-"] .p-hero {
   position: relative !important;
-  padding-top: 95px !important;
+  padding-top: 50px !important;
 }
 
 body[data-page^="project-"] .p-hero > .spidey-hanger {
@@ -2726,7 +2726,7 @@ body[data-page^="project-"] .p-hero > .spidey-hanger img {
 body[data-page="projects.html"] main > section:first-of-type {
   position: relative !important;
 
-  padding-top: 100px !important;
+  padding-top: 55px !important;
 }
 
 body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
@@ -2762,7 +2762,7 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
   /* Detail pages */
   body[data-page^="project-"] .p-hero {
-    padding-top: 92px !important;
+    padding-top: 48px !important;
   }
 
   body[data-page^="project-"] .p-hero > .spidey-hanger {
@@ -2777,7 +2777,7 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
   /* Projects listing */
   body[data-page="projects.html"] main > section:first-of-type {
-    padding-top: 92px !important;
+    padding-top: 48px !important;
   }
 
   body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
@@ -2885,7 +2885,7 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
 body[data-page^="project-"] .p-hero {
   position: relative !important;
-  padding-top: 95px !important;
+  padding-top: 50px !important;
 }
 
 body[data-page^="project-"] .p-hero > .spidey-hanger {
@@ -2910,7 +2910,7 @@ body[data-page^="project-"] .p-hero > .spidey-hanger img {
 
 body[data-page="work-with-me.html"] .p-hero {
   position: relative !important;
-  padding-top: 95px !important;
+  padding-top: 50px !important;
   padding-bottom: 70px !important;
 }
 
@@ -3070,7 +3070,7 @@ body[data-page="work-with-me.html"] .p-hero .reveal {
 /* PROJECT DETAIL PAGES */
 body[data-page^="project-"] .p-hero {
   position: relative !important;
-  padding-top: 125px !important;
+  padding-top: 65px !important;
 }
 
 body[data-page^="project-"] .p-hero > .spidey-hanger {
@@ -3098,7 +3098,7 @@ body[data-page^="project-"] .p-hero > .spidey-hanger img {
 /* PROJECTS LIST PAGE */
 body[data-page="projects.html"] main > section:first-of-type {
   position: relative !important;
-  padding-top: 110px !important;
+  padding-top: 58px !important;
 }
 
 body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
@@ -3127,7 +3127,7 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 @media (max-width: 900px) {
 
   body[data-page^="project-"] .p-hero {
-    padding-top: 95px !important;
+    padding-top: 50px !important;
   }
 
   body[data-page^="project-"] .p-hero > .spidey-hanger {
@@ -3140,7 +3140,7 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
   /* MOBILE — PROJECTS LIST */
   body[data-page="projects.html"] main > section:first-of-type {
-    padding-top: 92px !important;
+    padding-top: 48px !important;
   }
 
   body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger {
