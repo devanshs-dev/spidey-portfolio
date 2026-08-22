@@ -3724,218 +3724,17 @@ body[data-page="contact.html"] .hero {
     width: 50px !important;
   }
 }
-
 /* ============================================================
-   HOME MOBILE — SPIDER-MAN TO RIGHT
+   NON-HOME MOBILE — SPIDER-MAN RIGHT
    ============================================================ */
 
 @media (max-width: 900px) {
 
-  /* Home is uniquely identified by the Daily Bugle poster */
-  body:has(#wantedPoster) .hero > .spidey-hanger {
-    position: absolute !important;
-
-    left: auto !important;
-    right: 10px !important;
-
-    top: 18px !important;
-
-    width: 52px !important;
-    height: auto !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    transform: none !important;
-
-    z-index: 50 !important;
-  }
-
-  body:has(#wantedPoster) .hero > .spidey-hanger img {
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-  }
-
-}
-
-
-/* SMALL PHONES */
-
-@media (max-width: 520px) {
-
-  body:has(#wantedPoster) .hero > .spidey-hanger {
-    right: 7px !important;
-    top: 14px !important;
-    width: 50px !important;
-  }
-
-}
-
-
-/* ============================================================
-   MOBILE — GIVE NON-HOME PAGES PROPER BREATHING ROOM
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-  /* Space below navbar */
-  body:not([data-page="index.html"]) main {
-    padding-top: 18px !important;
-  }
-
-  /* First sections */
-  body:not([data-page="index.html"]) main > section:first-of-type,
-  body:not([data-page="index.html"]) .p-hero {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    padding-bottom: 42px !important;
-  }
-
-  /* Project/detail content */
-  body:not([data-page="index.html"]) .p-block,
-  body:not([data-page="index.html"]) .contact-form-section,
-  body:not([data-page="index.html"]) .section {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  /* Project cards / grids */
-  body:not([data-page="index.html"]) .project-grid,
-  body:not([data-page="index.html"]) .teaser-grid,
-  body:not([data-page="index.html"]) .cf-track,
-  body:not([data-page="index.html"]) .svc-grid,
-  body:not([data-page="index.html"]) .steps-row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  /* Individual cards */
-  body:not([data-page="index.html"]) .project-card,
-  body:not([data-page="index.html"]) .cf-slide,
-  body:not([data-page="index.html"]) .svc-card,
-  body:not([data-page="index.html"]) .step-card {
-    margin-bottom: 16px !important;
-  }
-
-}
-
-
-/* ============================================================
-   SMALL PHONES
-   ============================================================ */
-
-@media (max-width: 520px) {
-
-  body:not([data-page="index.html"]) main {
-    padding-top: 14px !important;
-  }
-
-  body:not([data-page="index.html"]) main > section:first-of-type,
-  body:not([data-page="index.html"]) .p-hero {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    padding-bottom: 34px !important;
-  }
-
-  body:not([data-page="index.html"]) .project-card,
-  body:not([data-page="index.html"]) .cf-slide,
-  body:not([data-page="index.html"]) .svc-card,
-  body:not([data-page="index.html"]) .step-card {
-    margin-bottom: 14px !important;
-  }
-
-}
-
-
-/* ============================================================
-   MOBILE — GIVE NON-HOME PAGES PROPER BREATHING ROOM
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-  /* Space below navbar */
-  body:not([data-page="index.html"]) main {
-    padding-top: 18px !important;
-  }
-
-  /* First sections */
-  body:not([data-page="index.html"]) main > section:first-of-type,
-  body:not([data-page="index.html"]) .p-hero {
-    padding-left: 20px !important;
-    padding-right: 20px !important;
-    padding-bottom: 42px !important;
-  }
-
-  /* Project/detail content */
-  body:not([data-page="index.html"]) .p-block,
-  body:not([data-page="index.html"]) .contact-form-section,
-  body:not([data-page="index.html"]) .section {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  /* Project cards / grids */
-  body:not([data-page="index.html"]) .project-grid,
-  body:not([data-page="index.html"]) .teaser-grid,
-  body:not([data-page="index.html"]) .cf-track,
-  body:not([data-page="index.html"]) .svc-grid,
-  body:not([data-page="index.html"]) .steps-row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-  }
-
-  /* Individual cards */
-  body:not([data-page="index.html"]) .project-card,
-  body:not([data-page="index.html"]) .cf-slide,
-  body:not([data-page="index.html"]) .svc-card,
-  body:not([data-page="index.html"]) .step-card {
-    margin-bottom: 16px !important;
-  }
-
-}
-
-
-/* ============================================================
-   SMALL PHONES
-   ============================================================ */
-
-@media (max-width: 520px) {
-
-  body:not([data-page="index.html"]) main {
-    padding-top: 14px !important;
-  }
-
-  body:not([data-page="index.html"]) main > section:first-of-type,
-  body:not([data-page="index.html"]) .p-hero {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-    padding-bottom: 34px !important;
-  }
-
-  body:not([data-page="index.html"]) .project-card,
-  body:not([data-page="index.html"]) .cf-slide,
-  body:not([data-page="index.html"]) .svc-card,
-  body:not([data-page="index.html"]) .step-card {
-    margin-bottom: 14px !important;
-  }
-
-}
-
-/* ============================================================
-   MOBILE — FINAL SPIDER-MAN POSITION
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-  /* Every page except Home */
   body:not([data-page="index.html"]) .spidey-hanger {
     position: absolute !important;
-
     left: auto !important;
-    right: 12px !important;
-
-    top: 10px !important;
+    right: 6px !important;
+    top: 8px !important;
 
     width: 52px !important;
     height: auto !important;
@@ -3944,7 +3743,6 @@ body[data-page="contact.html"] .hero {
     padding: 0 !important;
 
     transform: none !important;
-
     z-index: 50 !important;
     pointer-events: none !important;
   }
@@ -3957,68 +3755,11 @@ body[data-page="contact.html"] .hero {
 
 }
 
-
-/* SMALL PHONES */
-
 @media (max-width: 520px) {
 
   body:not([data-page="index.html"]) .spidey-hanger {
-    right: 8px !important;
+    right: 4px !important;
     top: 8px !important;
-    width: 48px !important;
-  }
-
-}
-
-/* ============================================================
-   MOBILE — FINAL SPIDER-MAN POSITION
-   NON-HOME PAGES ONLY
-   ============================================================ */
-
-@media (max-width: 900px) {
-
-  body:not([data-page="index.html"])
-  main > section:first-of-type > .spidey-hanger {
-
-    position: absolute !important;
-
-    left: auto !important;
-    right: 0px !important;
-
-    top: 20px !important;
-
-    width: 52px !important;
-    height: auto !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    transform: none !important;
-
-    z-index: 50 !important;
-    pointer-events: none !important;
-  }
-
-  body:not([data-page="index.html"])
-  main > section:first-of-type > .spidey-hanger img {
-
-    width: 100% !important;
-    height: auto !important;
-    display: block !important;
-  }
-
-}
-
-
-/* SMALL PHONES */
-
-@media (max-width: 520px) {
-
-  body:not([data-page="index.html"])
-  main > section:first-of-type > .spidey-hanger {
-
-    right: 0px !important;
-    top: 20px !important;
     width: 48px !important;
   }
 
