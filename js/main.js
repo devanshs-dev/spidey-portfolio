@@ -543,16 +543,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const isMobile = window.matchMedia('(max-width: 900px)').matches;
 
     spidey.style.cssText = `
-      position: fixed;
-      right: ${isMobile ? '10px' : '35px'};
-      top: ${isMobile ? '70px' : '90px'};
-      width: ${isMobile ? '46px' : '110px'};
-      height: auto;
-      margin: 0;
-      padding: 0;
-      z-index: 500;
-      pointer-events: none;
-    `;
+  position: fixed !important;
+  left: auto !important;
+  right: ${isMobile ? '10px' : '35px'} !important;
+  top: ${isMobile ? '70px' : '90px'} !important;
+  width: ${isMobile ? '52px' : '110px'} !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  z-index: 500 !important;
+  pointer-events: none !important;
+`;
 
     const img = spidey.querySelector('img');
     if (img) img.style.cssText = 'width:100%; height:auto; display:block;';
