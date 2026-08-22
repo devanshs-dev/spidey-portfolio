@@ -38,7 +38,7 @@ Also open to **full-stack**, **frontend**, and **ML** roles.
 
 ## Contact
 
-- Portfolio: [spidey-portfolio-kappa.vercel.app](https://spidey-portfolio-kappa.vercel.app)
+- Portfolio: (https://lnkd.in/g878cuSQ)
 - LinkedIn: [linkedin.com/in/connect-to-devansh-singh](https://linkedin.com/in/connect-to-devansh-singh/)
 - GitHub: [@devanshs-dev](https://github.com/devanshs-dev)
 - Email: imdevansh.08@gmail.com
