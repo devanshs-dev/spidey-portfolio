@@ -3566,3 +3566,84 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     padding-top: 28px !important;
   }
 }
+
+/* ============================================================
+   FINAL MOBILE FIX — WORK WITH ME + ALL INNER PAGES
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  /* ---------- WORK WITH ME HERO ---------- */
+  body[data-page="work-with-me.html"] .p-hero {
+    position: relative !important;
+    top: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 28px !important;
+    padding-bottom: 35px !important;
+    overflow: visible !important;
+  }
+
+  body[data-page="work-with-me.html"]
+  main > section.p-hero > .spidey-hanger {
+    position: absolute !important;
+    left: auto !important;
+    right: 6px !important;
+    top: 55px !important;
+    width: 52px !important;
+    margin: 0 !important;
+    transform: none !important;
+    display: block !important;
+    z-index: 50 !important;
+  }
+
+  body[data-page="work-with-me.html"]
+  main > section.p-hero > .spidey-hanger img {
+    width: 100% !important;
+    height: auto !important;
+    display: block !important;
+  }
+
+  /* Hide HOME / WORK WITH ME breadcrumb */
+  body[data-page="work-with-me.html"] .breadcrumb {
+    display: none !important;
+  }
+
+  /* Make the rest of Work With Me visible immediately */
+  body[data-page="work-with-me.html"] .p-block,
+  body[data-page="work-with-me.html"] .p-block.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+  }
+
+  /* ---------- OTHER INNER PAGES ---------- */
+
+  body[data-page^="project-"] .p-hero,
+  body[data-page="projects.html"] main > section:first-of-type,
+  body[data-page="about.html"] main > section:first-of-type,
+  body[data-page="design.html"] main > section:first-of-type,
+  body[data-page="contact.html"] .hero {
+    top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 520px) {
+
+  body[data-page="work-with-me.html"] .p-hero {
+    padding-top: 24px !important;
+    padding-bottom: 30px !important;
+  }
+
+  body[data-page="work-with-me.html"]
+  main > section.p-hero > .spidey-hanger {
+    right: 4px !important;
+    top: 50px !important;
+    width: 48px !important;
+  }
+
+}
