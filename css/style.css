@@ -517,14 +517,14 @@ h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing:
 .contact-form button:hover { background: var(--ink); }
 .form-status { font-family: var(--font-mono); font-size: 13px; margin-top: 4px; }
 
-/* ---- hexagonal tag / badge ---- */
+/* ---- tag / badge ---- */
 .tag {
-  clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%);
+  border-radius: 3px;
   padding: 9px 22px;
 }
 
 .p-stack span, .teaser-card .stack span, .design-card .dc-tag {
-  clip-path: polygon(6% 0, 94% 0, 100% 50%, 94% 100%, 6% 100%, 0 50%);
+  border-radius: 3px;
   padding: 6px 16px;
 }
 
