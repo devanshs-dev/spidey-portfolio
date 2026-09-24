@@ -1432,14 +1432,7 @@ body {
     border: 1px solid rgba(232,56,61,.65) !important;
     color: var(--red) !important;
 
-    clip-path: polygon(
-      7% 0,
-      93% 0,
-      100% 50%,
-      93% 100%,
-      7% 100%,
-      0 50%
-    ) !important;
+    border-radius: 3px !important;
   }
 
 
@@ -3706,3 +3699,9 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 
 }
 
+
+@media (min-width: 901px) {
+  .nav, .nav a, .nav button, .nav-links a, .nav-cta {
+    cursor: none !important;
+  }
+}
