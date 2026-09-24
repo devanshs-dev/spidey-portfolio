@@ -3711,3 +3711,10 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
     cursor: none !important;
   }
 }
+
+#cursor {
+  z-index: 999999 !important;
+}
+nav.nav {
+  isolation: isolate;
+}
