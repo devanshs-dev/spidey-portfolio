@@ -3718,3 +3718,77 @@ body[data-page="projects.html"] main > section:first-of-type > .spidey-hanger im
 nav.nav {
   isolation: isolate;
 }
+
+
+
+#cursor[popover] {
+  position: fixed;
+  inset: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+  background-color: transparent;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
+#cursor[popover].hover { width: 32px; height: 32px; }
+
+/* ===== shared polish (matches work-with-me) ===== */
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.prog{position:fixed;top:0;left:0;height:2px;background:var(--red);width:0;z-index:999}
+.glow{position:fixed;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:1;left:0;top:0;background:radial-gradient(circle,rgba(225,29,46,.13),transparent 65%)}
+main{position:relative;z-index:2}
+
+/* scroll reveal */
+.rv{opacity:0;transform:translateY(46px);transition:opacity 1s,transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* headings: red web-line draws in */
+main h2{position:relative;display:inline-block}
+main h2::after{content:'';position:absolute;left:1px;bottom:-10px;height:3px;width:0;background:var(--red);box-shadow:0 0 10px var(--red);transition:width 1s cubic-bezier(.2,.8,.2,1) .25s}
+main h2.in::after{width:64px}
+
+/* nav underline */
+.nav-links a{position:relative}
+.nav-links a::after{content:'';position:absolute;left:50%;bottom:-6px;width:0;height:1.5px;background:var(--red);box-shadow:0 0 6px var(--red);transition:width .3s,left .3s}
+.nav-links a:hover::after,.nav-links a.on::after,.nav-links a.active::after{width:100%;left:0}
+
+/* button pulse */
+.btn:hover,.nav-cta:hover{animation:sense .7s ease-out 1}
+@keyframes sense{0%{box-shadow:0 0 0 0 rgba(225,29,46,.75)}100%{box-shadow:0 0 0 24px rgba(225,29,46,0)}}
+
+/* cards: red spotlight + web corner + tilt */
+.card,.project-card,[class*="card"]{position:relative;overflow:hidden;transition:transform .15s,border-color .3s;transform-style:preserve-3d}
+.card:hover,.project-card:hover,[class*="card"]:hover{border-color:var(--red)}
+.card::before,.project-card::before,[class*="card"]::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(225,29,46,.16),transparent 60%);opacity:0;transition:.3s}
+.card:hover::before,.project-card:hover::before,[class*="card"]:hover::before{opacity:1}
+
+/* form fields */
+input,textarea,select{transition:.3s}
+input:focus,textarea:focus,select:focus{border-color:var(--red)!important;box-shadow:0 0 0 3px rgba(225,29,46,.15);outline:0}
+
+/* web-shooter trail canvas + click word */
+.pow{position:fixed;z-index:9999;pointer-events:none;font-family:var(--font-display);font-size:34px;color:#e11d2e;-webkit-text-stroke:1.5px #fff;text-shadow:4px 4px 0 #ffd400;transform:translate(-50%,-50%) rotate(var(--r)) scale(.2);animation:pw2 1.6s cubic-bezier(.2,1.4,.4,1) forwards}
+@keyframes pw2{18%{transform:translate(-50%,-90%) rotate(var(--r)) scale(1.25)}30%{transform:translate(-50%,-90%) rotate(var(--r)) scale(1)}70%{opacity:1}100%{transform:translate(-50%,-140%) rotate(var(--r)) scale(1);opacity:0}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+
+/* no web-corner lines on any page */
+main section::after,.sec::after{display:none!important;content:none!important}
+
+/* red dot grid on hero */
+.hero{position:relative;isolation:isolate}
+.hero::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:radial-gradient(rgba(225,29,46,.3) 1.3px,transparent 1.8px);
+  background-size:15px 15px;
+  -webkit-mask-image:radial-gradient(circle at 82% 35%,#000,transparent 50%);
+  mask-image:radial-gradient(circle at 82% 35%,#000,transparent 50%)}
+
+  /* web corner on every section except the hero */
+main section:not(.hero){position:relative;overflow:hidden}
+main section:not(.hero)::after{
+  content:'';position:absolute;top:0;right:0;width:280px;height:280px;
+  opacity:.2;pointer-events:none;z-index:0;display:block;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='%23e11d2e' stroke-width='1'%3E%3Cpath d='M200 0H0M200 0 0 60M200 0 0 130M200 0 40 200M200 0 110 200M200 0V200'/%3E%3Cpath d='M150 0Q140 45 200 50M100 0Q90 80 200 100M50 0Q45 120 200 150'/%3E%3C/svg%3E") no-repeat}
+main section.hero::after{display:none!important;content:none!important}

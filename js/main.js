@@ -1,4 +1,8 @@
 const cursor = document.getElementById('cursor');
+if (cursor && cursor.showPopover) {
+  cursor.setAttribute('popover', 'manual');
+  try { cursor.showPopover(); } catch (e) {}
+}
 
 if (cursor && window.matchMedia('(min-width: 901px)').matches) {
   window.addEventListener('mousemove', (e) => {
@@ -585,4 +589,39 @@ document.addEventListener('DOMContentLoaded', () => {
     pinSpidey();
   }
 
+})();
+
+/* shared polish */
+(()=>{
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const main=$('main')||document.body;
+
+/* progress bar + cursor glow (skip if page already has them) */
+if(!$('#prog')){const p=document.createElement('div');p.className='prog';p.id='prog';main.prepend(p)}
+if(!$('#glow')){const g=document.createElement('div');g.className='glow';g.id='glow';main.prepend(g)}
+addEventListener('scroll',()=>{const d=document.documentElement;$('#prog').style.width=scrollY/(d.scrollHeight-innerHeight)*100+'%'},{passive:true});
+addEventListener('mousemove',e=>{$('#glow').style.transform=`translate(${e.clientX-260}px,${e.clientY-260}px)`});
+
+/* reveal: auto-tag headings, cards, paragraphs */
+if(!document.body.dataset.page?.includes('work-with-me')){
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{rootMargin:'0px 0px -8% 0px'});
+$$('main section:not(.hero) h2, main section:not(.hero) .card, main section:not(.hero) [class*="card"], main section:not(.hero) p').forEach(el=>{
+  if(el.closest('.hero'))return;
+  if(el.tagName!=='H2')el.classList.add('rv');
+  const r=el.getBoundingClientRect();
+  if(r.top<innerHeight&&r.bottom>0)el.classList.add('in');else io.observe(el)});
+}
+
+/* card spotlight + tilt */
+$$('.card,.project-card,[class*="card"]').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+    c.style.setProperty('--mx',x*100+'%');c.style.setProperty('--my',y*100+'%');
+    if(!reduce)c.style.transform=`perspective(1000px) rotateY(${(x-.5)*8}deg) rotateX(${(.5-y)*8}deg)`});
+  c.addEventListener('mouseleave',()=>c.style.transform='')});
+
+/* POW! click words */
+if(!$('#gate')&&!document.body.dataset.page?.includes('work-with-me')){
+const W=['THWIP!','POW!','ZAP!','WHAM!','SPLAT!','BAM!'];
+addEventListener('click',e=>{const p=document.createElement('div');p.className='pow';p.textContent=W[Math.random()*W.length|0];p.style.left=e.clientX+'px';p.style.top=e.clientY+'px';p.style.setProperty('--r',(Math.random()*24-12)+'deg');document.body.appendChild(p);setTimeout(()=>p.remove(),1700)})}
 })();
