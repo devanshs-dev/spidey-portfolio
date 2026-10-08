@@ -431,27 +431,37 @@ body{overflow-x:hidden}
 .cmp:focus-visible{outline:2px solid var(--red);outline-offset:4px}
 
 
-/* v11: studio side = its own composition */
-.cmp .std{background:radial-gradient(rgba(225,29,46,.22) 1px,transparent 1.6px) 0 0/14px 14px,#050507;gap:0}
-.cmp .std .nv span{display:none}
-.cmp .sweb{position:absolute;inset:0;width:100%;height:100%;opacity:.75;pointer-events:none}
-.cmp .sweb path,.cmp .sweb circle{stroke-dasharray:700;stroke-dashoffset:700;animation:cdraw 5s ease-in-out infinite alternate}
-.cmp .sweb circle{stroke-dasharray:none;stroke-dashoffset:0;animation:cpulse 1.8s ease-in-out infinite}
+/* v11: studio side = cinematic scene */
+.cmp{--n:50}
+.cmp .std{background:radial-gradient(rgba(225,29,46,.16) 1px,transparent 1.6px) 0 0/16px 16px,radial-gradient(ellipse at 100% 0,#1c060b,#050507 65%);gap:0}
+.cmp .sweb{position:absolute;top:0;right:0;width:58cqw;aspect-ratio:1;pointer-events:none;overflow:visible}
+@media(max-width:620px){.cmp .sweb{width:96cqw}}
+.cmp .sweb path{fill:none;stroke:#e11d2e;stroke-width:1;vector-effect:non-scaling-stroke;stroke-dasharray:3000;stroke-dashoffset:3000}
+.cmp .sweb .r{stroke-opacity:.5}.cmp .sweb .g{stroke-opacity:.32}
+.cmp.seen .sweb .r{animation:cdraw 1.8s ease-out forwards}
+.cmp.seen .sweb .g{animation:cdraw 2.6s .5s ease-out forwards}
+.cmp .sweb circle{fill:#ff3b4d;transform-box:fill-box;transform-origin:center;animation:cpulse 2s ease-in-out infinite;filter:drop-shadow(0 0 5px #e11d2e)}
 @keyframes cdraw{to{stroke-dashoffset:0}}
-@keyframes cpulse{50%{r:6;opacity:.35}}
-.cmp .orb{position:absolute;top:50%;left:var(--p);width:70cqw;height:70cqw;translate:-50% -50%;background:radial-gradient(circle,rgba(225,29,46,.5),transparent 62%);pointer-events:none}
-.cmp .sp{position:absolute;top:-1cqw;right:9cqw;width:11cqw;min-width:44px;transform-origin:50% 0;animation:cswing 4.6s ease-in-out infinite;filter:drop-shadow(0 12px 18px rgba(225,29,46,.45));pointer-events:none}
-@keyframes cswing{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
-.cmp .big{position:relative;margin-top:auto;display:flex;flex-direction:column;font-family:var(--font-display);text-transform:uppercase;font-size:clamp(34px,16cqw,120px);line-height:.9;letter-spacing:.005em;padding-bottom:3cqw}
+@keyframes cpulse{50%{transform:scale(2);opacity:.3}}
+.cmp .orb{position:absolute;top:50%;left:var(--p);width:80cqw;height:80cqw;translate:-50% -50%;background:radial-gradient(circle,rgba(225,29,46,.42),transparent 62%);pointer-events:none}
+.cmp .scn{position:absolute;left:0;right:0;height:28cqw;background:linear-gradient(transparent,rgba(225,29,46,.13),transparent);animation:scan 4.8s linear infinite;pointer-events:none}
+.cmp .spw{position:absolute;top:0;right:22cqw;width:13cqw;min-width:46px;transform-origin:60% 0;animation:cswing 4.6s ease-in-out infinite;pointer-events:none}
+.cmp .spw::before{content:'';position:absolute;left:60%;top:0;width:1px;height:15cqw;background:linear-gradient(rgba(255,255,255,.1),rgba(255,255,255,.85));box-shadow:0 0 6px rgba(255,255,255,.4)}
+.cmp .spw img{display:block;width:100%;margin-top:15cqw;filter:drop-shadow(0 14px 18px rgba(225,29,46,.5))}
+@keyframes cswing{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+.cmp .big{position:relative;margin-top:auto;display:flex;flex-direction:column;font-family:var(--font-display);text-transform:uppercase;font-size:clamp(34px,15cqw,116px);line-height:1;padding-bottom:4cqw;transform:translateX(calc((var(--n) - 50)*-.12cqw))}
 .cmp .big span{display:block;animation:cin 1s cubic-bezier(.2,.8,.2,1) both}
 .cmp .big span:nth-child(2){animation-delay:.12s}.cmp .big span:nth-child(3){animation-delay:.24s}
 @keyframes cin{from{transform:translateY(40%) skewY(6deg);opacity:0}}
 .cmp .big .out{animation:cin 1s .24s both,gl 6s 3s infinite}
-.cmp .mqs{position:relative;margin:0 -4cqw -4cqw;border-top:1px solid rgba(225,29,46,.5);background:rgba(225,29,46,.08);overflow:hidden;padding:2cqw 0}
+.cmp .mqs{position:relative;margin:0 -4cqw -4cqw;border-top:1px solid rgba(225,29,46,.5);background:rgba(225,29,46,.08);overflow:hidden;padding:2.2cqw 0}
 .cmp .mqs div{display:flex;width:max-content;animation:mq 12s linear infinite}
-.cmp .mqs em{font-style:normal;font:500 clamp(9px,2.4cqw,12px) var(--font-mono);letter-spacing:.18em;color:#fff;padding:0 4cqw}
+.cmp .mqs em{font-style:normal;font:500 clamp(9px,2.4cqw,12px) var(--font-mono);letter-spacing:.18em;color:#fff;padding:0 4cqw;white-space:nowrap}
 .cmp .mqs em::after{content:'✦';color:var(--red);margin-left:8cqw}
-@media(prefers-reduced-motion:reduce){.cmp .sweb *,.cmp .sp,.cmp .big span,.cmp .mqs div{animation:none!important}.cmp .sweb path{stroke-dashoffset:0}}
+.cmp-k{font-size:20px}
+.cmp-k::before{content:'';position:absolute;inset:-7px;border-radius:50%;border:2px solid var(--red);animation:kring 1.8s ease-out infinite}
+@keyframes kring{to{transform:scale(1.55);opacity:0}}
+@media(prefers-reduced-motion:reduce){.cmp *{animation:none!important}.cmp .sweb path{stroke-dashoffset:0}}
 </style>
 
 </head>
@@ -507,7 +517,7 @@ body{overflow-x:hidden}
   <div class="cmpwrap rv"><div class="cmphead"><h3>Template vs studio</h3><span>Drag the red dot ⇄</span></div>
   <div class="cmp" id="cmp" role="slider" tabindex="0" aria-label="Compare a template site with a studio site" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
    <div class="ly tpl"><div class="nv"><b>Company Name</b><span>Home &nbsp; About &nbsp; Contact</span></div><div class="hd">Welcome to Our Website</div><div class="tx">We provide quality services for all your needs.</div><div class="bt">Learn More</div><div class="t3"><i>Service 1</i><i>Service 2</i><i>Service 3</i></div></div>
-   <div class="ly std"><svg class="sweb" viewBox="0 0 400 300" preserveAspectRatio="xMaxYMin slice" aria-hidden="true" fill="none" stroke="#e11d2e" stroke-width="1"><path d="M400 0 0 40M400 0 0 130M400 0 60 300M400 0 190 300M400 0 320 300M400 0 0 220"/><path d="M340 0Q330 70 400 80M270 0Q250 120 400 150M190 0Q170 170 400 230M110 0Q90 220 400 290"/><circle class="nd1" cx="330" cy="75" r="3" fill="#e11d2e"/><circle class="nd1" cx="250" cy="140" r="3" fill="#e11d2e" style="animation-delay:.6s"/><circle class="nd1" cx="170" cy="215" r="3" fill="#e11d2e" style="animation-delay:1.2s"/></svg><i class="orb"></i><img class="sp" src="assets/spider-swing.png" alt=""><div class="nv"><b><img src="assets/logo-mark.png" alt="" width="16" height="16">DEVANSH.</b></div><div class="big"><span>WAIT,</span><span>WHO BUILT</span><span class="out">THIS?</span></div><div class="mqs"><div><em>YOUR STORY</em><em>YOUR MOOD</em><em>YOUR WORLD</em><em>YOUR STORY</em><em>YOUR MOOD</em><em>YOUR WORLD</em></div></div></div>
+   <div class="ly std"><svg class="sweb" viewBox="0 0 400 400" aria-hidden="true"><path class="r" d="M400 0L400.0 380.0M400 0L325.9 372.7M400 0L254.6 351.1M400 0L188.9 316.0M400 0L131.3 268.7M400 0L84.0 211.1M400 0L48.9 145.4M400 0L27.3 74.1M400 0L20.0 0.0"/><path class="g" d="M400.0 45.0Q396.2 38.3 391.2 44.1Q388.8 36.9 382.8 41.6Q381.8 34.0 375.0 37.4Q375.6 29.8 368.2 31.8Q370.2 24.4 362.6 25.0Q366.0 18.2 358.4 17.2Q363.1 11.2 355.9 8.8Q361.7 3.8 355.0 0.0M400.0 90.0Q392.5 76.7 382.4 88.3Q377.6 73.7 365.6 83.1Q363.7 67.9 350.0 74.8Q351.1 59.5 336.4 63.6Q340.5 48.9 325.2 50.0Q332.1 36.3 316.9 34.4Q326.3 22.4 311.7 17.6Q323.3 7.5 310.0 0.0M400.0 140.0Q388.3 119.2 372.7 137.3Q365.2 114.7 346.4 129.3Q343.5 105.7 322.2 116.4Q324.0 92.6 301.0 99.0Q307.4 76.0 283.6 77.8Q294.3 56.5 270.7 53.6Q285.3 34.8 262.7 27.3Q280.8 11.7 260.0 0.0M400.0 195.0Q383.6 166.1 362.0 191.3Q351.6 159.7 325.4 180.2Q321.3 147.2 291.7 162.1Q294.1 129.0 262.1 137.9Q271.0 105.9 237.9 108.3Q252.8 78.7 219.8 74.6Q240.3 48.4 208.7 38.0Q233.9 16.4 205.0 0.0M400.0 255.0Q378.6 217.2 350.3 250.1Q336.6 208.8 302.4 235.6Q297.1 192.5 258.3 212.0Q261.5 168.7 219.7 180.3Q231.3 138.5 188.0 141.7Q207.5 102.9 164.4 97.6Q191.2 63.4 149.9 49.7Q182.8 21.4 145.0 0.0M400.0 320.0Q373.2 272.6 337.6 313.9Q320.5 262.1 277.5 295.6Q270.9 241.5 222.2 266.1Q226.3 211.7 173.7 226.3Q188.3 173.7 133.9 177.8Q158.5 129.1 104.4 122.5Q137.9 79.5 86.1 62.4Q127.4 26.8 80.0 0.0"/><circle cx="346.4" cy="129.3" r="3.2" style="animation-delay:0s"/><circle cx="237.9" cy="108.3" r="3.2" style="animation-delay:0.5s"/><circle cx="258.3" cy="212.0" r="3.2" style="animation-delay:1s"/><circle cx="311.7" cy="17.6" r="3.2" style="animation-delay:1.4s"/></svg><i class="orb"></i><i class="scn"></i><div class="spw"><img src="assets/spider-swing.png" alt=""></div><div class="big"><span>WAIT,</span><span>WHO BUILT</span><span class="out">THIS?</span></div><div class="mqs"><div><em>YOUR STORY</em><em>YOUR MOOD</em><em>YOUR WORLD</em><em>YOUR STORY</em><em>YOUR MOOD</em><em>YOUR WORLD</em></div></div></div>
    <div class="cmp-h"><div class="cmp-k">⇄</div></div><span class="cmp-tag a">TEMPLATE</span><span class="cmp-tag b">STUDIO</span>
   </div></div>
 </section>
@@ -825,13 +835,13 @@ const rv=()=>document.querySelectorAll('.rv:not(.in)').forEach(e=>{if(e.getBound
 addEventListener('scroll',rv,{passive:true});setTimeout(rv,500);
 /* template vs studio slider */
 const cmp=$('#cmp');if(cmp){let p=50,stop=0,dn=null;
-const set=v=>{p=Math.max(0,Math.min(100,v));cmp.style.setProperty('--p',p+'%');cmp.setAttribute('aria-valuenow',Math.round(p))};
+const set=v=>{p=Math.max(0,Math.min(100,v));cmp.style.setProperty('--p',p+'%');cmp.style.setProperty('--n',p);cmp.setAttribute('aria-valuenow',Math.round(p))};
 const at=x=>{const r=cmp.getBoundingClientRect();set((x-r.left)/r.width*100)};
 cmp.addEventListener('pointerdown',e=>{stop=1;dn={x:e.clientX,on:e.pointerType==='mouse'||!!e.target.closest('.cmp-k')};if(dn.on){try{cmp.setPointerCapture(e.pointerId)}catch(_){}at(e.clientX)}});
 cmp.addEventListener('pointermove',e=>{if(!dn)return;if(!dn.on&&Math.abs(e.clientX-dn.x)>8){dn.on=true;try{cmp.setPointerCapture(e.pointerId)}catch(_){}}if(dn.on)at(e.clientX)});
 ['pointerup','pointercancel'].forEach(t=>cmp.addEventListener(t,()=>dn=null));
 cmp.addEventListener('keydown',e=>{const k={ArrowLeft:-5,ArrowRight:5}[e.key];if(k){e.preventDefault();stop=1;set(p+k)}else if(e.key==='Home')set(0);else if(e.key==='End')set(100)});
-new IntersectionObserver((e,o)=>{if(!e[0].isIntersecting)return;o.disconnect();if(reduce)return;const s=performance.now();(function f(n){if(stop)return;const k=(n-s)/2600;if(k>=1)return set(50);set(50+Math.sin(k*Math.PI*2)*38*(1-k*.2));requestAnimationFrame(f)})(s)},{threshold:.6}).observe(cmp)}
+new IntersectionObserver((e,o)=>{if(!e[0].isIntersecting)return;o.disconnect();cmp.classList.add('seen');if(reduce)return;const s=performance.now();(function f(n){if(stop)return;const k=(n-s)/2600;if(k>=1)return set(50);set(50+Math.sin(k*Math.PI*2)*38*(1-k*.2));requestAnimationFrame(f)})(s)},{threshold:.6}).observe(cmp)}
 
 })();
 </script>
